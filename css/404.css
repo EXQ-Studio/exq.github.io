@@ -1,20 +1,20 @@
 body {
-    margin: 0;
-    padding: 0;
     font-family: 'Noto Sans SC', sans-serif;
-    position: relative;
-    background: url('https://images2.alphacoders.com/134/1349150.png') no-repeat center center fixed;
+    background-image: url('https://www.helloimg.com/i/2025/05/23/683091beea2f4.jpg');
     background-size: cover;
-    color: #fff;
+    background-position: center;
+    background-attachment: fixed;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
     height: 100vh;
     overflow: hidden;
 }
 
 .container {
-    position: relative;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 2;
     /* 保证文字在模糊背景之上 */
     background: white;
