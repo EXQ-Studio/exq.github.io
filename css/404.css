@@ -17,12 +17,12 @@ body {
     position: relative;
     z-index: 2;
     /* 保证文字在模糊背景之上 */
-    text-align: center;
     background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 256px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    padding: 35px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background: white;
 }
 
 .container h1 {
