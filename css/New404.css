@@ -3,10 +3,10 @@ body {
     flex-direction: column;
     padding-top: 60px;
     /* 与导航栏高度相同 */
-    background-image: url('https://www.helloimg.com/i/2025/05/23/683091beea2f4.jpg');
-    background-size: cover;
-    background-position: center;
+    background: linear-gradient(45deg, #146c8a, #add8e6) no-repeat;
     background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
     background-repeat: no-repeat;
     font-family: 'Noto Sans SC', sans-serif;
 }
