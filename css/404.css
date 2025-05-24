@@ -1,13 +1,14 @@
 body {
-    font-family: 'Noto Sans SC', sans-serif;
+    display: flex;
+    flex-direction: column;
+    padding-top: 60px;
+    /* 与导航栏高度相同 */
     background-image: url('https://www.helloimg.com/i/2025/05/23/683091beea2f4.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    overflow: hidden;
+    background-repeat: no-repeat;
+    font-family: 'Noto Sans SC', sans-serif;
 }
 
 .container {
