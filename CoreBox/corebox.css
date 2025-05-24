@@ -1,0 +1,200 @@
+@font-face {
+    font-family: 'Noto Sans SC';
+    src: local('Noto Sans SC');
+    src: local('Noto Sans SC Medium');
+    src: local('Noto Sans SC Bold');
+}
+
+body {
+    height: 100vh;
+    margin: 0px;
+    padding-top: 60px;
+    /* 与导航栏高度相同 */
+    overflow: hidden;
+    background: linear-gradient(45deg, rgb(20, 108, 138), lightblue);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    font-family: "Noto Sans SC", sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    color: #fff;
+    margin-top: 10%;
+    font-size: 3em;
+    transition: .7s;
+}
+
+h1:hover {
+    color: rgb(20, 108, 138);
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    background: rgb(104, 149, 167);
+    border-radius: 5px;
+    border: none;
+    font-size: 1em;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: rgb(20, 108, 138);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.information {
+    color: white;
+    bottom: 0;
+    right: 10px;
+}
+
+.briefInstruction {
+    padding: 0%;
+    color: azure;
+    margin-top: -15px;
+}
+
+/** 导航栏 **/
+nav {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 1000;
+    /* 导航栏位于页面其他内容上，请确认页面内容高度与导航栏同步！padding-top=60px */
+}
+
+nav img {
+    width: 120px;
+    height: 50px;
+    margin-left: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    position: absolute;
+    left: 50px;
+    margin-left: 120px;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    position: relative;
+    z-index: 1;
+}
+
+nav div {
+    display: flex;
+    align-items: center;
+}
+
+nav div a {
+    text-decoration: none;
+    color: #fff;
+    margin-left: 20px;
+    font-size: 16px;
+    position: relative;
+    z-index: 1;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+nav ul li a:hover {
+    color: skyblue;
+}
+
+/**footer**/
+.footer {
+    /* 移除 position: fixed 以及相关定位属性 */
+    width: 100%;
+    background-color: #333; /* 灰色背景 */
+    color: white; /* 白色文字 */
+    padding: 20px 0;
+    /* 移除或者降低 z - index 值 */
+    z-index: auto;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-logo img {
+    max-height: 50px; /* 调整logo大小 */
+}
+
+.footer-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    margin-right: 15px;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.footer-contact {
+    margin: 10px 0;
+}
+
+.footer-contact span {
+    margin-right: 15px;
+}
+
+.footer-copyright {
+    font-size: 0.9em;
+}
