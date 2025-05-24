@@ -204,3 +204,37 @@ nav ul li a:hover {
         opacity: 1;
     }
 }
+@media screen and (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 60px;
+        /* 保持这个值,确保菜单在导航栏下方 */
+        left: 20px;
+        /* 与导航栏的左内边距对齐 */
+        width: auto;
+        /* 改为自动宽度 */
+        background: rgba(0, 0, 0, 0.8);
+        flex-direction: column;
+        padding: 10px;
+        border-radius: 0 0 5px 5px;
+        /* 可选:添加圆角 */
+        z-index: 2;
+    }
+
+    .nav-menu li {
+        margin: 5px 0;
+        text-align: left;
+        /* 左对齐文本 */
+        white-space: nowrap;
+        /* 防止文本换行 */
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+}
