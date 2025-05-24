@@ -26,7 +26,16 @@
             <li><a href="donation.html">赞助我们</a></li>
         </ul>
     </nav>
-    <script src="js/nav.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        menuToggle.addEventListener('click', function () {
+            navMenu.classList.toggle('active');
+        });
+    });
+    </script>
     <h1>Core Box 工具箱</h1>
     <h3 class="briefInstruction">一个免费、纯净、仅限娱乐的小工具箱</h3>
     <h3 class="information">提示：受限于作者的编程水平，目前只能开发出这点可能没什么用的功能，还有一些bug，敬请见谅。</h3>
@@ -34,10 +43,31 @@
         <a class="download" href="###"><button>点击下载</button></a>
         <a class="history" href="historyversion.html"><button>历史版本</button></a>
     </div>
+     <!-- footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="img\logo\LogoNavBar.png" alt="Logo">
+            </div>
+            <div class="footer-info">
+                <div class="footer-links">
+                    <a href="about.html">关于团队</a>
+                    <a href="https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=s9hmkfGoSf-wJU7F9utssiFY1H8n1Wm1&authKey=xn9gD93GzSQuPXeL6iGcDgVtqgeCgWuPGYUSSSGJUoztP/0fE0yZxwu7mb+Pvg0M&noverify=0&group_code=538933981"
+                        target="_blank">加入我们</a>
+                    <a href="donation.html">赞助我们</a>
+                    <a href="recentupdate.html">近期更新</a>
+                </div>
+                <div class="footer-contact">
+                    <span>QQ群：538933981</span>
+                    <span>邮箱：exqstudio@exqstudio.cn</span>
+                </div>
+                <div class="footer-copyright">
+                    <span>&#169;EXQ Studio</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="js/jQuery.js"></script>
 </body>
-<script src="js/jQuery.js"></script>
-<script>
-
-</script>
-
 </html>

@@ -1,79 +1,66 @@
 @font-face {
     font-family: 'Noto Sans SC';
     src: local('Noto Sans SC');
-    src: local('Noto Sans SC Medium');
-    src: local('Noto Sans SC Bold');
 }
 
 body {
-    height: 100vh;
-    margin: 0px;
+    margin: 0;
     padding-top: 60px;
-    /* 与导航栏高度相同 */
-    overflow: hidden;
-    background: linear-gradient(45deg, rgb(20, 108, 138), lightblue);
+    background: linear-gradient(135deg, #146C8A, #a8e6ff);
+    font-family: 'Noto Sans SC', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
-    font-family: "Noto Sans SC", sans-serif;
+    min-height: 100vh;
+    box-sizing: border-box;
 }
 
 a {
     text-decoration: none;
+    color: inherit;
 }
 
 h1 {
-    display: flex;
-    justify-content: center;
-    width: 100%;
     color: #fff;
-    margin-top: 10%;
-    font-size: 3em;
-    transition: .7s;
+    font-size: 3.5em;
+    margin-top: 10vh;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    animation: fadeInUp 1s ease;
 }
 
 h1:hover {
-    color: rgb(20, 108, 138);
+    color: #146C8A;
+}
+
+.briefInstruction, .information {
+    color: #f0f8ff;
+    text-align: center;
+    margin-top: 0;
+    max-width: 90%;
+    line-height: 1.6;
 }
 
 .button-container {
     display: flex;
-    flex-direction: row;
     gap: 20px;
-    margin-top: 15px;
+    margin-top: 25px;
 }
 
 button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 20px;
-    background: rgb(104, 149, 167);
-    border-radius: 5px;
+    padding: 12px 30px;
     border: none;
-    font-size: 1em;
+    border-radius: 12px;
+    background: #6895a7;
     color: white;
+    font-size: 1.1em;
     cursor: pointer;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 button:hover {
-    background: rgb(20, 108, 138);
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.information {
-    color: white;
-    bottom: 0;
-    right: 10px;
-}
-
-.briefInstruction {
-    padding: 0%;
-    color: azure;
-    margin-top: -15px;
+    background: #146C8A;
+    transform: scale(1.05);
 }
 
 /** 导航栏 **/
@@ -148,15 +135,20 @@ nav ul li a:hover {
     color: skyblue;
 }
 
+
 /**footer**/
 .footer {
-    /* 移除 position: fixed 以及相关定位属性 */
+    position: fixed;
+    bottom: 0;
+    left: 0;
     width: 100%;
-    background-color: #333; /* 灰色背景 */
-    color: white; /* 白色文字 */
+    background-color: #333;
+    /* 灰色背景 */
+    color: white;
+    /* 白色文字 */
     padding: 20px 0;
-    /* 移除或者降低 z - index 值 */
-    z-index: auto;
+    z-index: 999;
+    /* 确保 footer 在其他内容之上 */
 }
 
 .footer-content {
@@ -169,7 +161,8 @@ nav ul li a:hover {
 }
 
 .footer-logo img {
-    max-height: 50px; /* 调整logo大小 */
+    max-height: 50px;
+    /* 调整logo大小 */
 }
 
 .footer-info {
@@ -197,4 +190,17 @@ nav ul li a:hover {
 
 .footer-copyright {
     font-size: 0.9em;
+}
+
+
+/* 动画 */
+@keyframes fadeInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }

@@ -307,39 +307,6 @@ h1:hover {
     color: darkgoldenrod;
 }
 
-
-/** 团队信息 **/
-.team {
-    text-align: center;
-    margin: 20px auto;
-    padding: 15px;
-    background: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.team h4 {
-    font-size: 1.5em;
-    color: #333;
-    margin-bottom: 10px;
-}
-
-.team p {
-    font-size: 1em;
-    line-height: 1.8;
-    color: #555;
-}
-
-.member {
-    font-weight: bold;
-    color: #007bff;
-}
-
-.member:hover {
-    text-decoration: underline;
-    color: #0056b3;
-}
-
 /** 弹窗页脚样式 **/
 .popup-footer {
     display: flex;
