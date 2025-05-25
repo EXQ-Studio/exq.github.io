@@ -1,331 +1,784 @@
-/* 设置中文字体为 Noto Sans SC 的不同字重 */
-@font-face {
-    font-family: 'Noto Sans SC';
-    src: local('Noto Sans SC'), local('Noto Sans SC Medium'), local('Noto Sans SC Bold');
-}
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* 全局默认样式初始化 */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    user-select: none; /* 禁止用户选中文本 */
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* 所有链接去掉下划线 */
-a {
-    text-decoration: none;
-}
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #4ecdc4;
+            --text-primary: #2d3748;
+            --text-secondary: #718096;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
 
-/* 所有列表去掉默认圆点 */
-ul {
-    list-style: none;
-}
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #4ecdc4 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
 
-/* ====== 页面背景层，固定覆盖整个页面 ====== */
-.background {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background-image: url('img/bg.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-}
+        /* 动态背景粒子 */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
 
-/* ========== 整体页面布局 ========== */
-html, body {
-    height: 100%;
-    margin: 0;
-    font-family: 'Noto Sans SC', sans-serif;
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
 
-    /* 使用 flex 垂直布局，撑满全屏 */
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background: none; /* 去掉 body 的背景图，使用 .background 替代 */
-}
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
 
-/* 主体内容容器，撑满剩余空间并居中 */
-.container {
-    height: calc(100vh - 60px - 100px); /* 减去导航栏和footer的高度 */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: #fff;
-    padding: 20px;
-    position: static !important;
-    top: auto !important;
-    left: auto !important;
-    transform: none !important;
-}
+        /* 导航栏 - 简化版本 */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0 1rem;
+        }
 
-/* 页面标题 */
-.headline {
-    margin-bottom: 20px;
-    font-size: 32px;
-}
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 70px;
+        }
 
-.description {
-    font-size: 15px;
-    line-height: 1.5;
-}
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
 
-.description h2 {
-    font-weight: normal;
-}
+        .nav-logo img {
+            width: 105px;
+            height: 40px;
+            border-radius: 8px;
+        }
 
-/* ---------- 弹窗遮罩层 ---------- */
-#mask {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 1000;
-    backdrop-filter: blur(5px);
-}
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            align-items: center;
+        }
 
-/* ---------- 弹窗内容 ---------- */
-#popup {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: linear-gradient(145deg, #ffffff, #f0f0f0);
-    border-radius: 8px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    padding: 30px;
-    width: 90%;
-    max-width: 600px;
-    z-index: 1010;
-    animation: fadeIn 0.5s ease-in-out forwards;
-}
+        .nav-menu a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
 
-/* 弹窗头部区域 */
-.popup-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-}
+        .nav-menu a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
 
-.popup-header h3 {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #333;
-    margin: 0;
-}
+        .menu-toggle {
+            display: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background 0.2s ease;
+        }
 
-/* 关闭按钮样式 */
-.close-button {
-    font-size: 1.2em;
-    background: none;
-    border: none;
-    color: #999;
-    cursor: pointer;
-    transition: color 0.3s;
-}
+        .menu-toggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
 
-.close-button:hover {
-    color: #333;
-}
+        /* 移动端菜单优化 */
+        .nav-menu.mobile-active {
+            display: flex !important;
+        }
 
-/* 弹窗正文内容 */
-.popup-content p {
-    font-size: 1em;
-    color: #555;
-    line-height: 1.6;
-}
+        /* 主要内容区域 */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
 
-/* 重点高亮文字 */
-.popup-content .highlight {
-    color: #333;
-    font-weight: bold;
-}
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+        }
 
-.highlight-link {
-    color: #007bff;
-    font-weight: bold;
-}
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out, textGlow 3s ease-in-out infinite alternate;
+        }
 
-.highlight-link:hover {
-    text-decoration: underline;
-    color: #0056b3;
-}
+        .hero-subtitle {
+            font-size: clamp(1rem, 3vw, 1.25rem);
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
 
-/* 编辑时间的字体颜色 */
-.edit-time {
-    color: #999;
-}
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
 
-/* 芙宁娜 */
-.Furina {
-    color: skyblue;
-    font-family: '站酷文艺体';
-    font-size: 160%;
-}
+        .cta-button {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            min-width: 160px;
+            justify-content: center;
+        }
 
-.Furina:hover {
-    color: deepskyblue;
-}
+        .cta-primary {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            box-shadow: 0 8px 25px rgba(238, 90, 36, 0.4);
+        }
 
-/* 空荧 */
-.AetherLumine {
-    color: gold;
-    font-family: '站酷文艺体';
-    font-size: 160%;
-}
+        .cta-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
 
-.AetherLumine:hover {
-    color: darkgoldenrod;
-}
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+        }
 
-/* 弹窗底部区域 */
-.popup-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 30px;
-}
+        .cta-primary:hover {
+            box-shadow: 0 12px 35px rgba(238, 90, 36, 0.6);
+        }
 
-/* 倒计时文本 */
-#countdown {
-    font-size: 0.9em;
-    color: #777;
-}
+        /* 特色卡片区域 */
+        .features-section {
+            padding: 5rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
 
-/* 弹窗右下角关闭按钮 */
-#closePopup {
-    padding: 10px 20px;
-    font-size: 1em;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    position: absolute;
-    right: 30px;
-    bottom: 20px;
-}
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-#closePopup:disabled {
-    background-color: #ddd;
-    cursor: not-allowed;
-}
+        .features-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 3rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
 
-#closePopup:hover:enabled {
-    background-color: #0056b3;
-}
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
 
-/* 弹窗淡入动画 */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -60%);
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.8s;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .feature-description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        /* 弹窗样式增强 */
+        #mask {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        #popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(240,240,240,0.95));
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            padding: 2rem;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            z-index: 2010;
+            animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .popup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .popup-header h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .close-button {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .close-button:hover {
+            background: rgba(239, 68, 68, 0.2);
+            transform: scale(1.1);
+        }
+
+        .popup-content {
+            color: #374151;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .highlight {
+            color: #dc2626;
+            font-weight: 600;
+            background: rgba(220, 38, 38, 0.1);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        .highlight-link {
+            color: #2563eb;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .highlight-link:hover {
+            color: #1d4ed8;
+            text-decoration: underline;
+        }
+
+        .Furina {
+            background: linear-gradient(135deg, #00bcd4, #4fc3f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .popup-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        #closePopup {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #closePopup:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        #closePopup:hover:enabled {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* 动画效果 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes textGlow {
+            0% { text-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+            100% { text-shadow: 0 4px 20px rgba(255,255,255,0.3), 0 0 30px rgba(255,255,255,0.2); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        /* 响应式设计 - 大幅改进 */
+        @media (max-width: 768px) {
+            /* 导航栏移动端优化 */
+            nav {
+                padding: 0 1rem;
+            }
+            
+            .nav-container {
+                height: 60px;
+            }
+            
+            .nav-logo img {
+                width: 90px;
+                height: 32px;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem 0;
+                gap: 0;
+                display: none;
+                animation: slideDown 0.3s ease;
+            }
+
+            .nav-menu li {
+                width: 100%;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .nav-menu a {
+                display: block;
+                padding: 1rem 2rem;
+                width: 100%;
+                text-align: left;
+                border-radius: 0;
+            }
+
+            .nav-menu a:hover {
+                background: rgba(255, 255, 255, 0.1);
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            /* 主要内容区域移动端优化 */
+            .hero-section {
+                padding: 1rem;
+                min-height: calc(100vh - 60px);
+                margin-top: 60px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .cta-button {
+                width: 100%;
+                max-width: 280px;
+                padding: 1rem;
+                font-size: 1rem;
+            }
+
+            /* 特色功能区域移动端优化 */
+            .features-section {
+                padding: 3rem 1rem;
+            }
+
+            .features-title {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .feature-card {
+                padding: 1.5rem;
+            }
+
+            /* 弹窗移动端优化 */
+            #popup {
+                width: 95%;
+                padding: 1.5rem;
+                margin: 1rem;
+                max-height: calc(100vh - 2rem);
+            }
+
+            .popup-header {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .popup-header h3 {
+                font-size: 1.5rem;
+            }
+
+            .popup-footer {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+
+            .edit-time {
+                order: 2;
+                font-size: 0.9rem;
+            }
+
+            #closePopup {
+                order: 1;
+                width: 100%;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 超小屏幕适配 */
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .features-title {
+                font-size: 1.8rem;
+            }
+
+            .popup-header h3 {
+                font-size: 1.3rem;
+            }
+
+            #popup {
+                padding: 1rem;
+            }
+        }
+
+        /* 滚动条美化 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.3);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255,255,255,0.5);
+        }
+        /* Footer 样式 */
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem 2rem 2rem;
+            margin-top: 5rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+        }
+
+        .footer-logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .footer-description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            font-size: 0.9rem;
+            max-width: 300px;
+        }
+
+        .footer-section h4 {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .contact-links a {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            margin-bottom: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            display: inline-flex;
+        }
+
+        .contact-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-copyright {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .footer {
+                padding: 2rem 1rem 1.5rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+            
+            .footer-links-bottom {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+        }
+        .feature-card a {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        width: 100%;
+        height: 100%;
     }
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%);
+
+    .feature-card a:hover {
+        text-decoration: none;
+        color: inherit;
     }
-}
-
-/* ---------- 顶部横幅 ---------- */
-.banner {
-    width: 100%;
-    height: 50px;
-    background-color: lightyellow;
-    padding: 10px 20px;
-    line-height: 25px;
-    font-size: 14px;
-    color: darkorange;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: fixed;
-    top: 60px;
-    left: 0;
-    z-index: 999;
-}
-
-.popup-link {
-    font-weight: bold;
-    color: darkorange;
-    text-decoration: none;
-}
-
-.close-btn {
-    cursor: pointer;
-    font-size: 20px;
-    color: gray;
-    margin-right: 10px;
-}
-
-.banner span:first-child {
-    flex: 1;
-}
-
-/* ---------- 响应式设计（移动端） ---------- */
-@media screen and (max-width: 768px) {
-    .container {
-        width: 95%;
-    }
-
-    h1 {
-        font-size: 24px;
-    }
-
-    h2 {
-        font-size: 18px;
-    }
-
-    #popup {
-        width: 90%;
-        max-height: 80vh;
-        overflow-y: auto;
-    }
-}
-
-/* ---------- h1标题样式 ---------- */
-h1 {
-    opacity: 0;
-    animation: fadeInUp 1.2s ease forwards, ChangeColor 3s infinite 1.2s;
-    color: #146c8a;
-    text-align: center;
-}
-
-/* ---------- 颜色渐变动画定义 ---------- */
-/* 一次性淡入 */
-@keyframes fadeInUp {
-    from {
-        transform: translateY(20px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-/* 循环变色 */
-@keyframes ChangeColor {
-    0% {
-        color: #146c8a;
-    }
-    50% {
-        color: aqua;
-    }
-    100% {
-        color: #146c8a;
-    }
-}
