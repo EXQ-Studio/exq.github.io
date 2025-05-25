@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>页面不存在 - EXQ Studio</title>
+    <link rel="icon" sizes="16x16" href="img/logo/LogoIcon.png" type="image/png">
+    <link rel="icon" sizes="32x32" href="img/logo/LogoIcon.png" type="image/png">
+    <link rel="icon" sizes="48x48" href="img/logo/LogoIcon.png" type="image/png">
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="img/logo/LogoNavBar.png" alt="EXQ Studio">
+            </a>
+            <div class="menu-toggle" onclick="toggleMobileMenu()">☰</div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="https://forum.exqstudio.cn" target="_blank">论坛</a></li>
+                <li><a href="download.html">下载</a></li>
+                <li><a href="CoreBox/corebox.html">CoreBox</a></li>
+                <li><a href="about.html">关于团队</a></li>
+                <li><a href="https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=s9hmkfGoSf-wJU7F9utssiFY1H8n1Wm1&authKey=xn9gD93GzSQuPXeL6iGcDgVtqgeCgWuPGYUSSSGJUoztP/0fE0yZxwu7mb+Pvg0M&noverify=0&group_code=538933981"
+                        target="_blank">加入我们</a></li>
+                <li><a href="donation.html">赞助我们</a></li>
+                <li><a href="recentupdate.html">最近更新</a></li>
+            </ul>
+        </div>
+    </nav>
+    <script src="js/nav.js"></script>
+    <div class="container">
+        <h1>503 - 服务不可用</h1>
+        <p class="msg">很抱歉，由于我们的服务器正在维护中，EXQ Studio 网站将暂时无法访问。<br><br>
+            您可以尝试：<br>- 刷新页面尝试重新连接<br>- 加入我们的<a
+                href="https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=s9hmkfGoSf-wJU7F9utssiFY1H8n1Wm1&authKey=xn9gD93GzSQuPXeL6iGcDgVtqgeCgWuPGYUSSSGJUoztP/0fE0yZxwu7mb+Pvg0M&noverify=0&group_code=538933981"
+                target="_blank" span class="highlight-link" title="点此跳转QQ群">QQ群</span></a>以获取最新消息<br><br>
+            抱歉对您带来不便，敬请谅解！
+        </p>
+    </div>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(45deg, #146c8a, #add8e6) no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+
+        .container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 256px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            background: white;
+        }
+
+        .container h1 {
+            color: #333;
+            font-size: 1.5em;
+            text-align: left;
+        }
+
+        .container>p {
+            padding-top: 3px;
+            color: #555;
+            font-size: 1em;
+        }
+
+        .msg {
+            font-size: 18px;
+        }
+
+        .back-button {
+            display: block;
+            /* 改为块级元素 */
+            width: max-content;
+            /* 保持原有内容宽度 */
+            margin: 30px 0 0 auto;
+            /* 上边距30px + 右对齐 */
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* 导航栏 */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0 1rem;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 60px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-logo img {
+            width: 87px;
+            /* 自定义合适宽度 */
+            height: auto;
+            /* 自动计算高度保持比例 */
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-menu a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .menu-toggle {
+            display: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background 0.2s ease;
+        }
+
+        .menu-toggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* 移动端菜单优化 */
+        .nav-menu.mobile-active {
+            display: flex !important;
+        }
+
+        /* 导航栏响应式设计 */
+        @media (max-width: 768px) {
+            nav {
+                padding: 0 1rem;
+            }
+
+            .nav-container {
+                height: 60px;
+            }
+
+            .nav-logo img {
+                width: 80px;
+                height: 32px;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem 0;
+                gap: 0;
+                display: none;
+                animation: slideDown 0.3s ease;
+            }
+
+            .nav-menu li {
+                width: 100%;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .nav-menu a {
+                display: block;
+                padding: 1rem 2rem;
+                width: 100%;
+                text-align: left;
+                border-radius: 0;
+            }
+
+            .nav-menu a:hover {
+                background: rgba(255, 255, 255, 0.1);
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</body>
+
+</html>
