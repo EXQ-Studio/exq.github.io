@@ -1,13 +1,13 @@
 /** Footer **/
 .footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
+    /* 改为相对定位，取消固定定位，避免遮挡内容 */
+    position: relative;
     width: 100%;
     background-color: #333;
     color: white;
     padding: 20px 0;
-    z-index: 999;
+    /* 不需要 z-index，除非特殊情况 */
+    /* z-index: 999; */
 }
 
 .footer-content {

@@ -1,3 +1,4 @@
+/* 设置 html 与 body 的基础属性，确保页面高度填满窗口 */
 html,
 body {
     height: 100%;
@@ -5,21 +6,20 @@ body {
     padding: 0;
 }
 
+/* 页面整体样式：设置为垂直布局，背景图片固定、居中、覆盖整个页面 */
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    padding-top: 60px;
-    /* 与导航栏高度相同 */
+    padding-top: 60px; /* 给顶部导航栏预留空间，可根据需求移除或调整 */
     background-image: url('https://www.helloimg.com/i/2025/05/07/681afb6fd2b8f.jpg');
-    background-size: cover;
-    background-position: center;
-    /* 确保关键内容居中显示 */
-    background-attachment: fixed;
-    background-repeat: no-repeat;
+    background-size: cover;           /* 背景图片填满容器 */
+    background-position: center;      /* 背景居中 */
+    background-attachment: fixed;     /* 背景固定不随页面滚动 */
+    background-repeat: no-repeat;     /* 不重复显示背景 */
 }
 
-/* 移动端竖屏 */
+/* 针对移动端竖屏设备，使用不同背景图 */
 @media (max-width: 768px) and (orientation: portrait) {
     body {
         background-image: url('https://www.helloimg.com/i/2025/05/09/681d35ba309e5.jpg');
@@ -27,6 +27,7 @@ body {
     }
 }
 
+/* 页面标题样式 */
 .title {
     font-size: 0.8em;
     text-align: center;
@@ -34,6 +35,7 @@ body {
     z-index: 998;
 }
 
+/* 病毒信息列表容器样式：居中、可换行 */
 .virus-list {
     display: flex;
     flex-wrap: wrap;
@@ -41,8 +43,9 @@ body {
     margin-top: 20px;
 }
 
+/* 单个病毒项卡片样式 */
 .virus-item {
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.7);   /* 半透明黑色背景 */
     margin: 10px;
     padding: 20px;
     border-radius: 10px;
@@ -51,12 +54,14 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
+/* 病毒信息文字样式 */
 .virus-item p {
     margin: 10px 0;
     font-size: 18px;
     color: #fff;
 }
 
+/* 每个链接的样式 */
 .virus-item a {
     display: block;
     margin: 5px 0;
@@ -64,15 +69,18 @@ body {
     text-decoration: none;
 }
 
+/* 链接悬停高亮 */
 .virus-item a:hover {
     color: deepskyblue;
 }
 
+/* 针对特定项目的第二个链接加删除线（可选） */
 .virus-item:nth-last-of-type(6) a:nth-of-type(2) {
     text-decoration: line-through;
     text-decoration-thickness: 2px;
 }
 
+/* 遮罩层（弹窗出现时的背景）样式 */
 .overlay {
     display: none;
     position: fixed;
@@ -80,12 +88,12 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    /* 更深的透明遮罩层 */
+    background-color: rgba(0, 0, 0, 0.7); /* 半透明遮罩 */
     z-index: 999;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px); /* 背景模糊 */
 }
 
+/* 弹窗主体样式 */
 .popup {
     position: fixed;
     top: 50%;
@@ -96,36 +104,39 @@ body {
     border-radius: 8px;
     width: 410px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    background: white;
-    /* 新增动画属性 */
-    opacity: 0;
-    /* 初始透明 */
+
+    /* 淡入动画效果 */
+    opacity: 0; /* 初始透明 */
     animation: fadeIn 0.5s ease-in-out forwards;
-    /* 执行动画并保持最终状态 */
 }
 
+/* 弹窗标题样式 */
 .popup h1 {
     color: #333;
     font-size: 1.5em;
     text-align: left;
 }
 
-.popup>p {
+/* 弹窗文本段落 */
+.popup > p {
     padding-top: 3px;
     color: #555;
     font-size: 1em;
 }
 
+/* 消息字体样式 */
 .msg {
     font-size: 18px;
 }
 
+/* 注释信息字体加粗 */
 .note {
     font-size: 22px;
     font-weight: bold;
     text-align: center;
 }
 
+/* 弹窗确认按钮样式 */
 .OK {
     padding: 10px 20px;
     font-size: 1em;
@@ -140,7 +151,7 @@ body {
     bottom: 20px;
 }
 
-/** 弹窗淡入动画 **/
+/* 淡入动画关键帧 */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -153,137 +164,12 @@ body {
     }
 }
 
-/** 导航栏 **/
-nav {
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    z-index: 1000;
-    /* 导航栏位于页面其他内容上，请确认页面内容高度与导航栏同步！padding-top=60px */
-}
-
-nav img {
-    width: 120px;
-    height: 50px;
-    margin-left: 10px;
-}
-
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    position: absolute;
-    left: 50px;
-    margin-left: 120px;
-}
-
-nav ul li {
-    margin-right: 20px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 16px;
-    position: relative;
-    z-index: 1;
-}
-
-nav div {
-    display: flex;
-    align-items: center;
-}
-
-nav div a {
-    text-decoration: none;
-    color: #fff;
-    margin-left: 20px;
-    font-size: 16px;
-    position: relative;
-    z-index: 1;
-}
-
-.menu-toggle {
-    display: none;
-    font-size: 24px;
-    color: #fff;
-    cursor: pointer;
-    margin-right: 10px;
-}
-
-nav ul li a:hover {
-    color: skyblue;
-}
-
+/* 主内容区域自适应填满剩余空间 */
 .main-content {
     flex: 1 0 auto;
 }
 
-/**footer**/
-.footer {
-    /* 移除 position: fixed 以及相关定位属性 */
-    width: 100%;
-    background-color: #333;
-    /* 灰色背景 */
-    color: white;
-    /* 白色文字 */
-    padding: 20px 0;
-    /* 移除或者降低 z - index 值 */
-    z-index: auto;
-}
-
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.footer-logo img {
-    max-height: 50px;
-    /* 调整logo大小 */
-}
-
-.footer-info {
-    display: flex;
-    flex-direction: column;
-}
-
-.footer-links a {
-    color: white;
-    text-decoration: none;
-    margin-right: 15px;
-}
-
-.footer-links a:hover {
-    text-decoration: underline;
-}
-
-.footer-contact {
-    margin: 10px 0;
-}
-
-.footer-contact span {
-    margin-right: 15px;
-}
-
-.footer-copyright {
-    font-size: 0.9em;
-}
-
-/* 响应式样式 */
+/* 响应式样式：适配小屏设备 */
 @media screen and (max-width: 768px) {
     .menu-toggle {
         display: block;
@@ -293,31 +179,25 @@ nav ul li a:hover {
         display: none;
         position: absolute;
         top: 60px;
-        /* 保持这个值,确保菜单在导航栏下方 */
         left: 20px;
-        /* 与导航栏的左内边距对齐 */
         width: auto;
-        /* 改为自动宽度 */
         background: rgba(0, 0, 0, 0.8);
         flex-direction: column;
         padding: 10px;
         border-radius: 0 0 5px 5px;
-        /* 可选:添加圆角 */
     }
 
     .nav-menu li {
         margin: 5px 0;
         text-align: left;
-        /* 左对齐文本 */
         white-space: nowrap;
-        /* 防止文本换行 */
     }
 
     .nav-menu.active {
         display: flex;
     }
 
-    main-content {
+    .main-content {
         padding: 10px;
     }
 
@@ -339,6 +219,7 @@ nav ul li a:hover {
     }
 }
 
+/* 响应式样式：更小屏幕的进一步调整 */
 @media screen and (max-width: 900px) {
     h1 {
         font-size: 20px;
