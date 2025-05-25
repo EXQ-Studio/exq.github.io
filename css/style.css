@@ -45,7 +45,6 @@
             0%, 100% { transform: translateY(0px) rotate(0deg); }
             50% { transform: translateY(-20px) rotate(180deg); }
         }
-        /* 主要内容区域 */
         .hero-section {
             min-height: 100vh;
             display: flex;
@@ -125,7 +124,6 @@
         .cta-primary:hover {
             box-shadow: 0 12px 35px rgba(238, 90, 36, 0.6);
         }
-
         /* 特色卡片区域 */
         .features-section {
             padding: 5rem 2rem;
@@ -401,25 +399,6 @@
                 max-width: 280px;
                 padding: 1rem;
                 font-size: 1rem;
-            }
-
-            /* 特色功能区域移动端优化 */
-            .features-section {
-                padding: 3rem 1rem;
-            }
-
-            .features-title {
-                font-size: 2rem;
-                margin-bottom: 2rem;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .feature-card {
-                padding: 1.5rem;
             }
 
             /* 弹窗移动端优化 */

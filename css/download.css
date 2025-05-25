@@ -1,4 +1,4 @@
-/* 设置 html 与 body 的基础属性，确保页面高度填满窗口 */
+/* 设置 html 与 body 的基础属性,确保页面高度填满窗口 */
 html,
 body {
     height: 100%;
@@ -6,23 +6,23 @@ body {
     padding: 0;
 }
 
-/* 页面整体样式：设置为垂直布局，背景图片固定、居中、覆盖整个页面 */
+/* 页面整体样式:设置为垂直布局,背景图片固定、居中、覆盖整个页面 */
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    padding-top: 60px; /* 给顶部导航栏预留空间，可根据需求移除或调整 */
-    background-image: url('https://www.helloimg.com/i/2025/05/07/681afb6fd2b8f.jpg');
+    padding-top: 60px; /* 给顶部导航栏预留空间,可根据需求移除或调整 */
+    background-image: url('https/www.helloimg.com/i/2025/05/07/681afb6fd2b8f.jpg');
     background-size: cover;           /* 背景图片填满容器 */
     background-position: center;      /* 背景居中 */
     background-attachment: fixed;     /* 背景固定不随页面滚动 */
     background-repeat: no-repeat;     /* 不重复显示背景 */
 }
 
-/* 针对移动端竖屏设备，使用不同背景图 */
+/* 针对移动端竖屏设备,使用不同背景图 */
 @media (max-width: 768px) and (orientation: portrait) {
     body {
-        background-image: url('https://www.helloimg.com/i/2025/05/09/681d35ba309e5.jpg');
+        background-image: url('https/www.helloimg.com/i/2025/05/09/681d35ba309e5.jpg');
         background-attachment: fixed;
     }
 }
@@ -35,7 +35,7 @@ body {
     z-index: 998;
 }
 
-/* 病毒信息列表容器样式：居中、可换行 */
+/* 病毒信息列表容器样式:居中、可换行 */
 .virus-list {
     display: flex;
     flex-wrap: wrap;
@@ -74,13 +74,13 @@ body {
     color: deepskyblue;
 }
 
-/* 针对特定项目的第二个链接加删除线（可选） */
+/* 针对特定项目的第二个链接加删除线(可选) */
 .virus-item:nth-last-of-type(6) a:nth-of-type(2) {
     text-decoration: line-through;
     text-decoration-thickness: 2px;
 }
 
-/* 遮罩层（弹窗出现时的背景）样式 */
+/* 遮罩层(弹窗出现时的背景)样式 */
 .overlay {
     display: none;
     position: fixed;
@@ -169,14 +169,14 @@ body {
     flex: 1 0 auto;
 }
 
-/* 响应式样式：适配小屏设备 */
+/* 响应式样式:适配小屏设备 */
 @media screen and (max-width: 768px) {
     .main-content {
         padding: 10px;
     }
 }
 
-/* 响应式样式：更小屏幕的进一步调整 */
+/* 响应式样式:更小屏幕的进一步调整 */
 @media screen and (max-width: 900px) {
     h1 {
         font-size: 20px;
