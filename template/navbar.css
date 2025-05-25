@@ -1,11 +1,4 @@
 /* 导航栏 */
-body {
-    font-family: 'Noto Sans SC', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-    position: relative;
-}
-
 nav {
     position: fixed;
     top: 0;
@@ -24,7 +17,7 @@ nav {
     justify-content: space-between;
     max-width: 1200px;
     margin: 0 auto;
-    height: 70px;
+    height: 60px;
 }
 
 .nav-logo {
@@ -38,9 +31,8 @@ nav {
 }
 
 .nav-logo img {
-    width: 105px;
-    height: 40px;
-    border-radius: 8px;
+    width: 87px;       /* 自定义合适宽度 */
+    height: auto;       /* 自动计算高度保持比例 */
 }
 
 .nav-menu {

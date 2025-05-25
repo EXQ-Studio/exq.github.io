@@ -23,6 +23,14 @@
 body {
     font-family: 'Noto Sans SC', sans-serif;
     background: linear-gradient(45deg, #146c8a, #add8e6) no-repeat;
+    background-size: cover;
+    /* 背景图片填满容器 */
+    background-position: center;
+    /* 背景居中 */
+    background-attachment: fixed;
+    /* 背景固定不随页面滚动 */
+    background-repeat: no-repeat;
+    /* 不重复显示背景 */
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;

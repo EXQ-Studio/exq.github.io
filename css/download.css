@@ -11,12 +11,17 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    padding-top: 60px; /* 给顶部导航栏预留空间,可根据需求移除或调整 */
+    padding-top: 60px;
+    /* 给顶部导航栏预留空间,可根据需求移除或调整 */
     background-image: url('../img/bgDownload.jpg');
-    background-size: cover;           /* 背景图片填满容器 */
-    background-position: center;      /* 背景居中 */
-    background-attachment: fixed;     /* 背景固定不随页面滚动 */
-    background-repeat: no-repeat;     /* 不重复显示背景 */
+    background-size: cover;
+    /* 背景图片填满容器 */
+    background-position: center;
+    /* 背景居中 */
+    background-attachment: fixed;
+    /* 背景固定不随页面滚动 */
+    background-repeat: no-repeat;
+    /* 不重复显示背景 */
 }
 
 /* 针对移动端竖屏设备,使用不同背景图 */
@@ -57,7 +62,8 @@ body {
 
 /* 单个病毒项卡片样式 */
 .virus-item {
-    background: rgba(0, 0, 0, 0.7);   /* 半透明黑色背景 */
+    background: rgba(0, 0, 0, 0.7);
+    /* 半透明黑色背景 */
     margin: 10px;
     padding: 20px;
     border-radius: 10px;
@@ -100,9 +106,11 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* 半透明遮罩 */
+    background-color: rgba(0, 0, 0, 0.7);
+    /* 半透明遮罩 */
     z-index: 999;
-    backdrop-filter: blur(5px); /* 背景模糊 */
+    backdrop-filter: blur(5px);
+    /* 背景模糊 */
 }
 
 /* 弹窗主体样式 */
@@ -118,7 +126,8 @@ body {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 
     /* 淡入动画效果 */
-    opacity: 0; /* 初始透明 */
+    opacity: 0;
+    /* 初始透明 */
     animation: fadeIn 0.5s ease-in-out forwards;
 }
 
@@ -130,7 +139,7 @@ body {
 }
 
 /* 弹窗文本段落 */
-.popup > p {
+.popup>p {
     padding-top: 3px;
     color: #555;
     font-size: 1em;
