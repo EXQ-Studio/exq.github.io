@@ -16,13 +16,9 @@ html {
     padding: 0%;
     background: linear-gradient(45deg, #146c8a, #add8e6) no-repeat;
     background-size: cover;
-    /* 背景图片填满容器 */
     background-position: center;
-    /* 背景居中 */
     background-attachment: fixed;
-    /* 背景固定不随页面滚动 */
     background-repeat: no-repeat;
-    /* 不重复显示背景 */
 }
 
 /* 导航栏 */
@@ -31,11 +27,11 @@ nav {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1999;
-    height: var(--nav-height);
+    z-index: 1000;
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0 1rem;
 }
 
 .nav-container {
@@ -58,10 +54,8 @@ nav {
 }
 
 .nav-logo img {
-    width: 87px;
-    /* 自定义合适宽度 */
-    height: auto;
-    /* 自动计算高度保持比例 */
+    width: 87px;       /* 自定义合适宽度 */
+    height: auto;       /* 自动计算高度保持比例 */
 }
 
 .nav-menu {
@@ -166,6 +160,8 @@ nav {
         transform: translateY(0);
     }
 }
+
+
 
 /* 页面容器 */
 @font-face {
@@ -468,8 +464,102 @@ nav {
     }
 }
 
+nav {
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    transition: 0.3s;
+}
+
+nav img {
+    width: 120px;
+    height: 50px;
+    margin-left: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    position: absolute;
+    left: 50px;
+    margin-left: 120px;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    position: relative;
+    z-index: 1;
+}
+
+nav div {
+    display: flex;
+    align-items: center;
+}
+
+nav div a {
+    text-decoration: none;
+    color: #fff;
+    margin-left: 20px;
+    font-size: 16px;
+    position: relative;
+    z-index: 1;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+    margin-right: 10px;
+}
 
 @media screen and (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 60px;
+        /* 保持这个值,确保菜单在导航栏下方 */
+        left: 20px;
+        /* 与导航栏的左内边距对齐 */
+        width: auto;
+        /* 改为自动宽度 */
+        background: rgba(0, 0, 0, 0.8);
+        flex-direction: column;
+        padding: 10px;
+        border-radius: 0 0 5px 5px;
+        /* 可选:添加圆角 */
+        z-index: 2;
+    }
+
+    .nav-menu li {
+        margin: 5px 0;
+        text-align: left;
+        /* 左对齐文本 */
+        white-space: nowrap;
+        /* 防止文本换行 */
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
 
     /* 卡牌背景 */
     .card {

@@ -14,22 +14,25 @@
 
 <body>
     <!-- 导航栏 -->
-    <nav>
-        <div class="nav-container">
-            <div class="menu-toggle">☰</div>
-        </div>
-        <ul class="nav-menu">
+<nav>
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+        </a>
+        <div class="menu-toggle" onclick="toggleMobileMenu()">☰</div>
+        <ul class="nav-menu" id="navMenu">
             <li><a href="index.html">首页</a></li>
             <li><a href="https://forum.exqstudio.cn" target="_blank">论坛</a></li>
             <li><a href="download.html">下载</a></li>
             <li><a href="CoreBox/corebox.html">CoreBox</a></li>
             <li><a href="about.html">关于团队</a></li>
-            <li><a href="https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=s9hmkfGoSf-wJU7F9utssiFY1H8n1Wm1&authKey=xn9gD93GzSQuPXeL6iGcDgVtqgeCgWuPGYUSSSGJUoztP/0fE0yZxwu7mb+Pvg0M&noverify=0&group_code=538933981" target="_blank">加入我们</a>
-            </li>
+            <li><a href="https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=s9hmkfGoSf-wJU7F9utssiFY1H8n1Wm1&authKey=xn9gD93GzSQuPXeL6iGcDgVtqgeCgWuPGYUSSSGJUoztP/0fE0yZxwu7mb+Pvg0M&noverify=0&group_code=538933981"
+                    target="_blank">加入我们</a></li>
             <li><a href="donation.html">赞助我们</a></li>
+            <li><a href="recentupdate.html">最近更新</a></li>
         </ul>
-    </nav>
-    <script src="js/nav.js"></script>
+    </div>
+</nav>
+<script src="js/nav.js"></script>
     <div id="back-to-home">
         <a href="about.html" class="back-home-btn" title="回到第一页">返回第一页</a>
     </div>
@@ -121,6 +124,29 @@
             </div>
         </div>
         <div class="page">
+            <div class="text-content-right">
+                <h1>查无此人</h1>
+                <h4>查无此人</h4>
+                <p>
+                <div class="typing-text">
+                    兄妹俩地表最强！！！！！！！<br>
+                    老实人一位。有点创造力，也会点PS。<br>
+                    性格内向，没啥好说的。<br>
+                </div>
+                </p>
+            </div>
+            <div class="card-container-left">
+                <div class="card"><img src="" alt="查无此人"
+                        title="我真好看.png"></div>
+            </div>
+            <div class="Aether" alt="空的立绘&#10;取自米游社@DimengKe">
+                <img src="img/Aether.png" />
+            </div>
+            <div class="Lumine" alt="荧的立绘&#10;取自米游社@DimengKe">
+                <img src="img/Lumine.png" />
+            </div>
+        </div>
+        <div class="page">
             <div class="text-content-left">
                 <h1>Orange</h1>
                 <h4>前端/后端</h4>
@@ -153,6 +179,7 @@
         <script src="js/page.js"></script>
         <script src="js/nav.js"></script>
         <script>
+
             document.addEventListener("DOMContentLoaded", function () {
                 const typingTexts = document.querySelectorAll(".typing-text"); // 获取所有打字机文本
 
@@ -196,5 +223,7 @@
                 });
             });
         </script>
+
 </body>
+
 </html>
