@@ -6,7 +6,7 @@
 body {
     margin: 0;
     padding-top: 60px;
-    background: linear-gradient(to bottom right, #b2f2bb, #ffffff, #87cefa);
+    background: linear-gradient(to bottom right, #c6f5cb, #ffffff, #87cefa); /* 淡绿色 */
     font-family: 'Noto Sans SC', sans-serif;
     display: flex;
     flex-direction: column;
@@ -27,7 +27,6 @@ a {
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 0 20px;
 }
 
 h1 {
@@ -41,13 +40,13 @@ h1:hover {
     color: #42b4e6;
 }
 
-.briefInstruction, .information {
+.briefInstruction,
+.information {
     color: #333333;
     text-align: center;
     margin-top: 0;
     max-width: 90%;
     line-height: 1.6;
-    font-size: 1.1em;
 }
 
 .button-container {
@@ -146,7 +145,7 @@ nav ul li a:hover {
     color: skyblue;
 }
 
-/** footer **/
+/** Footer **/
 .footer {
     position: fixed;
     bottom: 0;
@@ -166,6 +165,7 @@ nav ul li a:hover {
     margin: 0 auto;
     padding: 0 20px;
     flex-wrap: wrap;
+    flex-direction: row; /* 大屏横排 */
 }
 
 .footer-logo img {
@@ -177,10 +177,16 @@ nav ul li a:hover {
     flex-direction: column;
 }
 
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .footer-links a {
     color: white;
     text-decoration: none;
     margin-right: 15px;
+    margin-bottom: 5px;
 }
 
 .footer-links a:hover {
@@ -205,37 +211,15 @@ nav ul li a:hover {
         transform: translateY(20px);
         opacity: 0;
     }
+
     to {
         transform: translateY(0);
         opacity: 1;
     }
 }
 
-/* === 移动端适配 === */
+/* 移动端适配 */
 @media screen and (max-width: 768px) {
-    h1 {
-        font-size: 2.2em;
-    }
-
-    .briefInstruction, .information {
-        font-size: 1em;
-    }
-
-    .button-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    button {
-        width: 80%;
-        font-size: 1em;
-    }
-
-    nav {
-        flex-wrap: wrap;
-        padding: 0 10px;
-    }
-
     .menu-toggle {
         display: block;
     }
@@ -244,38 +228,43 @@ nav ul li a:hover {
         display: none;
         position: absolute;
         top: 60px;
-        left: 0;
-        width: 100%;
-        background: rgba(0, 0, 0, 0.9);
+        left: 20px;
+        width: auto;
+        background: rgba(0, 0, 0, 0.8);
         flex-direction: column;
-        padding: 10px 20px;
-        z-index: 1001;
+        padding: 10px;
+        border-radius: 0 0 5px 5px;
+        z-index: 2;
     }
 
     .nav-menu li {
-        margin: 10px 0;
+        margin: 5px 0;
+        text-align: left;
+        white-space: nowrap;
     }
 
     .nav-menu.active {
         display: flex;
     }
 
-    nav ul {
-        display: none; /* 默认隐藏 */
-    }
-
     .footer-content {
-        flex-direction: column;
-        text-align: center;
-        padding: 10px;
+        flex-direction: column; /* 小屏改竖排 */
+        align-items: flex-start;
     }
 
+    .footer-info,
+    .footer-contact,
     .footer-links {
-        margin-top: 10px;
+        margin-bottom: 10px;
     }
 
-    .footer-links a {
-        display: inline-block;
-        margin: 5px 10px;
+    .main-content {
+        padding: 0 20px;
+        height: auto;
+    }
+
+    button {
+        width: 100%;
+        max-width: 300px;
     }
 }
