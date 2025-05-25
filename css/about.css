@@ -14,7 +14,159 @@ html {
     overflow-y: hidden;
     margin: 0;
     padding: 0%;
+    background: linear-gradient(45deg, #146c8a, #add8e6) no-repeat;
+    background-size: cover;
+    /* 背景图片填满容器 */
+    background-position: center;
+    /* 背景居中 */
+    background-attachment: fixed;
+    /* 背景固定不随页面滚动 */
+    background-repeat: no-repeat;
+    /* 不重复显示背景 */
 }
+
+/* 导航栏 */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1999;
+    height: var(--nav-height);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 60px;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+}
+
+.nav-logo img {
+    width: 87px;
+    /* 自定义合适宽度 */
+    height: auto;
+    /* 自动计算高度保持比例 */
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-menu a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.nav-menu a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.menu-toggle {
+    display: none;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+}
+
+.menu-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* 移动端菜单优化 */
+.nav-menu.mobile-active {
+    display: flex !important;
+}
+
+/* 导航栏响应式设计 */
+@media (max-width: 768px) {
+    nav {
+        padding: 0 1rem;
+    }
+
+    .nav-container {
+        height: 60px;
+    }
+
+    .nav-logo img {
+        width: 80px;
+        height: 32px;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 2rem 0;
+        gap: 0;
+        display: none;
+        animation: slideDown 0.3s ease;
+    }
+
+    .nav-menu li {
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-menu a {
+        display: block;
+        padding: 1rem 2rem;
+        width: 100%;
+        text-align: left;
+        border-radius: 0;
+    }
+
+    .nav-menu a:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* 页面容器 */
 @font-face {
     font-family: '站酷文艺体';
@@ -46,38 +198,6 @@ html {
     top: 0;
     left: 0;
     right: 0;
-}
-
-.page:nth-child(1) {
-    background: linear-gradient(0deg, #00f2fe, #53f576, #a6f21a) no-repeat;
-}
-
-.page:nth-child(2) {
-    background: linear-gradient(0deg, #a418e0, #3a75f5, #00f2fe) no-repeat;
-}
-
-.page:nth-child(3) {
-    background: linear-gradient(0deg, #ef3e1f, #b22bda, #a418e0) no-repeat;
-}
-
-.page:nth-child(4) {
-    background: linear-gradient(0deg, #ffc868, #f77d37, #ef3e1f) no-repeat;
-}
-
-.page:nth-child(5) {
-    background: linear-gradient(0deg, #39ef85, #c3f184, #ffc868) no-repeat;
-}
-
-.page:nth-child(6) {
-    background: linear-gradient(0deg, #1c91ea, #2fe299, #39ef85) no-repeat;
-}
-
-.page:nth-child(7) {
-    background: linear-gradient(0deg, #c617ed, #6240f0, #1c91ea) no-repeat;
-}
-
-.page:nth-child(8) {
-    background: linear-gradient(0deg, #a82be0, #a82be0, #c617ed) no-repeat;
 }
 
 /* 文本区域 */
@@ -170,9 +290,12 @@ html {
 .Aether {
     position: relative;
     /* 建议为容器设置具体尺寸 */
-    width: 800px;      /* 示例尺寸 */
-    height: 600px;     /* 示例尺寸 */
-    margin: 0 auto;    /* 容器居中 */
+    width: 800px;
+    /* 示例尺寸 */
+    height: 600px;
+    /* 示例尺寸 */
+    margin: 0 auto;
+    /* 容器居中 */
 }
 
 .Aether img {
@@ -181,18 +304,25 @@ html {
     left: 87%;
     transform: translate(-50%, -50%);
     /* 推荐方案 */
-    max-width: 80%;    /* 图片最大宽度为容器宽度 */
-    max-height: 120%;   /* 图片最大高度为容器高度 */
-    width: auto;       /* 宽度自适应 */
-    height: auto;      /* 高度自适应 */
+    max-width: 80%;
+    /* 图片最大宽度为容器宽度 */
+    max-height: 120%;
+    /* 图片最大高度为容器高度 */
+    width: auto;
+    /* 宽度自适应 */
+    height: auto;
+    /* 高度自适应 */
 }
 
 .Lumine {
     position: relative;
     /* 建议为容器设置具体尺寸 */
-    width: 800px;      /* 示例尺寸 */
-    height: 600px;     /* 示例尺寸 */
-    margin: 0 auto;    /* 容器居中 */
+    width: 800px;
+    /* 示例尺寸 */
+    height: 600px;
+    /* 示例尺寸 */
+    margin: 0 auto;
+    /* 容器居中 */
 }
 
 .Lumine img {
@@ -201,10 +331,14 @@ html {
     right: 24%;
     transform: translate(-50%, -50%);
     /* 推荐方案 */
-    max-width: 80%;    /* 图片最大宽度为容器宽度 */
-    max-height: 120%;   /* 图片最大高度为容器高度 */
-    width: auto;       /* 宽度自适应 */
-    height: auto;      /* 高度自适应 */
+    max-width: 80%;
+    /* 图片最大宽度为容器宽度 */
+    max-height: 120%;
+    /* 图片最大高度为容器高度 */
+    width: auto;
+    /* 宽度自适应 */
+    height: auto;
+    /* 高度自适应 */
 }
 
 /* 卡牌容器样式 */
