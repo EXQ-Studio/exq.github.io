@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -10,9 +11,11 @@
     <link rel="icon" sizes="16x16" href="img/logo/LogoIcon.png" type="image/png">
     <link rel="icon" sizes="32x32" href="img/logo/LogoIcon.png" type="image/png">
     <link rel="icon" sizes="48x48" href="img/logo/LogoIcon.png" type="image/png">
-    <link rel="stylesheet"  type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="template/footer.css">
     <link rel="stylesheet" type="text/css" href="template/navbar.css">
+    <script src="js/index.js"></script>
+
 <body>
     <!-- 动态背景粒子 -->
     <div class="particles" id="particles"></div>
@@ -36,6 +39,7 @@
             </ul>
         </div>
     </nav>
+    <script src="js/nav.js"></script>
 
     <!-- 主要内容区域 -->
     <section class="hero-section">
@@ -107,7 +111,8 @@
                 <p>欲了解更多请加入EXQ Studio的QQ群：点击群号跳转
                     <a href="https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=s9hmkfGoSf-wJU7F9utssiFY1H8n1Wm1&authKey=xn9gD93GzSQuPXeL6iGcDgVtqgeCgWuPGYUSSSGJUoztP/0fE0yZxwu7mb+Pvg0M&noverify=0&group_code=538933981"
                         target="_blank" class="highlight-link" title="点此跳转QQ群">538933981</a><br>
-                        <a href="https://www.bilibili.com/video/BV1oa4y1X7Zt" target="_blank" class="Furina">永世传颂 不休独舞 神爱世人 芙门永存</a>
+                    <a href="https://www.bilibili.com/video/BV1oa4y1X7Zt" target="_blank" class="Furina">永世传颂 不休独舞 神爱世人
+                        芙门永存</a>
                 </p>
             </div>
         </div>
@@ -130,7 +135,7 @@
                         致力于提供优质的产品与服务，创造更美好的用户体验。
                     </p>
                 </div>
-                
+
                 <!-- 快速链接 -->
                 <div class="footer-section">
                     <h4>快速链接</h4>
@@ -140,18 +145,19 @@
                         <li><a href="https://forum.exqstudio.cn">💡 论坛</a></li>
                     </ul>
                 </div>
-                
+
                 <!-- 联系方式 -->
                 <div class="footer-section">
                     <h4>联系我们</h4>
                     <ul class="footer-links contact-links">
                         <li><a href="https://github.com/EXQ-Studio/exq.github.io" target="_blank">🐱 GitHub</a></li>
                         <li><a href="https://mail.qq.com" target="_blank">📧 邮箱：exqstudio@exqstudio.cn</a></li>
-                        <li><a href="https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=s9hmkfGoSf-wJU7F9utssiFY1H8n1Wm1&authKey=xn9gD93GzSQuPXeL6iGcDgVtqgeCgWuPGYUSSSGJUoztP/0fE0yZxwu7mb+Pvg0M&noverify=0&group_code=538933981" target="_blank">💬 QQ群: 538933981</a></li>
+                        <li><a href="https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=s9hmkfGoSf-wJU7F9utssiFY1H8n1Wm1&authKey=xn9gD93GzSQuPXeL6iGcDgVtqgeCgWuPGYUSSSGJUoztP/0fE0yZxwu7mb+Pvg0M&noverify=0&group_code=538933981"
+                                target="_blank">💬 QQ群: 538933981</a></li>
                     </ul>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
                 <div class="footer-copyright">
                     © 2025 EXQ STUDIO. All rights reserved.
@@ -160,145 +166,7 @@
         </div>
     </footer>
 
-<script>
-    // 创建动态背景粒子
-    function createParticles() {
-        const particlesContainer = document.getElementById('particles');
-        const particleCount = 50;
-
-        for (let i = 0; i < particleCount; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            
-            const size = Math.random() * 4 + 2;
-            particle.style.width = size + 'px';
-            particle.style.height = size + 'px';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.top = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 6 + 's';
-            particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
-            
-            particlesContainer.appendChild(particle);
-        }
-    }
-
-    // Cookie操作函数
-    function setCookie(name, value, days) {
-        let expires = "";
-        if (days) {
-            const date = new Date();
-            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-            expires = "; expires=" + date.toUTCString();
-        }
-        document.cookie = name + "=" + (value || "") + expires + "; path=/";
-    }
-
-    function getCookie(name) {
-        const nameEQ = name + "=";
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            let cookie = cookies[i];
-            while (cookie.charAt(0) === ' ') cookie = cookie.substring(1);
-            if (cookie.indexOf(nameEQ) === 0) return cookie.substring(nameEQ.length);
-        }
-        return null;
-    }
-
-    // 弹窗功能
-    let countdownTimer;
-    let remainingTime = 5;
-
-    function showPopup() {
-        document.getElementById('popup').style.display = 'block';
-        document.getElementById('mask').style.display = 'block';
-        document.body.style.overflow = 'hidden';
-        
-        remainingTime = 5;
-        document.getElementById('closePopup').disabled = true;
-        document.getElementById('closePopup').textContent = `${remainingTime}秒后可关闭`;
-        
-        countdownTimer = setInterval(() => {
-            remainingTime--;
-            if (remainingTime > 0) {
-                document.getElementById('closePopup').textContent = `${remainingTime}秒后可关闭`;
-            } else {
-                document.getElementById('closePopup').disabled = false;
-                document.getElementById('closePopup').textContent = '关闭';
-                clearInterval(countdownTimer);
-            }
-        }, 1000);
-    }
-
-    function closePopup() {
-        if (remainingTime <= 0) {
-            document.getElementById('popup').style.display = 'none';
-            document.getElementById('mask').style.display = 'none';
-            document.body.style.overflow = 'auto';
-            clearInterval(countdownTimer);
-            
-            // 用户看完弹窗后，记录到cookie（有效期365天）
-            if (typeof(Storage) !== "undefined") {
-                localStorage.setItem('seenPopup', 'true');
-            } else {
-                setCookie('seenPopup', 'true', 365);
-            }
-        }
-    }
-    // 点击遮罩关闭弹窗
-    document.getElementById('mask').addEventListener('click', closePopup);
-
-    // 页面加载时执行
-    document.addEventListener('DOMContentLoaded', () => {
-        createParticles();
-        
-        // 检查用户是否第一次访问
-        let seenPopup = false;
-        if (typeof(Storage) !== "undefined") {
-            seenPopup = localStorage.getItem('seenPopup') === 'true';
-        } else {
-            seenPopup = getCookie('seenPopup') === 'true';
-        }
-        
-        // 如果是第一次访问，显示弹窗
-        if (!seenPopup) {
-            setTimeout(showPopup, 1000); // 延迟1秒显示，用户体验更好
-        }
-    });
-
-    // 鼠标点击效果
-    document.addEventListener('click', function(e) {
-        const ripple = document.createElement('div');
-        ripple.style.position = 'fixed';
-        ripple.style.left = e.clientX + 'px';
-        ripple.style.top = e.clientY + 'px';
-        ripple.style.width = '10px';
-        ripple.style.height = '10px';
-        ripple.style.background = 'rgba(255, 255, 255, 0.6)';
-        ripple.style.borderRadius = '50%';
-        ripple.style.transform = 'translate(-50%, -50%)';
-        ripple.style.pointerEvents = 'none';
-        ripple.style.zIndex = '9999';
-        ripple.style.animation = 'ripple 0.6s ease-out';
-        
-        document.body.appendChild(ripple);
-        
-        setTimeout(() => {
-            ripple.remove();
-        }, 600);
-    });
-
-    // 添加涟漪动画
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes ripple {
-            to {
-                transform: translate(-50%, -50%) scale(4);
-                opacity: 0;
-            }
-        }
-    `;
-    document.head.appendChild(style);
-</script>
 
 </body>
+
 </html>

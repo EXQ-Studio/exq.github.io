@@ -12,7 +12,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
     padding-top: 60px; /* 给顶部导航栏预留空间,可根据需求移除或调整 */
-    background-image: url('https/www.helloimg.com/i/2025/05/07/681afb6fd2b8f.jpg');
+    background-image: url('../img/bgDownload.jpg');
     background-size: cover;           /* 背景图片填满容器 */
     background-position: center;      /* 背景居中 */
     background-attachment: fixed;     /* 背景固定不随页面滚动 */
@@ -29,10 +29,22 @@ body {
 
 /* 页面标题样式 */
 .title {
-    font-size: 0.8em;
     text-align: center;
-    color: #fff;
-    z-index: 998;
+    margin-bottom: 40px;
+    animation: fadeInDown 0.8s ease-out;
+}
+
+.title h1 {
+    font-size: 3rem;
+    color: white;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    margin-bottom: 10px;
+}
+
+.title p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1em;
+    font-weight: 0;
 }
 
 /* 病毒信息列表容器样式:居中、可换行 */
