@@ -19,6 +19,7 @@ a {
     text-decoration: none;
     color: inherit;
 }
+
 .main-content {
     height: calc(100vh - 60px - 100px);
     display: flex;
@@ -26,13 +27,13 @@ a {
     justify-content: center;
     align-items: center;
     text-align: center;
+    padding: 0 20px;
 }
-
 
 h1 {
     color: #333333;
     font-size: 3.5em;
-    text-shadow: rgba(0,0,0,0.3);
+    text-shadow: rgba(0, 0, 0, 0.3);
     animation: fadeInUp 1s ease;
 }
 
@@ -46,12 +47,15 @@ h1:hover {
     margin-top: 0;
     max-width: 90%;
     line-height: 1.6;
+    font-size: 1.1em;
 }
 
 .button-container {
     display: flex;
     gap: 20px;
     margin-top: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 button {
@@ -63,13 +67,13 @@ button {
     font-size: 1.1em;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 button:hover {
     background: #2596be;
     transform: scale(1.05);
-}   
+}
 
 /** 导航栏 **/
 nav {
@@ -86,7 +90,6 @@ nav {
     justify-content: space-between;
     padding: 0 20px;
     z-index: 1000;
-    /* 导航栏位于页面其他内容上，请确认页面内容高度与导航栏同步！padding-top=60px */
 }
 
 nav img {
@@ -143,20 +146,16 @@ nav ul li a:hover {
     color: skyblue;
 }
 
-
-/**footer**/
+/** footer **/
 .footer {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
     background-color: #333;
-    /* 灰色背景 */
     color: white;
-    /* 白色文字 */
     padding: 20px 0;
     z-index: 999;
-    /* 确保 footer 在其他内容之上 */
 }
 
 .footer-content {
@@ -166,11 +165,11 @@ nav ul li a:hover {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    flex-wrap: wrap;
 }
 
 .footer-logo img {
     max-height: 50px;
-    /* 调整logo大小 */
 }
 
 .footer-info {
@@ -200,7 +199,6 @@ nav ul li a:hover {
     font-size: 0.9em;
 }
 
-
 /* 动画 */
 @keyframes fadeInUp {
     from {
@@ -212,7 +210,32 @@ nav ul li a:hover {
         opacity: 1;
     }
 }
+
+/* === 移动端适配 === */
 @media screen and (max-width: 768px) {
+    h1 {
+        font-size: 2.2em;
+    }
+
+    .briefInstruction, .information {
+        font-size: 1em;
+    }
+
+    .button-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    button {
+        width: 80%;
+        font-size: 1em;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        padding: 0 10px;
+    }
+
     .menu-toggle {
         display: block;
     }
@@ -221,28 +244,38 @@ nav ul li a:hover {
         display: none;
         position: absolute;
         top: 60px;
-        /* 保持这个值,确保菜单在导航栏下方 */
-        left: 20px;
-        /* 与导航栏的左内边距对齐 */
-        width: auto;
-        /* 改为自动宽度 */
-        background: rgba(0, 0, 0, 0.8);
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.9);
         flex-direction: column;
-        padding: 10px;
-        border-radius: 0 0 5px 5px;
-        /* 可选:添加圆角 */
-        z-index: 2;
+        padding: 10px 20px;
+        z-index: 1001;
     }
 
     .nav-menu li {
-        margin: 5px 0;
-        text-align: left;
-        /* 左对齐文本 */
-        white-space: nowrap;
-        /* 防止文本换行 */
+        margin: 10px 0;
     }
 
     .nav-menu.active {
         display: flex;
+    }
+
+    nav ul {
+        display: none; /* 默认隐藏 */
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .footer-links {
+        margin-top: 10px;
+    }
+
+    .footer-links a {
+        display: inline-block;
+        margin: 5px 10px;
     }
 }
