@@ -54,7 +54,7 @@ body {
 .update-card {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
-    border-radius: 16px;
+    border-radius: 8px;
     padding: 25px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -63,25 +63,9 @@ body {
     overflow: hidden;
 }
 
-.update-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
 .update-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-}
-
-.update-card:hover::before {
-    opacity: 1;
 }
 
 .update-date {
@@ -89,7 +73,7 @@ body {
     background: linear-gradient(135deg, #667eea, #764ba2);
     color: white;
     padding: 8px 16px;
-    border-radius: 20px;
+    border-radius: 8px;
     font-size: 0.9rem;
     font-weight: 600;
     margin-bottom: 15px;
@@ -153,7 +137,7 @@ body {
     background: linear-gradient(135deg, #a8edea, #fed6e3);
     color: #2d3436;
     padding: 4px 12px;
-    border-radius: 12px;
+    border-radius: 8px;
     font-size: 0.8rem;
     font-weight: 600;
     margin-left: 10px;
@@ -175,7 +159,7 @@ body {
     color: white;
     width: 30px;
     height: 30px;
-    border-radius: 50%;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -188,7 +172,7 @@ body {
     justify-content: space-around;
     background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
-    border-radius: 12px;
+    border-radius: 8px;
     padding: 20px;
     margin-bottom: 30px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
@@ -240,7 +224,7 @@ body {
 .github-sync {
     background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
-    border-radius: 12px;
+    border-radius: 8px;
     padding: 20px;
     margin-bottom: 30px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
@@ -299,7 +283,7 @@ body {
 .status-indicator {
     width: 8px;
     height: 8px;
-    border-radius: 50%;
+    border-radius: 8px;
     background: #4CAF50;
     animation: pulse 2s infinite;
 }

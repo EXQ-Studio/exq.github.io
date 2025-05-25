@@ -40,7 +40,13 @@
             </ul>
         </div>
     </nav>
-    <script src="js/nav.js"></script>
+    <script>
+        // 移动端菜单切换
+        document.querySelector('.menu-toggle').addEventListener('click', function () {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+        });
+    </script>
 
     <!-- 主要内容区域 -->
     <section class="hero-section">
@@ -53,10 +59,10 @@
             </p>
             <div class="cta-buttons">
                 <a href="#" class="cta-button cta-primary" onclick="showPopup()">
-                    📋 查看社区准则
+                    社区准则
                 </a>
                 <a href="https://forum.exqstudio.cn" class="cta-button cta-secondary" target="_blank">
-                    💬 进入论坛
+                    进入论坛
                 </a>
             </div>
         </div>

@@ -104,14 +104,14 @@ body {
 }
 
 .cta-button {
-    padding: 1rem 2rem;
+    padding: 30px 40px;
     border: none;
     border-radius: 5px;
     font-size: 1em;
     font-weight: 600;
     text-decoration: none;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease; /* 保留其他过渡效果（如阴影） */
     position: relative;
     overflow: hidden;
     display: inline-flex;
@@ -124,7 +124,7 @@ body {
 .cta-primary {
     background: linear-gradient(135deg, #ff6b6b, #ee5a24);
     color: white;
-    box-shadow: 0 8px 25px rgba(238, 90, 36, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .cta-secondary {
@@ -134,8 +134,9 @@ body {
     backdrop-filter: blur(10px);
 }
 
+/* 修改后的悬停状态 */
 .cta-button:hover {
-    transform: translateY(-3px);
+    /* 移除了 transform 属性 */
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
 }
 
@@ -243,10 +244,10 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(240, 240, 240, 0.95));
+    background: white;
     backdrop-filter: blur(20px);
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     padding: 2rem;
     width: 90%;
     max-width: 600px;
@@ -280,7 +281,7 @@ body {
     border: none;
     background: rgba(239, 68, 68, 0.1);
     color: #ef4444;
-    border-radius: 50%;
+    border-radius: 5px;
     font-size: 1.5rem;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -303,7 +304,7 @@ body {
     font-weight: 600;
     background: rgba(220, 38, 38, 0.1);
     padding: 0.2rem 0.4rem;
-    border-radius: 4px;
+    border-radius: 5px;
 }
 
 .highlight-link {
@@ -343,7 +344,7 @@ body {
     background: linear-gradient(135deg, #667eea, #764ba2);
     color: white;
     border: none;
-    border-radius: 25px;
+    border-radius: 5px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
