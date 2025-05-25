@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>最近更新 - EXQ Studio</title>
     <link rel="stylesheet" href="css/recentupdate.css">
+    <link rel="stylesheet" type="text/css" href="template/footer.css">
+    <link rel="stylesheet" type="text/css" href="template/navbar.css">
     <link rel="icon" sizes="16x16" href="img/logo/LogoIcon.png" type="image/png">
     <link rel="icon" sizes="32x32" href="img/logo/LogoIcon.png" type="image/png">
     <link rel="icon" sizes="48x48" href="img/logo/LogoIcon.png" type="image/png">
@@ -30,65 +32,460 @@
         </ul>
     </nav>
     <script src="js/nav.js"></script>
-    <!-- 主页面内容 -->
-    <div class="title">
-        <h1>最近更新<br></h1>
+      <div class="container">
+        <div class="title">
+            <h1>最近更新</h1>
+            <p>EXQ Studio 开发历程与更新记录</p>
+        </div>
+
+        <div class="github-sync">
+            <div class="sync-header">
+                <div class="sync-title">
+                    <span>📊</span>
+                    GitHub 仓库同步
+                </div>
+                <button class="sync-button" onclick="syncGitHub()">
+                    <span>🔄</span>
+                    同步更新
+                </button>
+            </div>
+            <input 
+                type="text" 
+                class="github-input" 
+                id="repoInput"
+                placeholder="输入GitHub仓库地址 (例: EXQ-Studio/exq.github.io)"
+                value="EXQ-Studio/exq.github.io"
+            >
+            <div class="sync-status">
+                <div class="status-indicator" id="statusIndicator"></div>
+                <span id="statusText">就绪 - 点击同步按钮获取最新提交</span>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" id="totalCommits">150+</div>
+                <div class="stat-label">总提交数</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="activeContributors">2</div>
+                <div class="stat-label">活跃贡献者</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="lastUpdate">今天</div>
+                <div class="stat-label">最后更新</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="weeklyCommits">25</div>
+                <div class="stat-label">本周提交</div>
+            </div>
+        </div>
+
+        <div class="commit-timeline">
+            <div class="timeline-header">
+                <span>📈</span>
+                提交活动统计
+            </div>
+            <div class="commit-chart" id="commitChart">
+                点击同步按钮获取最新统计数据
+            </div>
+            <div class="contributors-list">
+                <div class="contributor">
+                    <div class="contributor-avatar">F</div>
+                    <span>Furina662</span>
+                </div>
+                <div class="contributor">
+                    <div class="contributor-avatar">D</div>
+                    <span>dmouren00000</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="updates-container">
+            <div class="update-card">
+                <div class="update-date">2025年5月25日 <span class="version-badge">最新</span></div>
+                <div class="update-content">
+                    <div class="update-item">更新导航栏模板，统一设计风格</div>
+                    <div class="update-item">全面更新404错误页面</div>
+                    <div class="update-item">about.html采用模块化设计架构</div>
+                    <div class="update-item">优化赞助页面CSS样式</div>
+                    <div class="update-item">新增鼠标点击效果交互</div>
+                    <div class="update-item">修复下载页面CSS样式问题</div>
+                    <div class="update-item">修复index.html页面标题显示</div>
+                    <div class="update-item">修复下载页面footer布局</div>
+                    <div class="update-item">优化移动端footer显示效果</div>
+                    <div class="update-item">index.html采用模块化设计，更新默认模板</div>
+                    <div class="update-item">完善CoreBox页面移动端适配</div>
+                    <div class="update-item">重构CoreBox页面整体架构</div>
+                    <div class="update-item">修复移动端导航栏显示问题</div>
+                    <div class="update-item">为CoreBox页面添加导航栏和footer</div>
+                    <div class="update-item">导航栏新增CoreBox页面入口</div>
+                    <div class="update-item">全新CoreBox功能页面上线</div>
+                    <div class="update-item">修复页面宽度显示问题</div>
+                </div>
+            </div>
+
+            <div class="update-card">
+                <div class="update-date">2025年5月24日</div>
+                <div class="update-content">
+                    <div class="update-item">404错误页面完全重制，全新设计</div>
+                    <div class="update-item">多次优化404页面用户体验</div>
+                </div>
+            </div>
+
+            <div class="update-card">
+                <div class="update-date">2025年5月22日 - 5月23日</div>
+                <div class="update-content">
+                    <div class="update-item">添加导航栏毛玻璃模糊效果</div>
+                    <div class="update-item">优化导航栏视觉体验</div>
+                    <div class="update-item">更新弹窗组件并修复相关问题</div>
+                    <div class="update-item">重命名部分文件，规范项目结构</div>
+                </div>
+            </div>
+
+            <div class="update-card">
+                <div class="update-date">2025年5月22日</div>
+                <div class="update-content">
+                    <div class="update-item">更新README.md中的邮箱信息</div>
+                    <div class="update-item">统一更新所有页面footer中的邮箱</div>
+                </div>
+            </div>
+
+            <div class="update-card">
+                <div class="update-date">2025年5月20日</div>
+                <div class="update-content">
+                    <div class="update-item">更新首页邮箱联系信息</div>
+                </div>
+            </div>
+
+            <div class="update-card">
+                <div class="update-date">2025年5月17日</div>
+                <div class="update-content">
+                    <div class="update-item">更新论坛导航栏Logo设计</div>
+                    <div class="update-item">优化图片资源和显示效果</div>
+                </div>
+            </div>
+
+            <div class="update-card">
+                <div class="update-date">2025年5月16日</div>
+                <div class="update-content">
+                    <div class="update-item">字体系统优化调整</div>
+                    <div class="update-item">文本显示效果测试和优化</div>
+                    <div class="update-item">更新QQ群跳转链接</div>
+                    <div class="update-item">更新"加入我们"页面链接</div>
+                    <div class="update-item">优化QQ群链接跳转体验</div>
+                    <div class="update-item">更新首页相关内容</div>
+                </div>
+            </div>
+
+            <div class="update-card">
+                <div class="update-date">2025年5月13日</div>
+                <div class="update-content">
+                    <div class="update-item">Logo换新 - 全新视觉形象上线</div>
+                    <div class="update-item">更新最近更新页面内容</div>
+                    <div class="update-item">新增博客功能模块</div>
+                    <div class="update-item">修复导航栏显示问题</div>
+                    <div class="update-item">移除NotoSans字体依赖</div>
+                    <div class="update-item">README文档更新</div>
+                </div>
+            </div>
+
+            <div class="update-card">
+                <div class="update-date">2025年5月12日</div>
+                <div class="update-content">
+                    <div class="update-item">完全重制下载页面</div>
+                    <div class="update-item">更新用户头像显示</div>
+                    <div class="update-item">优化页面样式和布局</div>
+                    <div class="update-item">创建临时下载页面</div>
+                </div>
+            </div>
+
+            <div class="update-card">
+                <div class="update-date">2025年5月11日</div>
+                <div class="update-content">
+                    <div class="update-item">网站内容和图片资源更新</div>
+                    <div class="update-item">多项页面优化和调整</div>
+                </div>
+            </div>
+
+            <div class="update-card">
+                <div class="update-date">2025年5月9日</div>
+                <div class="update-content">
+                    <div class="update-item">大量代码提交和更改</div>
+                    <div class="update-item">优化开发工具使用体验</div>
+                    <div class="update-item">下载页面多次更新迭代</div>
+                    <div class="update-item">更新页面内容和样式</div>
+                    <div class="update-item">修复下载页面CSS问题</div>
+                    <div class="update-item">关于页面内容更新</div>
+                </div>
+            </div>
+
+            <div class="update-card">
+                <div class="update-date">2025年5月6日 - 5月9日</div>
+                <div class="update-content">
+                    <div class="update-item">调整主页社区准则弹窗，更新社区准则内容</div>
+                    <div class="update-item">微调下载页面，更换全新背景图</div>
+                    <div class="update-item">论坛新注册账号启用7位格式UID</div>
+
+                </div>
+            </div>
+
+            <div class="update-card">
+                <div class="update-date">2025年2月20日</div>
+                <div class="update-content">
+                    <div class="update-item">完成项目封包处理</div>
+                    <div class="update-item">404错误页面全新改版</div>
+                </div>
+            </div>
+
+            <div class="update-card">
+                <div class="update-date">2025年2月17日</div>
+                <div class="update-content">
+                    <div class="update-item">上传爱比较 v14.0.exe，支持下载页面直接获取</div>
+                    <div class="update-item">美化更新页面（采用微软官方壁纸设计）</div>
+                </div>
+            </div>
+
+            <div class="update-card">
+                <div class="update-date">2025年2月14日</div>
+                <div class="update-content">
+                    <div class="update-item">主页社区准则弹窗功能恢复</div>
+                    <div class="update-item">社区准则内容更新，优化弹窗样式</div>
+                    <div class="update-item">下载页面界面微调优化</div>
+                    <div class="update-item">关于页面布局调整</div>
+                    <div class="update-item">统一所有页面导航栏设计风格</div>
+                </div>
+            </div>
+
+            <div class="update-card">
+                <div class="update-date">2025年2月11日</div>
+                <div class="update-content">
+                    <div class="update-item">上传 Windows 10 Horror.exe (Windows Update.exe)</div>
+                    <div class="update-item">支持下载页面直接获取和视频跳转</div>
+                </div>
+            </div>
+
+            <div class="update-card">
+                <div class="update-date">2025年2月9日 - 2月11日</div>
+                <div class="update-content">
+                    <div class="update-item">论坛页面加入统一 footer 设计</div>
+                    <div class="update-item">完整重构项目架构</div>
+                    <div class="update-item">移除微软雅黑字体，改用 Noto Sans（思源黑体）</div>
+                    <div class="update-item">改进 footer 排版布局</div>
+                </div>
+            </div>
+
+            <div class="update-card">
+                <div class="update-date">2025年1月21日</div>
+                <div class="update-content">
+                    <div class="update-item">微调关于页面排版布局</div>
+                    <div class="update-item">临时下载页加入弹窗提示功能</div>
+                </div>
+            </div>
+
+            <div class="update-card milestone">
+                <div class="update-date">2024年10月18日</div>
+                <div class="update-content">
+                    <div class="update-item">🎉 EXQ STUDIO论坛正式上架必应、谷歌搜索引擎</div>
+                </div>
+            </div>
+
+            <div class="update-card milestone">
+                <div class="update-date">2024年10月2日</div>
+                <div class="update-content">
+                    <div class="update-item">🚀 EXQ Studio网站Beta测试版正式发布！</div>
+                    <div class="update-item">启用 HTTPS 协议，保障数据安全</div>
+                    <div class="update-item">支持 IPv4 与 IPv6 双栈访问</div>
+                    <div class="update-item">建立完善的用户协议体系</div>
+                    <div class="update-item">上线论坛工单反馈系统</div>
+                    <div class="special-note">
+                        感谢各位 EXQ Studio 开发组成员的辛勤付出！欢迎大家使用网站，祝使用愉快！
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="recentupdate">
-        2025/5/13<br>
-        1.Logo换新<br>
-        2.微调一些地方<br>
-        3.再一次美化本页面<br>
-        <br>
-        2025/5/6-2025/5/9<br>
-        1.调整主页社区准则弹窗，更新社区准则<br>
-        2.微调下载页面，下载页更换背景图<br>
-        3.即日起，论坛新注册账号启用7位格式UID<br>
-        4.这个最近更新页面得再改改，不过我现在懒得调 到时候再说 ----D某人留<br>
-        <br>
-        2025/2/20<br>
-        1.封包<br>
-        2.404页更新<br>
-        <br>
-        2025/2/17<br>
-        1.上传爱比较v14.0.exe，用户可在下载页面下载/跳转视频<br>
-        2.美化本页面（图片来自于微软壁纸）<br>
-        <br>
-        2025/2/14<br>
-        1.现在主页可以重新显示社区准则弹窗。<br>
-        2.社区准则已更新，微调弹窗样式<br>
-        3.下载页面微调。<br>
-        4.调整关于页。<br>
-        5.统一所有页面导航栏样式<br>
-        <br>
-        2025/2/11<br>
-        1.上传Windows 10 Horror.exe(Windows Update.exe)，用户可在下载页面下载/跳转视频<br>
-        <br>
-        2025/2/10<br>
-        1.论坛加入footer<br>
-        <br>
-        2025/2/9<br>
-        1.rebuild了一遍<br>
-        2.移除微软雅黑字体，改用Noto Sans（思源黑体）<br>
-        3.改进footer排版<br>
-        <br>
-        2025/1/21<br>
-        1.微调关于页排版<br>
-        2.临时下载页加入弹窗提示<br>
-        <br>
-        2024/10/18<br>
-        EXQ STUDIO论坛现已上架必应、谷歌搜索引擎<br>
-        <br>
-        2024/10/2<br>
-        EXQ Studio网站已经发布Beta测试版！<br>
-        本次更新内容:<br>
-        更改了https协议访问，支持ipv4与ipv6双栈访问。<br>
-        使用网站时请阅读并遵守相关用户协议<br>
-        发现问题是及时联系群管理或在论坛-工单反馈板块中发帖<br>
-        欢迎大家使用网站！祝使用愉快！<br>
-        再次感谢各位EXQ Studio开发组的成员！<br>
-    </div>
-    <!-- footer-->
+
+    <script>
+        // GitHub API 同步功能
+        let syncInProgress = false;
+        let commitData = [];
+
+        async function syncGitHub() {
+            if (syncInProgress) return;
+            
+            const button = document.querySelector('.sync-button');
+            const indicator = document.getElementById('statusIndicator');
+            const status = document.getElementById('statusText');
+            const repoInput = document.getElementById('repoInput');
+            
+            const repo = repoInput.value.trim();
+            if (!repo) {
+                updateStatus('error', '请输入有效的仓库地址');
+                return;
+            }
+
+            syncInProgress = true;
+            button.disabled = true;
+            button.innerHTML = '<span>⏳</span>同步中...';
+            updateStatus('loading', '正在获取最新数据...');
+
+            try {
+                // 获取提交数据
+                const commitsResponse = await fetch(`https://api.github.com/repos/${repo}/commits?per_page=100`);
+                
+                if (!commitsResponse.ok) {
+                    throw new Error(`GitHub API 错误: ${commitsResponse.status}`);
+                }
+
+                const commits = await commitsResponse.json();
+                commitData = commits;
+
+                // 获取仓库信息
+                const repoResponse = await fetch(`https://api.github.com/repos/${repo}`);
+                const repoInfo = await repoResponse.json();
+
+                // 更新统计数据
+                updateStatistics(commits, repoInfo);
+                
+                // 更新图表
+                updateCommitChart(commits);
+
+                updateStatus('success', `同步成功！获取到 ${commits.length} 条最新提交`);
+                
+            } catch (error) {
+                console.error('同步失败:', error);
+                updateStatus('error', `同步失败: ${error.message}`);
+            } finally {
+                syncInProgress = false;
+                button.disabled = false;
+                button.innerHTML = '<span>🔄</span>同步更新';
+            }
+        }
+
+        function updateStatus(type, message) {
+            const indicator = document.getElementById('statusIndicator');
+            const status = document.getElementById('statusText');
+            
+            indicator.className = 'status-indicator';
+            if (type === 'error') {
+                indicator.classList.add('status-error');
+            }
+            
+            status.textContent = message;
+        }
+
+        function updateStatistics(commits, repoInfo) {
+            // 统计数据
+            const totalCommits = commits.length;
+            const contributors = [...new Set(commits.map(commit => commit.author?.login).filter(Boolean))];
+            
+            // 计算本周提交
+            const oneWeekAgo = new Date();
+            oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+            const weeklyCommits = commits.filter(commit => 
+                new Date(commit.commit.author.date) > oneWeekAgo
+            ).length;
+
+            // 最后更新时间
+            const lastCommitDate = commits[0] ? new Date(commits[0].commit.author.date) : new Date();
+            const timeDiff = Math.floor((new Date() - lastCommitDate) / (1000 * 60 * 60 * 24));
+            let lastUpdateText = timeDiff === 0 ? '今天' : timeDiff === 1 ? '昨天' : `${timeDiff}天前`;
+
+            // 更新页面显示
+            document.getElementById('totalCommits').textContent = totalCommits + '+';
+            document.getElementById('activeContributors').textContent = contributors.length;
+            document.getElementById('lastUpdate').textContent = lastUpdateText;
+            document.getElementById('weeklyCommits').textContent = weeklyCommits;
+        }
+
+        function updateCommitChart(commits) {
+            const chartContainer = document.getElementById('commitChart');
+            
+            // 创建简单的提交活动图表
+            const last7Days = [];
+            for (let i = 6; i >= 0; i--) {
+                const date = new Date();
+                date.setDate(date.getDate() - i);
+                last7Days.push({
+                    date: date.toISOString().split('T')[0],
+                    commits: commits.filter(commit => 
+                        commit.commit.author.date.startsWith(date.toISOString().split('T')[0])
+                    ).length
+                });
+            }
+
+            // 创建简单的条形图
+            const maxCommits = Math.max(...last7Days.map(d => d.commits)) || 1;
+            
+            chartContainer.innerHTML = '';
+            chartContainer.style.display = 'flex';
+            chartContainer.style.alignItems = 'end';
+            chartContainer.style.justifyContent = 'space-around';
+            chartContainer.style.padding = '20px';
+            chartContainer.style.gap = '10px';
+
+            last7Days.forEach((day, index) => {
+                const bar = document.createElement('div');
+                const height = Math.max((day.commits / maxCommits) * 150, 10);
+                
+                bar.style.width = '30px';
+                bar.style.height = height + 'px';
+                bar.style.background = `linear-gradient(to top, #667eea, #764ba2)`;
+                bar.style.borderRadius = '4px 4px 0 0';
+                bar.style.position = 'relative';
+                bar.style.transition = 'all 0.3s ease';
+                
+                // 添加提示信息
+                const tooltip = document.createElement('div');
+                tooltip.textContent = `${day.commits} 提交`;
+                tooltip.style.position = 'absolute';
+                tooltip.style.bottom = '100%';
+                tooltip.style.left = '50%';
+                tooltip.style.transform = 'translateX(-50%)';
+                tooltip.style.background = 'rgba(0,0,0,0.8)';
+                tooltip.style.color = 'white';
+                tooltip.style.padding = '4px 8px';
+                tooltip.style.borderRadius = '4px';
+                tooltip.style.fontSize = '12px';
+                tooltip.style.whiteSpace = 'nowrap';
+                tooltip.style.opacity = '0';
+                tooltip.style.transition = 'opacity 0.3s ease';
+                
+                const dayLabel = document.createElement('div');
+                dayLabel.textContent = ['日', '一', '二', '三', '四', '五', '六'][new Date(day.date).getDay()];
+                dayLabel.style.position = 'absolute';
+                dayLabel.style.top = '100%';
+                dayLabel.style.left = '50%';
+                dayLabel.style.transform = 'translateX(-50%)';
+                dayLabel.style.fontSize = '12px';
+                dayLabel.style.marginTop = '5px';
+                dayLabel.style.color = '#666';
+
+                bar.appendChild(tooltip);
+                bar.appendChild(dayLabel);
+                
+                bar.addEventListener('mouseenter', () => {
+                    tooltip.style.opacity = '1';
+                    bar.style.transform = 'scale(1.1)';
+                });
+                
+                bar.addEventListener('mouseleave', () => {
+                    tooltip.style.opacity = '0';
+                    bar.style.transform = 'scale(1)';
+                });
+
+                chartContainer.appendChild(bar);
+            });
+        }
+
+        // 页面加载时的初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 可以在这里添加自动同步逻辑
+            console.log('EXQ Studio 更新日志页面已加载');
+        });
+    </script>
+<!-- footer -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-logo">
@@ -97,13 +494,14 @@
             <div class="footer-info">
                 <div class="footer-links">
                     <a href="about.html">关于团队</a>
-                    <a href="https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=s9hmkfGoSf-wJU7F9utssiFY1H8n1Wm1&authKey=xn9gD93GzSQuPXeL6iGcDgVtqgeCgWuPGYUSSSGJUoztP/0fE0yZxwu7mb+Pvg0M&noverify=0&group_code=538933981" target="_blank">加入我们</a>
+                    <a href="https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=s9hmkfGoSf-wJU7F9utssiFY1H8n1Wm1&authKey=xn9gD93GzSQuPXeL6iGcDgVtqgeCgWuPGYUSSSGJUoztP/0fE0yZxwu7mb+Pvg0M&noverify=0&group_code=538933981"
+                        target="_blank">加入我们</a>
                     <a href="donation.html">赞助我们</a>
                     <a href="recentupdate.html">近期更新</a>
                 </div>
                 <div class="footer-contact">
-                    <span>QQ群：538933981</span>
-                    <span>邮箱：exqstudio@exqstudio.cn</span>
+                    <div>QQ群：538933981</div>
+                    <div>邮箱：exqstudio@exqstudio.cn</div>
                 </div>
                 <div class="footer-copyright">
                     <span>&#169;EXQ Studio</span>
