@@ -6,7 +6,7 @@
 body {
     margin: 0;
     padding-top: 60px;
-    background: linear-gradient(135deg, #ffeef8, #ffffff, #d3efff);
+    background: linear-gradient(to bottom right, #b2f2bb, #ffffff, #87cefa);
     font-family: 'Noto Sans SC', sans-serif;
     display: flex;
     flex-direction: column;
