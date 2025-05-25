@@ -6,7 +6,7 @@
 body {
     margin: 0;
     padding-top: 60px;
-    background: linear-gradient(135deg, #146C8A, #a8e6ff);
+    background: linear-gradient(135deg, #ffeef8, #ffffff, #d3efff);
     font-family: 'Noto Sans SC', sans-serif;
     display: flex;
     flex-direction: column;
@@ -19,21 +19,29 @@ a {
     text-decoration: none;
     color: inherit;
 }
+.main-content {
+    height: calc(100vh - 60px - 100px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 
 h1 {
-    color: #fff;
+    color: #333333;
     font-size: 3.5em;
-    margin-top: 10vh;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    text-shadow: rgba(0,0,0,0.3);
     animation: fadeInUp 1s ease;
 }
 
 h1:hover {
-    color: #146C8A;
+    color: #42b4e6;
 }
 
 .briefInstruction, .information {
-    color: #f0f8ff;
+    color: #333333;
     text-align: center;
     margin-top: 0;
     max-width: 90%;
@@ -50,7 +58,7 @@ button {
     padding: 12px 30px;
     border: none;
     border-radius: 12px;
-    background: #6895a7;
+    background: #42b4e6;
     color: white;
     font-size: 1.1em;
     cursor: pointer;
@@ -59,9 +67,9 @@ button {
 }
 
 button:hover {
-    background: #146C8A;
+    background: #2596be;
     transform: scale(1.05);
-}
+}   
 
 /** 导航栏 **/
 nav {
