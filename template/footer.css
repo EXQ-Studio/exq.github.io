@@ -1,12 +1,13 @@
-/**footer**/
+/** Footer **/
 .footer {
-    /* 移除 position: fixed 以及相关定位属性 */
+    position: fixed;
+    bottom: 0;
+    left: 0;
     width: 100%;
-    background-color: #333; /* 灰色背景 */
-    color: white; /* 白色文字 */
+    background-color: #333;
+    color: white;
     padding: 20px 0;
-    /* 移除或者降低 z - index 值 */
-    z-index: auto;
+    z-index: 999;
 }
 
 .footer-content {
@@ -16,10 +17,12 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    flex-wrap: wrap;
+    flex-direction: row; /* 大屏横排 */
 }
 
 .footer-logo img {
-    max-height: 50px; /* 调整logo大小 */
+    max-height: 50px;
 }
 
 .footer-info {
@@ -27,10 +30,16 @@
     flex-direction: column;
 }
 
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .footer-links a {
     color: white;
     text-decoration: none;
     margin-right: 15px;
+    margin-bottom: 5px;
 }
 
 .footer-links a:hover {
@@ -47,4 +56,18 @@
 
 .footer-copyright {
     font-size: 0.9em;
+}
+
+/* 移动端适配 */
+@media screen and (max-width: 768px) {
+    .footer-content {
+        flex-direction: column; /* 小屏改竖排 */
+        align-items: flex-start;
+    }
+
+    .footer-info,
+    .footer-contact,
+    .footer-links {
+        margin-bottom: 10px;
+    }
 }

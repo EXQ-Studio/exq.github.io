@@ -1,0 +1,311 @@
+/* 设置中文字体为 Noto Sans SC 的不同字重 */
+@font-face {
+    font-family: 'Noto Sans SC';
+    src: local('Noto Sans SC');
+    src: local('Noto Sans SC Medium');
+    src: local('Noto Sans SC Bold');
+}
+
+/* 全局默认样式初始化 */
+* {
+    margin: 0%;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none; /* 禁止用户选中文本 */
+}
+
+/* 所有链接去掉下划线 */
+a {
+    text-decoration: none;
+}
+
+/* 所有列表去掉默认圆点 */
+ul {
+    list-style: none;
+}
+
+/* ---------- 页面标题部分 ---------- */
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+}
+
+/* 主标题下方的间距 */
+.headline {
+    margin-bottom: 20px;
+    font-size: 32px;
+}
+
+/* 页面主描述文字样式 */
+.description {
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.description h2 {
+    font-weight: normal;
+}
+
+/* ---------- 弹窗遮罩层 ---------- */
+#mask {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* 深色遮罩背景 */
+    z-index: 1000;
+    backdrop-filter: blur(5px); /* 添加背景模糊效果 */
+}
+
+/* ---------- 弹窗内容 ---------- */
+#popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    width: 90%;
+    max-width: 600px;
+    z-index: 1010;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* 弹窗头部区域 */
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.popup-header h3 {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+/* 关闭按钮样式 */
+.close-button {
+    font-size: 1.2em;
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-button:hover {
+    color: #333;
+}
+
+/* 弹窗正文内容 */
+.popup-content p {
+    font-size: 1em;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* 重点高亮文字 */
+.popup-content .highlight {
+    color: #333;
+    font-weight: bold;
+}
+
+.highlight-link {
+    color: #007bff;
+    font-weight: bold;
+}
+
+.highlight-link:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+/* 编辑时间的字体颜色 */
+.edit-time {
+    color: #999;
+}
+
+/* 芙宁娜 */
+.Furina {
+    color: skyblue;
+    font-family: '站酷文艺体';
+    font-size: 160%;
+}
+
+.Furina:hover {
+    color: deepskyblue;
+}
+
+/* 空荧 */
+.AetherLumine {
+    color: gold;
+    font-family: '站酷文艺体';
+    font-size: 160%;
+}
+
+.AetherLumine:hover {
+    color: darkgoldenrod;
+}
+
+/* 弹窗底部区域 */
+.popup-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+/* 倒计时文本 */
+#countdown {
+    font-size: 0.9em;
+    color: #777;
+}
+
+/* 弹窗右下角关闭按钮 */
+#closePopup {
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: absolute;
+    right: 30px;
+    bottom: 20px;
+}
+
+#closePopup:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+}
+
+#closePopup:hover:enabled {
+    background-color: #0056b3;
+}
+
+/* 弹窗淡入动画 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* ---------- 顶部横幅 ---------- */
+.banner {
+    width: 100%;
+    height: 50px;
+    background-color: lightyellow;
+    padding: 10px 20px;
+    line-height: 25px;
+    font-size: 14px;
+    color: darkorange;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 60px; /* 在导航栏下方 */
+    left: 0;
+    z-index: 999;
+}
+
+.popup-link {
+    font-weight: bold;
+    color: darkorange;
+    text-decoration: none;
+}
+
+.close-btn {
+    cursor: pointer;
+    font-size: 20px;
+    color: gray;
+    margin-right: 10px;
+}
+
+.banner span:first-child {
+    flex: 1;
+}
+
+/* ---------- 响应式设计（移动端） ---------- */
+@media screen and (max-width: 768px) {
+
+    .container {
+        width: 90%;
+    }
+
+    .container {
+        width: 95%;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    #popup {
+        width: 90%;
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+}
+
+/* ---------- h1标题样式 ---------- */
+h1 {
+    opacity: 0;
+    animation: fadeInUp 1.2s ease forwards, ChangeColor 3s infinite 1.2s;
+    color: #146c8a;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+/* ---------- 颜色渐变动画定义 ---------- */
+/* 一次性淡入 */
+@keyframes fadeInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* 循环变色 */
+@keyframes ChangeColor {
+    0% {
+        color: #146c8a;
+    }
+    50% {
+        color: aqua;
+    }
+    100% {
+        color: #146c8a;
+    }
+}
