@@ -151,7 +151,7 @@ body {
     bottom: 20px;
 }
 
-/* 淡入动画关键帧 */
+/* 弹窗淡入动画关键帧 */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -171,51 +171,8 @@ body {
 
 /* 响应式样式：适配小屏设备 */
 @media screen and (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
-
-    .nav-menu {
-        display: none;
-        position: absolute;
-        top: 60px;
-        left: 20px;
-        width: auto;
-        background: rgba(0, 0, 0, 0.8);
-        flex-direction: column;
-        padding: 10px;
-        border-radius: 0 0 5px 5px;
-    }
-
-    .nav-menu li {
-        margin: 5px 0;
-        text-align: left;
-        white-space: nowrap;
-    }
-
-    .nav-menu.active {
-        display: flex;
-    }
-
     .main-content {
         padding: 10px;
-    }
-
-    h1 {
-        font-size: 24px;
-    }
-
-    .qrcode {
-        max-width: 150px;
-    }
-
-    table {
-        font-size: 14px;
-    }
-
-    th,
-    td {
-        padding: 6px;
     }
 }
 
@@ -223,22 +180,5 @@ body {
 @media screen and (max-width: 900px) {
     h1 {
         font-size: 20px;
-    }
-
-    .qrcode {
-        max-width: 120px;
-    }
-
-    .thanks p {
-        font-size: 14px;
-    }
-
-    table {
-        font-size: 12px;
-    }
-
-    th,
-    td {
-        padding: 4px;
     }
 }
