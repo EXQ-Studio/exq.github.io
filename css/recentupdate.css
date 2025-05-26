@@ -4,21 +4,13 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'Noto Sans SC', sans-serif;
-    background: linear-gradient(45deg, #146c8a, #add8e6) no-repeat;
-    background-size: cover;
-    /* 背景图片填满容器 */
-    background-position: center;
-    /* 背景居中 */
-    background-attachment: fixed;
-    /* 背景固定不随页面滚动 */
-    background-repeat: no-repeat;
-    /* 不重复显示背景 */
-    min-height: 100vh;
-    padding: 20px;
-    color: #333;
-}
+ body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
 
 .container {
     max-width: 900px;
