@@ -1,11 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Core Box - 历史版本</title>
+    <link rel="stylesheet" type="text/css" href="historyversion.css">
+    <link rel="stylesheet" type="text/css" href="../template/footer.css">
+    <link rel="stylesheet" type="text/css" href="../template/navbar.css">
 </head>
+
 <body>
-    以后再说
+    <!-- 导航栏 -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="img/logo/LogoNavBar.png" alt="EXQ Studio">
+            </a>
+            <div class="menu-toggle" onclick="toggleMobileMenu()">☰</div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="https://forum.exqstudio.cn" target="_blank">论坛</a></li>
+                <li><a href="../download.html">下载</a></li>
+                <li><a href="corebox.html">CoreBox</a></li>
+                <li><a href="../about.html">关于团队</a></li>
+                <li><a href="https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=s9hmkfGoSf-wJU7F9utssiFY1H8n1Wm1&authKey=xn9gD93GzSQuPXeL6iGcDgVtqgeCgWuPGYUSSSGJUoztP/0fE0yZxwu7mb+Pvg0M&noverify=0&group_code=538933981"
+                        target="_blank">加入我们</a></li>
+                <li><a href="../donation.html">赞助我们</a></li>
+                <li><a href="../recentupdate.html">最近更新</a></li>
+            </ul>
+        </div>
+    </nav>
+    <script>
+        // 移动端菜单切换
+        document.querySelector('.menu-toggle').addEventListener('click', function () {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+        });
+    </script>
+        <!-- 主页面内容 -->
+    <div class="title">
+        <h1>Core Box 历史版本</h1>
+        <p>旧版本体验可能不如新版本，请谨慎下载</p>
+    </div>
 </body>
+
 </html>
