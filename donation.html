@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,56 +17,50 @@
     <!-- 预加载图片 -->
     <link rel="preload" href="img/老板的收款码.png" as="image">
 </head>
+
 <body>
-<!-- 鼠标点击效果 -->
-<script src="https://blog-static.cnblogs.com/files/e-cat/cursor-effects.js"></script>
+    <!-- 鼠标点击效果 -->
+    <script src="https://blog-static.cnblogs.com/files/e-cat/cursor-effects.js"></script>
 
-<!-- 导航栏 -->
-<nav>
-    <div class="nav-container">
-        <img src="img/logo/LogoNavBar.png" alt="EXQSTUDIO Logo">
-        <div class="menu-toggle">☰</div>
-    </div>
-    <ul class="nav-menu">
-        <li><a href="index.html">首页</a></li>
-        <li><a href="https://forum.exqstudio.cn" target="_blank">论坛</a></li>
-        <li><a href="download.html">下载</a></li>
-        <li><a href="CoreBox/corebox.html">CoreBox</a></li>
-        <li><a href="about.html">关于团队</a></li>
-        <li>
-            <a href="https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=s9hmkfGoSf-wJU7F9utssiFY1H8n1Wm1&authKey=xn9gD93GzSQuPXeL6iGcDgVtqgeCgWuPGYUSSSGJUoztP/0fE0yZxwu7mb+Pvg0M&noverify=0&group_code=538933981"
-               target="_blank">加入我们</a>
-        </li>
-        <li><a href="donation.html">赞助我们</a></li>
-    </ul>
-</nav>
-
-<!-- 主页面内容 -->
-<main class="main-content">
-    <section class="juan">
-        <h1>捐赠页面</h1>
-        <p>请扫描以下二维码进行捐赠：</p>
-        <img src="img/老板的收款码.png" alt="老板的收款码" class="qrcode">
-
-        <!-- 感谢内容 -->
-        <div class="thanks">
-            <p>尊敬的朋友，</p>
-            <p>
-                EXQSTUDIO工作室衷心地感谢您的慷慨解囊和支持！每一份捐赠都是对我们事业的巨大帮助，也是对社会的一份贡献。您的善举将被铭记于心，激励着我们继续前行。</p>
-            <p>
-                因为有您这样善良、有爱心的人士，这个世界变得更加美好。您的每一分每一毫都将会被合理利用，去帮助那些最需要帮助的人。EXQSTUDIO工作室全体工作人员向您表示最诚挚的感谢！</p>
+    <!-- 导航栏 -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="img/logo/LogoNavBar.png" alt="EXQ Studio">
+            </a>
+            <div class="menu-toggle" onclick="toggleMobileMenu()">☰</div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="https://forum.exqstudio.cn" target="_blank">论坛</a></li>
+                <li><a href="download.html">下载</a></li>
+                <li><a href="CoreBox/corebox.html">CoreBox</a></li>
+                <li><a href="about.html">关于团队</a></li>
+                <li><a href="https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=s9hmkfGoSf-wJU7F9utssiFY1H8n1Wm1&authKey=xn9gD93GzSQuPXeL6iGcDgVtqgeCgWuPGYUSSSGJUoztP/0fE0yZxwu7mb+Pvg0M&noverify=0&group_code=538933981"
+                        target="_blank">加入我们</a></li>
+                <li><a href="donation.html">赞助我们</a></li>
+                <li><a href="recentupdate.html">最近更新</a></li>
+            </ul>
         </div>
+    </nav>
+    <script src="js/nav.js"></script>
 
-        <!-- 捐赠记录表格 -->
-        <table>
-            <thead>
+    <!-- 主页面内容 -->
+    <div class="title">
+        <h1>捐赠页面</h1>
+        <p>请扫描以下二维码进行捐赠<br>感谢您对 EXQ Studio 的支持！</p>
+        <img src="img/老板的收款码.png" alt="老板的收款码" class="qrcode">
+    </div>
+
+    <!-- 捐赠记录表格 -->
+    <table>
+        <thead>
             <tr>
                 <th>捐赠者</th>
                 <th>捐赠日期</th>
                 <th>捐赠金额</th>
             </tr>
-            </thead>
-            <tbody>
+        </thead>
+        <tbody>
             <!-- 第一行：捐赠者，第二行：捐赠日期，第三行：捐赠金额 -->
             <tr>
                 <td></td>
@@ -77,36 +72,58 @@
                 <td></td>
                 <td></td>
             </tr>
-            </tbody>
-        </table>
+        </tbody>
+    </table>
     </section>
-</main>
+    </main>
 
-<!-- footer -->
+    <!-- 页脚 -->
     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-logo">
-                <img src="img/logo/LogoNavBar.png" alt="Logo">
+        <div class="footer-container">
+            <div class="footer-content">
+                <!-- 品牌信息 -->
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="img/logo/LogoEXQStudio.png" alt="Logo">
+                        <span class="footer-logo-text"></span>
+                    </div>
+                    <p class="footer-description">
+                        致力于提供优质的产品与服务，创造更美好的用户体验。
+                    </p>
+                </div>
+
+                <!-- 快速链接 -->
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://exqstudio.cn">🏠 首页</a></li>
+                        <li><a href="CoreBox/corebox.html">📦 CoreBox</a></li>
+                        <li><a href="https://forum.exqstudio.cn">👥 论坛</a></li>
+                        <li><a href="donation.html">📣 赞助我们</a></li>
+                        <li><a href="recentupdate.html">🕒 最近更新</a></li>
+                    </ul>
+                    </ul>
+                </div>
+
+                <!-- 联系方式 -->
+                <div class="footer-section">
+                    <h4>联系我们</h4>
+                    <ul class="footer-links contact-links">
+                        <li><a href="https://github.com/EXQ-Studio/exq.github.io" target="_blank">🐱 GitHub</a></li>
+                        <li><a href="https://mail.qq.com" target="_blank">📧 邮箱：exqstudio@exqstudio.cn</a></li>
+                        <li><a href="https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=s9hmkfGoSf-wJU7F9utssiFY1H8n1Wm1&authKey=xn9gD93GzSQuPXeL6iGcDgVtqgeCgWuPGYUSSSGJUoztP/0fE0yZxwu7mb+Pvg0M&noverify=0&group_code=538933981"
+                                target="_blank">💬 QQ群: 538933981</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="footer-info">
-                <div class="footer-links">
-                    <a href="about.html">关于团队</a>
-                    <a href="https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=s9hmkfGoSf-wJU7F9utssiFY1H8n1Wm1&authKey=xn9gD93GzSQuPXeL6iGcDgVtqgeCgWuPGYUSSSGJUoztP/0fE0yZxwu7mb+Pvg0M&noverify=0&group_code=538933981"
-                        target="_blank">加入我们</a>
-                    <a href="donation.html">赞助我们</a>
-                    <a href="recentupdate.html">近期更新</a>
-                </div>
-                <div class="footer-contact">
-                    <div>QQ群：538933981</div>
-                    <div>邮箱：exqstudio@exqstudio.cn</div>
-                </div>
+
+            <div class="footer-bottom">
                 <div class="footer-copyright">
-                    <span>&#169;EXQ Studio</span>
+                    © 2025 EXQ STUDIO. All rights reserved.
                 </div>
             </div>
         </div>
     </footer>
-
-<script src="js/nav.js"></script>
 </body>
+
 </html>
