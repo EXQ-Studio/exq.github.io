@@ -49,6 +49,7 @@ nav {
     padding: 0.5rem 1rem;
     border-radius: 8px;
     transition: all 0.2s ease;
+    font-size: 1rem;
 }
 
 .nav-menu a:hover {
@@ -78,30 +79,36 @@ nav {
 /* 导航栏响应式设计 */
 @media (max-width: 768px) {
     nav {
-        padding: 0 1rem;
+        padding: 0 0.5rem;
     }
 
     .nav-container {
-        height: 60px;
+        height: 50px;
     }
 
     .nav-logo img {
-        width: 80px;
-        height: 32px;
+        width: 70px;
+        height: auto;
     }
 
     .nav-menu {
         position: fixed;
-        top: 60px;
+        top: 50px;
         left: 0;
         right: 0;
         background: rgba(0, 0, 0, 0.95);
         backdrop-filter: blur(20px);
         flex-direction: column;
-        padding: 2rem 0;
+        padding: 1rem 0;
         gap: 0;
         display: none;
         animation: slideDown 0.3s ease;
+        max-height: calc(100vh - 50px);
+        overflow-y: auto;
+    }
+
+    .nav-menu.mobile-active {
+        display: flex !important;
     }
 
     .nav-menu li {
@@ -111,10 +118,11 @@ nav {
 
     .nav-menu a {
         display: block;
-        padding: 1rem 2rem;
+        padding: 0.8rem 1.5rem;
         width: 100%;
         text-align: left;
         border-radius: 0;
+        font-size: 0.9rem;
     }
 
     .nav-menu a:hover {
@@ -123,6 +131,111 @@ nav {
 
     .menu-toggle {
         display: block;
+        font-size: 1.5rem;
+        padding: 0.3rem;
+    }
+
+    /* 移动端内容布局调整 */
+    .text-content-left,
+    .text-content-right {
+        position: relative;
+        max-width: 90%;
+        margin: 0 auto;
+        margin-top: 20px;
+        left: 0;
+        right: 0;
+        transform: none;
+        z-index: 1;
+    }
+
+    .Furina,
+    .Aether,
+    .Lumine {
+        position: relative;
+        height: auto;
+        margin: 0 auto;
+        text-align: center;
+        z-index: 2;
+    }
+
+    .Furina img,
+    .Aether img,
+    .Lumine img {
+        position: relative;
+        height: auto;
+        max-height: 40vh;
+        width: auto;
+        max-width: 80%;
+        margin: 0 auto;
+        display: block;
+        top: 0;
+        left: 0;
+        transform: none;
+    }
+
+    /* 确保页面内容不被导航栏遮挡 */
+    body {
+        padding-top: 50px;
+    }
+
+    /* 调整页面容器 */
+    .pages {
+        padding-top: 50px;
+    }
+
+    /* 调整页面内容 */
+    .page {
+        padding-top: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* 小屏幕手机适配 */
+@media (max-width: 375px) {
+    .nav-container {
+        height: 45px;
+    }
+
+    .nav-logo img {
+        width: 60px;
+    }
+
+    .nav-menu {
+        top: 45px;
+        padding: 0.8rem 0;
+    }
+
+    .nav-menu a {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.85rem;
+    }
+
+    .menu-toggle {
+        font-size: 1.3rem;
+    }
+
+    .text-content-left,
+    .text-content-right {
+        margin-top: 15px;
+    }
+
+    .Furina img,
+    .Aether img,
+    .Lumine img {
+        max-height: 35vh;
+        max-width: 90%;
+    }
+
+    /* 调整小屏幕的页面容器 */
+    .pages {
+        padding-top: 45px;
+    }
+
+    /* 调整小屏幕的页面内容 */
+    .page {
+        padding-top: 45px;
     }
 }
 
@@ -131,7 +244,6 @@ nav {
         opacity: 0;
         transform: translateY(-10px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);

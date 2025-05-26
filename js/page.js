@@ -244,15 +244,6 @@ function initializePages() {
 const loader = new ResourceLoader();
 loader.startLoading();
 
-// 添加博客链接按钮
-document.querySelectorAll('.text-content-left, .text-content-right').forEach(content => {
-    const blogLink = document.createElement('a');
-    blogLink.href = '/blog';
-    blogLink.className = 'blog-link';
-    blogLink.textContent = '前往博客';
-    content.appendChild(blogLink);
-});
-
 // 修改返回按钮行为
 document.querySelector('#back-to-home').addEventListener('click', (e) => {
     e.preventDefault();
