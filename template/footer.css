@@ -32,8 +32,9 @@
 }
 
 .footer-logo img {
-    width: 140px;       /* 自定义合适宽度 */
-    height: auto;       /* 自动计算高度保持比例 */
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
 }
 
 .footer-logo-text {
@@ -80,6 +81,21 @@
     color: white;
 }
 
+.contact-links a {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    margin-bottom: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    display: inline-flex;
+}
+
+.contact-links a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
 .footer-bottom {
     display: flex;
     justify-content: space-between;
@@ -100,19 +116,19 @@
     .footer {
         padding: 2rem 1rem 1.5rem;
     }
-
+    
     .footer-content {
         grid-template-columns: 1fr;
         gap: 2rem;
         text-align: center;
     }
-
+    
     .footer-bottom {
         flex-direction: column;
         text-align: center;
         gap: 1rem;
     }
-
+    
     .footer-links-bottom {
         flex-wrap: wrap;
         justify-content: center;
