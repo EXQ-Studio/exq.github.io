@@ -7,16 +7,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>关于团队 - EXQ Studio</title>
     <link rel="stylesheet" href="css/about.css">
+    <link rel="stylesheet" href="template/navbar.css">
     <link rel="icon" sizes="16x16" href="img/logo/LogoIcon.png" type="image/png">
     <link rel="icon" sizes="32x32" href="img/logo/LogoIcon.png" type="image/png">
     <link rel="icon" sizes="48x48" href="img/logo/LogoIcon.png" type="image/png">
 </head>
 
 <body>
-    <!-- 导航栏 -->
+  <!-- 导航栏 -->
 <nav>
     <div class="nav-container">
         <a href="index.html" class="nav-logo">
+            <img src="img/logo/LogoNavBar.png" alt="EXQ Studio">
         </a>
         <div class="menu-toggle" onclick="toggleMobileMenu()">☰</div>
         <ul class="nav-menu" id="navMenu">
@@ -89,10 +91,6 @@
                 <img
                     src="https://upload-bbs.miyoushe.com/upload/2024/07/08/340158591/15e9c62d5836856e71e2f8277ac2fb4a_6956121031160920118.png?x-oss-process=image//resize,s_600/quality,q_80/auto-orient,0/interlace,1/format,png" />
             </div>
-            <div class="Furina2" alt="芙宁娜摇摇~">
-                <img src="https://www.helloimg.com/i/2025/01/14/6785fd656daa3.gif" />
-            </div>
-
         </div>
         <div class="page">
             <div class="text-content-right">
@@ -129,7 +127,7 @@
                 <h4>网站设计/排版</h4>
                 <p>
                 <div class="typing-text">
-                    兄妹俩地表最强！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！<br>
+                    兄妹俩地表最强！！<br>
                     老实人一位。有点创造力，也会点PS。<br>
                     性格内向，没啥好说的。<br>
                 </div>
@@ -178,51 +176,6 @@
         </div>
         <script src="js/page.js"></script>
         <script src="js/nav.js"></script>
-        <script>
-
-            document.addEventListener("DOMContentLoaded", function () {
-                const typingTexts = document.querySelectorAll(".typing-text"); // 获取所有打字机文本
-
-                // 打字机动画函数
-                function startTypingAnimation(element) {
-                    const text = element.innerHTML.replace(/<br\s*\/?>/gi, '\n').trim();
-                    let index = 0;
-                    element.innerHTML = ""; // 清空内容
-
-                    function type() {
-                        if (index < text.length) {
-                            const char = text.charAt(index);
-                            element.innerHTML += char === '\n' ? '<br>' : char;
-                            index++;
-                            setTimeout(type, 50); // 调整动画速度
-                        }
-                    }
-
-                    type();
-                }
-
-                // 使用 IntersectionObserver 来监听分页的进入视口事件
-                const observer = new IntersectionObserver(
-                    (entries) => {
-                        entries.forEach((entry) => {
-                            if (entry.isIntersecting) {
-                                const element = entry.target;
-                                if (!element.dataset.animated) {
-                                    startTypingAnimation(element);
-                                    element.dataset.animated = true; // 防止重复触发
-                                }
-                            }
-                        });
-                    },
-                    { threshold: 0.1 } // 当元素有10%进入视口时触发
-                );
-
-                // 为每个打字机文本元素添加观察器
-                typingTexts.forEach((textElement) => {
-                    observer.observe(textElement);
-                });
-            });
-        </script>
 
 </body>
 

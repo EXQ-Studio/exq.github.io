@@ -14,154 +14,12 @@ html {
     overflow-y: hidden;
     margin: 0;
     padding: 0%;
-    background: linear-gradient(45deg, #146c8a, #add8e6) no-repeat;
+    background: linear-gradient(45deg, #FFD700, #FF4500) no-repeat;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
 }
-
-/* 导航栏 */
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 0 1rem;
-}
-
-.nav-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-    height: 60px;
-}
-
-.nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: white;
-    text-decoration: none;
-}
-
-.nav-logo img {
-    width: 87px;       /* 自定义合适宽度 */
-    height: auto;       /* 自动计算高度保持比例 */
-}
-
-.nav-menu {
-    display: flex;
-    list-style: none;
-    gap: 1.5rem;
-    align-items: center;
-}
-
-.nav-menu a {
-    color: rgba(255, 255, 255, 0.9);
-    text-decoration: none;
-    font-weight: 500;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    transition: all 0.2s ease;
-}
-
-.nav-menu a:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-}
-
-.menu-toggle {
-    display: none;
-    color: white;
-    font-size: 1.8rem;
-    cursor: pointer;
-    padding: 0.5rem;
-    border-radius: 4px;
-    transition: background 0.2s ease;
-}
-
-.menu-toggle:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-/* 移动端菜单优化 */
-.nav-menu.mobile-active {
-    display: flex !important;
-}
-
-/* 导航栏响应式设计 */
-@media (max-width: 768px) {
-    nav {
-        padding: 0 1rem;
-    }
-
-    .nav-container {
-        height: 60px;
-    }
-
-    .nav-logo img {
-        width: 80px;
-        height: 32px;
-    }
-
-    .nav-menu {
-        position: fixed;
-        top: 60px;
-        left: 0;
-        right: 0;
-        background: rgba(0, 0, 0, 0.95);
-        backdrop-filter: blur(20px);
-        flex-direction: column;
-        padding: 2rem 0;
-        gap: 0;
-        display: none;
-        animation: slideDown 0.3s ease;
-    }
-
-    .nav-menu li {
-        width: 100%;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .nav-menu a {
-        display: block;
-        padding: 1rem 2rem;
-        width: 100%;
-        text-align: left;
-        border-radius: 0;
-    }
-
-    .nav-menu a:hover {
-        background: rgba(255, 255, 255, 0.1);
-    }
-
-    .menu-toggle {
-        display: block;
-    }
-}
-
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
 
 /* 页面容器 */
 @font-face {
@@ -172,12 +30,19 @@ nav {
 
 .pages {
     height: 100vh;
-    display: flex;
+    display: none;
     flex-direction: column;
     position: relative;
     width: 100%;
     overflow: hidden;
-    /* 确保页面不会滚动 */
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    visibility: hidden;
+}
+
+.pages.loaded {
+    opacity: 1;
+    visibility: visible;
 }
 
 /* 每个页面样式 */
@@ -189,159 +54,183 @@ nav {
     justify-content: center;
     align-items: center;
     font-size: 36px;
-    transition: transform 0.5s ease-in-out;
+    transition: all 1s cubic-bezier(0.645, 0.045, 0.355, 1);
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
+    transform-origin: center;
+    backface-visibility: hidden;
+    perspective: 2000px;
+    transform-style: preserve-3d;
+    will-change: transform, opacity;
+    opacity: 0;
+}
+
+.page.next {
+    transform: translate3d(0, 100%, 0) 
+               rotate3d(1, 0, 0, 30deg) 
+               scale(0.8) 
+               translateZ(-100px);
+    opacity: 0;
+    filter: blur(5px) brightness(0.8);
+    pointer-events: none;
+}
+
+.page.prev {
+    transform: translate3d(0, -100%, 0) 
+               rotate3d(1, 0, 0, -30deg) 
+               scale(0.8) 
+               translateZ(-100px);
+    opacity: 0;
+    filter: blur(5px) brightness(0.8);
+    pointer-events: none;
+}
+
+.page.current {
+    transform: translate3d(0, 0, 0) 
+               rotate3d(1, 0, 0, 0) 
+               scale(1) 
+               translateZ(0);
+    opacity: 1;
+    z-index: 2;
+    filter: blur(0) brightness(1);
+    pointer-events: auto;
 }
 
 /* 文本区域 */
-.text-content-left {
+.text-content-left,
+.text-content-right {
     position: absolute;
-    left: 10%;
-    top: 15%;
     color: #ffffff;
     max-width: 35%;
-    /* 限制文本区域的宽度，避免与卡片重叠 */
-    z-index: 2;
+    z-index: 10;
     font-family: "站酷文艺体";
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    transform: translateY(0);
+    transition: all 0.5s ease;
 }
 
-.text-content-left h1 {
-    font-size: 100px;
-    font-weight: bold;
-    margin-bottom: 20px;
+.text-content-left:hover,
+.text-content-right:hover {
+    transform: translateY(-5px);
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
 }
 
-.text-content-left p {
-    font-size: 30px;
-    line-height: 1.6;
-    color: #e8f9e8;
+.text-content-left {
+    left: 5%;
+    top: 15%;
 }
 
 .text-content-right {
-    position: absolute;
-    right: 15%;
-    top: 25%;
-    max-width: 35%;
-    /* 限制文本区域的宽度，避免与卡片重叠 */
-    color: #ffffff;
-    z-index: 2;
-    font-family: "站酷文艺体";
+    right: 5%;
+    top: 15%;
 }
 
+.text-content-left h1,
 .text-content-right h1 {
-    font-size: 100px;
+    font-size: 80px;
     font-weight: bold;
     margin-bottom: 20px;
+    color: #FFD700;
+    text-shadow: 0 2px 10px rgba(255, 215, 0, 0.5);
 }
 
+.text-content-left p,
 .text-content-right p {
-    font-size: 30px;
-    line-height: 1.6;
-    color: #e8f9e8;
-    margin: 0;
-    /* 清除外边距 */
-    padding: 0;
-    /* 清除内边距 */
+    font-size: 24px;
+    line-height: 1.8;
+    color: #ffffff;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.Furina {
+/* 人物图片容器 */
+.Furina,
+.Aether,
+.Lumine {
     position: relative;
-    /* 设置容器为相对定位 */
     width: 100%;
-    /* 容器宽度可以根据需要调整 */
-    height: auto;
-    /* 容器高度根据需要调整 */
+    height: 100vh;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.Furina img,
+.Aether img,
+.Lumine img {
+    position: absolute;
+    width: auto;
+    height: 85vh;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+    transition: all 0.5s ease;
+    pointer-events: auto;
+}
+
+/* 芙宁娜位置 */
+.Furina {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
 }
 
 .Furina img {
-    position: absolute;
-    /* 设置图片为绝对定位 */
     top: 50%;
-    /* 设置图片从容器顶部50%开始 */
-    left: 43%;
-    /* 设置图片从容器左边50%开始 */
+    left: 50%;
     transform: translate(-50%, -50%);
-    /* 将图片中心对齐容器中心 */
-    width: auto;
-    /* 图片宽度可以自适应 */
-    height: auto;
-    /* 设置图片的高度为容器高度 */
+    height: 95vh;
 }
 
-.Furina2 {
-    position: absolute;
-    bottom: 20%;
-    /* 距离页面底部 10% */
-    left: 52%;
-    /* 水平居中 */
-    transform: translateX(-50%);
-    /* 修正水平位置 */
-    z-index: 1000;
-    /* 确保在其他元素上层 */
-}
-
+/* 空的位置 */
 .Aether {
-    position: relative;
-    /* 建议为容器设置具体尺寸 */
-    width: 800px;
-    /* 示例尺寸 */
-    height: 600px;
-    /* 示例尺寸 */
-    margin: 0 auto;
-    /* 容器居中 */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
 }
 
 .Aether img {
-    position: absolute;
     top: 45%;
-    left: 87%;
+    left: 55%;
     transform: translate(-50%, -50%);
-    /* 推荐方案 */
-    max-width: 80%;
-    /* 图片最大宽度为容器宽度 */
-    max-height: 120%;
-    /* 图片最大高度为容器高度 */
-    width: auto;
-    /* 宽度自适应 */
-    height: auto;
-    /* 高度自适应 */
+    height: 80vh;
 }
 
+/* 荧的位置 */
 .Lumine {
-    position: relative;
-    /* 建议为容器设置具体尺寸 */
-    width: 800px;
-    /* 示例尺寸 */
-    height: 600px;
-    /* 示例尺寸 */
-    margin: 0 auto;
-    /* 容器居中 */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
 }
 
 .Lumine img {
-    position: absolute;
-    top: 60%;
-    right: 24%;
+    top: 45%;
+    left: 35%;
     transform: translate(-50%, -50%);
-    /* 推荐方案 */
-    max-width: 80%;
-    /* 图片最大宽度为容器宽度 */
-    max-height: 120%;
-    /* 图片最大高度为容器高度 */
-    width: auto;
-    /* 宽度自适应 */
-    height: auto;
-    /* 高度自适应 */
+    height: 80vh;
+}
+
+/* 人物图片悬浮效果 */
+.Furina:hover img,
+.Aether:hover img,
+.Lumine:hover img {
+    filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.3));
+    transform: translate(-50%, -50%) scale(1.02);
 }
 
 /* 卡牌容器样式 */
-.card-container-right {
+.card-container-right,
+.card-container-left {
     position: absolute;
-    right: 20%;
-    /* 卡牌固定在右侧 */
     top: 50%;
     transform: translateY(-50%);
     display: flex;
@@ -349,22 +238,16 @@ nav {
     justify-content: center;
     align-items: center;
     width: 320px;
-    /* 卡片容器宽度 */
     height: auto;
+    perspective: 1000px;
+}
+
+.card-container-right {
+    right: 20%;
 }
 
 .card-container-left {
-    position: absolute;
     left: 20%;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 320px;
-    /* 卡片容器宽度 */
-    height: auto;
 }
 
 /* 卡牌背景 */
@@ -372,13 +255,20 @@ nav {
     position: absolute;
     width: 640px;
     height: 640px;
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     transform: rotate(0deg);
     z-index: 8;
-    transition: transform 0.3s ease;
+    transition: all 0.5s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.card:hover {
+    transform: rotate(5deg) scale(1.02);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
 }
 
 /* 卡牌内的图片 */
@@ -386,6 +276,165 @@ nav {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: all 0.5s ease;
+}
+
+.card:hover img {
+    transform: scale(1.05);
+}
+
+/* 移动端适配 */
+@media screen and (max-width: 768px) {
+    .text-content-left,
+    .text-content-right {
+        max-width: 80%;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.6);
+    }
+
+    .text-content-left h1,
+    .text-content-right h1 {
+        font-size: 40px;
+    }
+
+    .text-content-left p,
+    .text-content-right p {
+        font-size: 18px;
+    }
+
+    .Furina img {
+        height: 70vh;
+        left: 50%;
+    }
+
+    .Aether img {
+        height: 60vh;
+        left: 60%;
+    }
+
+    .Lumine img {
+        height: 60vh;
+        left: 30%;
+    }
+
+    .text-content-left {
+        left: 5%;
+        top: 10%;
+    }
+
+    .text-content-right {
+        right: 5%;
+        top: 10%;
+    }
+
+    .card {
+        position: absolute;
+        width: 160px;
+        height: 160px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        transform: rotate(0deg);
+        z-index: 8;
+        transition: transform 0.3s ease;
+    }
+
+    .card-container-right {
+        position: absolute;
+        right: -16%;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 320px;
+        height: auto;
+    }
+
+    .card-container-left {
+        position: absolute;
+        left: -16%;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 320px;
+        height: auto;
+    }
+
+    /* 文本区域 */
+    .text-content-left {
+        position: absolute;
+        left: 10%;
+        top: 10%;
+        color: #ffffff;
+        max-width: 40%;
+        z-index: 2;
+        font-family: "站酷文艺体";
+    }
+
+    .text-content-left h1 {
+        font-size: 30px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .text-content-right {
+        position: absolute;
+        right: 20%;
+        top: 10%;
+        color: #ffffff;
+        max-width: 25%;
+        z-index: 2;
+        font-family: "站酷文艺体";
+    }
+
+    .text-content-right h1 {
+        font-size: 30px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    /* 文本打字机效果 */
+    .typing-text {
+        font-size: 15px !important;
+        display: inline-block;
+        width: 100%;
+        line-height: 1.5;
+        white-space: pre-wrap;
+    }
+
+    .furina {
+        position: relative;
+        width: 100%;
+        height: 500px;
+    }
+
+    .furina img {
+        position: absolute;
+        top: 35%;
+        left: 30%;
+        transform: translate(-50%, -50%);
+        width: auto;
+        height: 100%;
+    }
+
+    .furina2 {
+        position: absolute;
+        top: 0%;
+        left: 81%;
+        transform: translateX(-50%);
+        z-index: 1000;
+    }
+
+    .furina2 img {
+        width: 140px;
+        height: auto;
+    }
 }
 
 #back-to-home {
@@ -398,39 +447,63 @@ nav {
     /* 保证在最前面显示 */
 }
 
+/* 按钮样式 */
 .back-home-btn {
     display: inline-block;
-    padding: 12px 20px;
+    padding: 12px 25px;
     font-size: 16px;
-    /* 字体大小 */
     color: white;
-    /* 文字颜色 */
     text-decoration: none;
-    /* 去掉下划线 */
-    background: linear-gradient(45deg, #1e90ff, #6a5acd);
-    /* 渐变背景 */
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
     border-radius: 25px;
-    /* 按钮圆角 */
+    backdrop-filter: blur(10px);
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-    /* 按钮阴影 */
     transition: all 0.3s ease;
-    /* 添加平滑过渡效果 */
+    font-family: "站酷文艺体";
+    letter-spacing: 2px;
 }
 
 .back-home-btn:hover {
-    background: linear-gradient(45deg, #1e90ff, #6a5acd);
-    /* 鼠标悬浮时渐变反转 */
+    background: rgba(255, 255, 255, 0.2);
     transform: translateY(-3px);
-    /* 悬浮时微微向上移动 */
     box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
-    /* 增强阴影效果 */
+    border-color: rgba(255, 255, 255, 0.4);
 }
 
 .back-home-btn:active {
     transform: translateY(1px);
-    /* 点击时稍微向下 */
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
-    /* 按下的阴影 */
+}
+
+/* 博客链接按钮 */
+.blog-link {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 15px;
+    font-size: 16px;
+    color: white;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    font-family: "站酷文艺体";
+    letter-spacing: 1px;
+}
+
+.blog-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.blog-link:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 /* 文本打字机效果 */
@@ -453,7 +526,6 @@ nav {
     /* 光标闪烁动画 */
 }
 
-
 @keyframes blink {
     from {
         border-color: transparent;
@@ -464,232 +536,212 @@ nav {
     }
 }
 
-nav {
-    background: rgba(0, 0, 0, 0.5);
+/* 加载页面样式 */
+.loading-container {
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
-    height: 60px;
+    height: 100%;
+    background: linear-gradient(45deg, #FFD700, #FF4500);
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    transition: 0.3s;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.8s ease-out;
 }
 
-nav img {
+.loading-content {
+    text-align: center;
+    position: relative;
+    width: 300px;
+}
+
+/* 加载动画 */
+.loading-animation {
+    position: relative;
     width: 120px;
-    height: 50px;
-    margin-left: 10px;
+    height: 120px;
+    margin: 0 auto 30px;
 }
 
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
+.loading-circle {
     position: absolute;
-    left: 50px;
-    margin-left: 120px;
+    width: 100%;
+    height: 100%;
+    border: 4px solid transparent;
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
 }
 
-nav ul li {
-    margin-right: 20px;
+.loading-circle:nth-child(2) {
+    border-top-color: rgba(255, 255, 255, 0.5);
+    animation-delay: 0.2s;
+    transform: scale(0.8);
 }
 
-nav ul li a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 16px;
+.loading-circle:nth-child(3) {
+    border-top-color: rgba(255, 255, 255, 0.3);
+    animation-delay: 0.4s;
+    transform: scale(0.6);
+}
+
+/* 进度条容器 */
+.loading-progress-container {
     position: relative;
-    z-index: 1;
+    margin: 20px auto;
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
 }
 
-nav div {
-    display: flex;
-    align-items: center;
-}
-
-nav div a {
-    text-decoration: none;
-    color: #fff;
-    margin-left: 20px;
-    font-size: 16px;
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background: #fff;
+    border-radius: 4px;
+    transition: width 0.3s ease-out;
     position: relative;
-    z-index: 1;
+    overflow: hidden;
 }
 
-.menu-toggle {
-    display: none;
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.4), 
+        transparent);
+    animation: shimmer 1.5s infinite;
+}
+
+.progress-percentage {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
     font-size: 24px;
-    color: #fff;
-    cursor: pointer;
-    margin-right: 10px;
+    font-family: "站酷文艺体";
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    letter-spacing: 2px;
 }
 
-@media screen and (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
+.loading-text {
+    color: white;
+    font-size: 28px;
+    font-family: "站酷文艺体";
+    margin-top: 20px;
+    letter-spacing: 4px;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+    animation: glow 2s ease-in-out infinite;
+}
 
-    .nav-menu {
-        display: none;
-        position: absolute;
-        top: 60px;
-        /* 保持这个值,确保菜单在导航栏下方 */
-        left: 20px;
-        /* 与导航栏的左内边距对齐 */
-        width: auto;
-        /* 改为自动宽度 */
-        background: rgba(0, 0, 0, 0.8);
-        flex-direction: column;
-        padding: 10px;
-        border-radius: 0 0 5px 5px;
-        /* 可选:添加圆角 */
-        z-index: 2;
-    }
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
-    .nav-menu li {
-        margin: 5px 0;
-        text-align: left;
-        /* 左对齐文本 */
-        white-space: nowrap;
-        /* 防止文本换行 */
-    }
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
 
-    .nav-menu.active {
-        display: flex;
+@keyframes glow {
+    0%, 100% { 
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     }
-
-    /* 卡牌背景 */
-    .card {
-        position: absolute;
-        width: 160px;
-        height: 160px;
-        background: #ffffff;
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        overflow: hidden;
-        transform: rotate(0deg);
-        z-index: 8;
-        transition: transform 0.3s ease;
+    50% { 
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
     }
+}
 
-    /* 卡牌容器样式 */
-    .card-container-right {
-        position: absolute;
-        right: -16%;
-        /* 卡牌固定在右侧 */
-        top: 50%;
-        transform: translateY(-50%);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 320px;
-        /* 卡片容器宽度 */
-        height: auto;
+/* 页面切换时的内容动画 */
+.page.current .text-content-left,
+.page.current .text-content-right,
+.page.current .card-container-left,
+.page.current .card-container-right {
+    animation: fadeInUp 1s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.page.current .text-content-left {
+    animation-delay: 0.2s;
+}
+
+.page.current .text-content-right {
+    animation-delay: 0.3s;
+}
+
+.page.current .card-container-left {
+    animation-delay: 0.4s;
+}
+
+.page.current .card-container-right {
+    animation-delay: 0.5s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
     }
-
-    .card-container-left {
-        position: absolute;
-        left: -16%;
-        top: 50%;
-        transform: translateY(-50%);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 320px;
-        /* 卡片容器宽度 */
-        height: auto;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
+}
 
-    /* 文本区域 */
-    .text-content-left {
-        position: absolute;
-        left: 10%;
-        top: 10%;
-        color: #ffffff;
-        max-width: 40%;
-        /* 限制文本区域的宽度，避免与卡片重叠 */
-        z-index: 2;
-        font-family: "站酷文艺体";
-    }
+/* 页面切换时的背景动画 */
+.page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #FFD700, #FF4500);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: -1;
+}
 
-    .text-content-left h1 {
-        font-size: 30px;
-        font-weight: bold;
-        margin-bottom: 20px;
-    }
+.page.current::before {
+    opacity: 1;
+}
 
-    .text-content-right {
-        position: absolute;
-        right: 20%;
-        top: 10%;
-        color: #ffffff;
-        max-width: 25%;
-        /* 限制文本区域的宽度，避免与卡片重叠 */
-        z-index: 2;
-        font-family: "站酷文艺体";
-    }
+/* 页面切换时的阴影效果 */
+.page {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    transition: all 1s cubic-bezier(0.645, 0.045, 0.355, 1),
+                box-shadow 0.5s ease;
+}
 
-    .text-content-right h1 {
-        font-size: 30px;
-        font-weight: bold;
-        margin-bottom: 20px;
-    }
+.page.current {
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
+}
 
-    /* 文本打字机效果 */
-    .typing-text {
-        font-size: 15px !important;
-        /* 强制应用字体大小 */
-        display: inline-block;
-        /* 确保宽度和高度基于内容 */
-        width: 100%;
-        /* 或者一个固定值，例如 300px */
-        line-height: 1.5;
-        /* 确保行高统一 */
-        white-space: pre-wrap;
-        /* 保留换行格式 */
-    }
+/* 页面切换时的内容过渡 */
+.page * {
+    transition: all 0.5s ease;
+}
 
-    .furina {
-        position: relative;
-        /* 设置容器为相对定位 */
-        width: 100%;
-        /* 容器宽度可以根据需要调整 */
-        height: 500px;
-        /* 容器高度根据需要调整 */
-    }
+.page.next *,
+.page.prev * {
+    opacity: 0;
+    transform: translateY(20px);
+}
 
-    .furina img {
-        position: absolute;
-        /* 设置图片为绝对定位 */
-        top: 35%;
-        left: 30%;
-        transform: translate(-50%, -50%);
-        /* 将图片中心对齐容器中心 */
-        width: auto;
-        /* 图片宽度可以自适应 */
-        height: 100%;
-        /* 设置图片的高度为容器高度 */
-    }
-
-    .furina2 {
-        position: absolute;
-        top: 0%;
-        left: 81%;
-        /* 水平居中 */
-        transform: translateX(-50%);
-        z-index: 1000;
-    }
-
-    .furina2 img {
-        width: 140px;
-        /* 设置宽度 */
-        height: auto;
-        /* 高度自适应比例 */
-    }
-
+.page.current * {
+    opacity: 1;
+    transform: translateY(0);
 }
