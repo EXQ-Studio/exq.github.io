@@ -11,11 +11,10 @@ body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Noto Sans SC', sans-serif;
     background: linear-gradient(165deg, #43cea2, #2fa886, #236f92, #185a9d);
     background-size: 300% 300%;
     background-attachment: fixed;
-    color: #fff;
     display: flex;
     flex-direction: column;
     animation: gradientBG 15s ease infinite;
@@ -26,9 +25,11 @@ body {
     0% {
         background-position: 0% 50%;
     }
+
     50% {
         background-position: 100% 50%;
     }
+
     100% {
         background-position: 0% 50%;
     }
@@ -38,7 +39,8 @@ body {
 .title {
     text-align: center;
     margin-bottom: 40px;
-    margin-top: 80px; /* 添加顶部边距，避免被导航栏遮挡 */
+    margin-top: 80px;
+    /* 添加顶部边距，避免被导航栏遮挡 */
     animation: fadeInDown 0.8s ease-out;
 }
 
@@ -65,11 +67,11 @@ body {
 
 /* 单个病毒项卡片样式 */
 .virus-item {
-    background: rgba(0, 0, 0, 0.7);
+    background: rgb(255, 255, 255, 0.2);
     /* 半透明黑色背景 */
     margin: 10px;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 8px;
     width: 250px;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
@@ -82,23 +84,21 @@ body {
     color: #fff;
 }
 
-/* 每个链接的样式 */
-.virus-item a {
-    display: block;
-    margin: 5px 0;
-    color: skyblue;
+/* 内容下载按钮样式 */
+.dl-button {
+    padding: 10px 20px;
+    margin-right: 2px;
+    margin-left: 2px;
+    font-size: 1em;
+    background-color: rgba(255, 255, 255, 0.35);;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
     text-decoration: none;
-}
-
-/* 链接悬停高亮 */
-.virus-item a:hover {
-    color: deepskyblue;
-}
-
-/* 针对特定项目的第二个链接加删除线(可选) */
-.virus-item:nth-last-of-type(6) a:nth-of-type(2) {
-    text-decoration: line-through;
-    text-decoration-thickness: 2px;
+    /* 移除下划线 */
+    display: inline-flex;
+    /* 保持flex布局 */
 }
 
 /* 遮罩层(弹窗出现时的背景)样式 */
