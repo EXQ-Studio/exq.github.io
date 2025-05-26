@@ -334,6 +334,17 @@
         </div>
     </footer>
     <script src="js/githubsync.js"></script>
+    <script>
+        // 导航栏滚动检测
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) { // 当滚动超过100像素时
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 
 </html>
