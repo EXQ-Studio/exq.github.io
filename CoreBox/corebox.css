@@ -19,7 +19,7 @@
 
 body {
     font-family: 'Noto Sans SC', sans-serif;
-    background: linear-gradient(45deg, #42a778, #c6f5cb) no-repeat;
+    background: linear-gradient(45deg, #2fa886, #236f92) no-repeat;
     /* 淡绿色 */
     background-size: cover;
     /* 背景图片填满容器 */
@@ -332,6 +332,51 @@ body {
 #closePopup:hover:enabled {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* 动画效果 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes textGlow {
+    0% {
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    100% {
+        text-shadow: 0 4px 20px rgba(255, 255, 255, 0.3), 0 0 30px rgba(255, 255, 255, 0.2);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
 }
 
 /* 主要内容区域移动端优化 */
