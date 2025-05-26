@@ -22,27 +22,38 @@ async function syncGitHub() {
     updateStatus('loading', '正在获取最新数据...');
 
     try {
-        // 获取提交数据
-        const commitsResponse = await fetch(`https://api.github.com/repos/${repo}/commits?per_page=100`);
-
-        if (!commitsResponse.ok) {
-            throw new Error(`GitHub API 错误: ${commitsResponse.status}`);
+        // 获取仓库信息（包含总提交数）
+        const repoResponse = await fetch(`https://api.github.com/repos/${repo}`);
+        if (!repoResponse.ok) {
+            throw new Error(`GitHub API 错误: ${repoResponse.status}`);
         }
+        const repoInfo = await repoResponse.json();
 
+        // 获取所有贡献者信息
+        const contributorsResponse = await fetch(`https://api.github.com/repos/${repo}/contributors?per_page=100`);
+        if (!contributorsResponse.ok) {
+            throw new Error(`获取贡献者失败: ${contributorsResponse.status}`);
+        }
+        const contributors = await contributorsResponse.json();
+
+        // 获取最近的提交数据用于统计
+        const commitsResponse = await fetch(`https://api.github.com/repos/${repo}/commits?per_page=100`);
+        if (!commitsResponse.ok) {
+            throw new Error(`获取提交记录失败: ${commitsResponse.status}`);
+        }
         const commits = await commitsResponse.json();
         commitData = commits;
 
-        // 获取仓库信息
-        const repoResponse = await fetch(`https://api.github.com/repos/${repo}`);
-        const repoInfo = await repoResponse.json();
-
         // 更新统计数据
-        updateStatistics(commits, repoInfo);
+        updateStatistics(commits, repoInfo, contributors);
 
         // 更新图表
         updateCommitChart(commits);
 
-        updateStatus('success', `同步成功！获取到 ${commits.length} 条最新提交`);
+        // 更新贡献者列表
+        updateContributorsList(contributors);
+
+        updateStatus('success', `同步成功！总计 ${repoInfo.size || 0}KB 代码，${contributors.length} 位贡献者`);
 
     } catch (error) {
         console.error('同步失败:', error);
@@ -66,10 +77,19 @@ function updateStatus(type, message) {
     status.textContent = message;
 }
 
-function updateStatistics(commits, repoInfo) {
-    // 统计数据
-    const totalCommits = commits.length;
-    const contributors = [...new Set(commits.map(commit => commit.author?.login).filter(Boolean))];
+function updateStatistics(commits, repoInfo, contributors) {
+    // 使用更精确的方法获取总提交数
+    // 方法1: 尝试从最新提交的SHA获取准确数量（如果可用）
+    // 方法2: 使用贡献者的提交总数相加
+    let totalCommits = 0;
+    
+    // 计算所有贡献者的提交总数
+    if (contributors && contributors.length > 0) {
+        totalCommits = contributors.reduce((sum, contributor) => sum + contributor.contributions, 0);
+    } else {
+        // 如果无法获取贡献者数据，使用获取到的提交数作为最小值
+        totalCommits = commits.length;
+    }
 
     // 计算本周提交
     const oneWeekAgo = new Date();
@@ -83,11 +103,44 @@ function updateStatistics(commits, repoInfo) {
     const timeDiff = Math.floor((new Date() - lastCommitDate) / (1000 * 60 * 60 * 24));
     let lastUpdateText = timeDiff === 0 ? '今天' : timeDiff === 1 ? '昨天' : `${timeDiff}天前`;
 
-    // 更新页面显示
-    document.getElementById('totalCommits').textContent = totalCommits + '+';
+    // 更新页面显示 - 显示精确的提交数
+    document.getElementById('totalCommits').textContent = totalCommits.toLocaleString();
     document.getElementById('activeContributors').textContent = contributors.length;
     document.getElementById('lastUpdate').textContent = lastUpdateText;
     document.getElementById('weeklyCommits').textContent = weeklyCommits;
+}
+
+function updateContributorsList(contributors) {
+    const contributorsContainer = document.querySelector('.contributors-list');
+    if (!contributorsContainer) return;
+
+    contributorsContainer.innerHTML = '';
+
+    // 按贡献数量排序，取前10名
+    const sortedContributors = contributors
+        .sort((a, b) => b.contributions - a.contributions)
+        .slice(0, 10);
+
+    sortedContributors.forEach(contributor => {
+        const contributorElement = document.createElement('div');
+        contributorElement.className = 'contributor';
+        
+        contributorElement.innerHTML = `
+            <div class="contributor-avatar" style="position: relative;">
+                <img src="${contributor.avatar_url}" 
+                     alt="${contributor.login}" 
+                     style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div style="display: none; width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(45deg, #667eea, #764ba2); color: white; align-items: center; justify-content: center; font-weight: bold; font-size: 14px;">
+                    ${contributor.login.charAt(0).toUpperCase()}
+                </div>
+            </div>
+            <span>${contributor.login}</span>
+            <span style="font-size: 12px; color: #666; margin-left: auto;">${contributor.contributions} commits</span>
+        `;
+
+        contributorsContainer.appendChild(contributorElement);
+    });
 }
 
 function updateCommitChart(commits) {
@@ -172,6 +225,5 @@ function updateCommitChart(commits) {
 
 // 页面加载时的初始化
 document.addEventListener('DOMContentLoaded', function () {
-    // 可以在这里添加自动同步逻辑
     console.log('EXQ Studio 更新日志页面已加载');
 });
