@@ -53,6 +53,9 @@ async function syncGitHub() {
         // 更新贡献者列表
         updateContributorsList(contributors);
 
+        // 更新提交历史
+        updateCommitHistory(commits);
+
         updateStatus('success', `同步成功！总计 ${repoInfo.size || 0}KB 代码，${contributors.length} 位贡献者`);
 
     } catch (error) {
@@ -221,6 +224,169 @@ function updateCommitChart(commits) {
 
         chartContainer.appendChild(bar);
     });
+}
+
+function updateCommitHistory(commits) {
+    const updatesContainer = document.querySelector('.updates-container');
+    if (!updatesContainer) return;
+
+    // 创建临时容器存放新的更新
+    const newUpdatesContainer = document.createElement('div');
+
+    // 设置截止日期：2025年5月26日（因为25日及之前的更新已经在HTML中）
+    const cutoffDate = new Date('2025-05-26');
+
+    // 按日期对提交进行分组
+    const commitsByDate = {};
+    commits.forEach(commit => {
+        const commitDate = new Date(commit.commit.author.date);
+        
+        // 只处理截止日期之后的提交
+        if (commitDate <= cutoffDate) {
+            return;
+        }
+
+        // 过滤无意义的提交信息
+        const message = commit.commit.message;
+        if (shouldFilterCommit(message)) {
+            return;
+        }
+
+        const dateKey = commitDate.toISOString().split('T')[0];
+        if (!commitsByDate[dateKey]) {
+            commitsByDate[dateKey] = [];
+        }
+        commitsByDate[dateKey].push(commit);
+    });
+
+    // 按日期降序排序
+    const sortedDates = Object.keys(commitsByDate).sort((a, b) => b.localeCompare(a));
+
+    // 创建更新卡片
+    sortedDates.forEach(dateKey => {
+        const dateCommits = commitsByDate[dateKey];
+        const date = new Date(dateKey);
+        
+        // 如果这个日期没有有效的提交，跳过
+        if (dateCommits.length === 0) return;
+
+        const card = document.createElement('div');
+        card.className = 'update-card';
+        
+        // 格式化日期
+        const formattedDate = `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
+        
+        // 过滤和美化提交消息
+        const commitMessages = dateCommits.map(commit => {
+            let message = commit.commit.message
+                .split('\n')[0] // 只取第一行
+                .trim()
+                .replace(/^[Uu]pdate:?\s*/, '') // 移除开头的Update
+                .replace(/^[Ff]ix:?\s*/, '') // 移除开头的Fix
+                .replace(/^\[.*?\]\s*/, '') // 移除方括号标签
+                .replace(/^[0-9.]+$/, '') // 移除纯数字和小数点
+                .replace(/^v?\d+\.\d+(\.\d+)?$/, '') // 移除版本号格式
+                .trim();
+
+            // 确保首字母大写
+            if (message.length > 0) {
+                message = message.charAt(0).toUpperCase() + message.slice(1);
+            }
+            
+            return message;
+        }).filter(msg => {
+            // 过滤条件：
+            // 1. 消息长度至少5个字符
+            // 2. 不是纯数字或符号
+            // 3. 不是无意义的短语
+            return msg.length >= 5 && 
+                   !/^\d+$/.test(msg) && 
+                   !isCommonMeaningless(msg);
+        });
+
+        // 如果没有有效的提交消息，跳过这个日期
+        if (commitMessages.length === 0) return;
+
+        card.innerHTML = `
+            <div class="update-date">${formattedDate}</div>
+            <div class="update-content">
+                ${commitMessages.map(msg => `
+                    <div class="update-item">${msg}</div>
+                `).join('')}
+            </div>
+        `;
+        
+        newUpdatesContainer.appendChild(card);
+    });
+
+    // 只有在有新的更新时才修改页面
+    if (newUpdatesContainer.children.length > 0) {
+        // 在原有内容之前插入新的更新
+        const firstExistingCard = updatesContainer.querySelector('.update-card');
+        if (firstExistingCard) {
+            firstExistingCard.insertAdjacentHTML('beforebegin', newUpdatesContainer.innerHTML);
+        }
+    }
+}
+
+// 判断是否应该过滤掉这个提交
+function shouldFilterCommit(message) {
+    const lowerMessage = message.toLowerCase();
+    
+    // 基本过滤规则
+    if (lowerMessage.includes('merge') ||
+        lowerMessage.includes('initial commit') ||
+        lowerMessage.trim().length < 5 ||
+        lowerMessage.includes('.gitignore') ||
+        lowerMessage.includes('readme')) {
+        return true;
+    }
+
+    // 过滤纯数字、版本号等
+    if (/^[0-9.]+$/.test(message) || // 纯数字和小数点
+        /^v?\d+\.\d+(\.\d+)?$/.test(message) || // 版本号格式
+        /^\d+$/.test(message)) { // 纯数字
+        return true;
+    }
+
+    // 过滤简单的无意义更新信息
+    const meaninglessUpdates = [
+        'update',
+        'fix',
+        'test',
+        'temp',
+        'tmp',
+        'wip',
+        'todo',
+        'done',
+        'ok'
+    ];
+
+    return meaninglessUpdates.some(word => 
+        lowerMessage === word || 
+        lowerMessage === word + 's' || 
+        lowerMessage.startsWith(word + ':') || 
+        lowerMessage.startsWith(word + ' '));
+}
+
+// 检查是否是常见的无意义短语
+function isCommonMeaningless(message) {
+    const meaninglessPatterns = [
+        /^just /i,
+        /^temp/i,
+        /^test/i,
+        /^wip/i,
+        /^todo/i,
+        /^done/i,
+        /^ok/i,
+        /^quick /i,
+        /^minor /i,
+        /^small /i,
+        /^tiny /i,
+        /^misc /i
+    ];
+
+    return meaninglessPatterns.some(pattern => pattern.test(message));
 }
 
 // 页面加载时的初始化
