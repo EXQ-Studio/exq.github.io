@@ -6,29 +6,31 @@ body {
     padding: 0;
 }
 
-/* 页面整体样式:设置为垂直布局,背景图片固定、居中、覆盖整个页面 */
+/* 页面整体样式:设置为垂直布局,背景渐变动画 */
 body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(165deg, #43cea2, #2fa886, #236f92, #185a9d);
+    background-size: 300% 300%;
+    background-attachment: fixed;
+    color: #fff;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    padding-top: 60px;
-    /* 给顶部导航栏预留空间,可根据需求移除或调整 */
-    background-image: url('../img/bgDownload.jpg');
-    background-size: cover;
-    /* 背景图片填满容器 */
-    background-position: center;
-    /* 背景居中 */
-    background-attachment: fixed;
-    /* 背景固定不随页面滚动 */
-    background-repeat: no-repeat;
-    /* 不重复显示背景 */
+    animation: gradientBG 15s ease infinite;
 }
 
-/* 针对移动端竖屏设备,使用不同背景图 */
-@media (max-width: 768px) and (orientation: portrait) {
-    body {
-        background-image: url('https/www.helloimg.com/i/2025/05/09/681d35ba309e5.jpg');
-        background-attachment: fixed;
+/* 背景渐变动画 */
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
     }
 }
 
@@ -36,6 +38,7 @@ body {
 .title {
     text-align: center;
     margin-bottom: 40px;
+    margin-top: 80px; /* 添加顶部边距，避免被导航栏遮挡 */
     animation: fadeInDown 0.8s ease-out;
 }
 

@@ -455,38 +455,41 @@ body {
 }
 
 /* 弹窗移动端优化 */
-#popup {
-    width: 95%;
-    padding: 1.5rem;
-    margin: 1rem;
-    max-height: calc(100vh - 2rem);
-}
+@media screen and (max-width: 768px) {
+    #popup {
+        width: 95%;
+        padding: 1.5rem;
+        margin: 0;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 
-.popup-header {
-    flex-wrap: wrap;
-    gap: 1rem;
-}
+    .popup-header {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
 
-.popup-header h3 {
-    font-size: 1.5rem;
-}
+    .popup-header h3 {
+        font-size: 1.5rem;
+    }
 
-.popup-footer {
-    flex-direction: column;
-    align-items: stretch;
-    text-align: center;
-}
+    .popup-footer {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
 
-.edit-time {
-    order: 2;
-    font-size: 0.9rem;
-}
+    .edit-time {
+        order: 2;
+        font-size: 0.9rem;
+    }
 
-#closePopup {
-    order: 1;
-    width: 100%;
+    #closePopup {
+        order: 1;
+        width: 100%;
+    }
 }
-
 
 @keyframes slideDown {
     from {
