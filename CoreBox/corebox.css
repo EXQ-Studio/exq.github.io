@@ -19,7 +19,7 @@
 
 body {
     font-family: 'Noto Sans SC', sans-serif;
-    background: linear-gradient(45deg, #2fa886, #236f92) no-repeat;
+    background: linear-gradient(45deg, #236f92, #2fa886) no-repeat;
     /* 淡绿色 */
     background-size: cover;
     /* 背景图片填满容器 */
