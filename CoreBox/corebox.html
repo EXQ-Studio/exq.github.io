@@ -4,27 +4,35 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="canonical" href="https://exqstudio.cn/">
-    <meta name="description" content="欢迎访问Core Box官网网站！在这里可以下载到Core Box，也可以查看Core Box的历史版本。">
-    <title>Core Box - 仅供一乐的工具箱</title>
-    <link rel="icon" sizes="16x16" href="img/logo/LogoIcon.png" type="image/png">
-    <link rel="icon" sizes="32x32" href="img/logo/LogoIcon.png" type="image/png">
-    <link rel="icon" sizes="48x48" href="img/logo/LogoIcon.png" type="image/png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">    <link rel="canonical" href="https://exqstudio.cn/CoreBox/corebox.html">
+    <meta name="description" content="CoreBox - 仅供一乐的工具箱，EXQ Studio 开发的强大核心工具箱，集成多种实用功能，助力您的工作效率。">
+    <meta name="keywords" content="CoreBox,工具箱,EXQ Studio,实用工具,软件下载">
+    <meta name="author" content="EXQ Studio">
+      <!-- Open Graph 标签 - 用于微信、QQ等社交分享预览 -->
+    <meta property="og:title" content="CoreBox - 仅供一乐的工具箱">
+    <meta property="og:description" content="CoreBox - 仅供一乐的工具箱，EXQ Studio 开发的强大核心工具箱，集成多种实用功能。">
+    <meta property="og:url" content="https://exqstudio.cn/CoreBox/corebox.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://exqstudio.cn/img/logo/LogoEXQStudio.png">
+    <meta property="og:site_name" content="EXQ Studio">
+    
+    <title>CoreBox - 仅供一乐的工具箱 | EXQ Studio</title>
+    <link rel="icon" sizes="16x16" href="../img/logo/LogoIcon.png" type="image/png">
+    <link rel="icon" sizes="32x32" href="../img/logo/LogoIcon.png" type="image/png">
+    <link rel="icon" sizes="48x48" href="../img/logo/LogoIcon.png" type="image/png">
     <link rel="stylesheet" type="text/css" href="corebox.css">
     <link rel="stylesheet" type="text/css" href="../template/footer.css">
     <link rel="stylesheet" type="text/css" href="../template/navbar.css">
-    <script src="js/index.js"></script>
+    <script src="../js/index.js"></script>
 
 <body>
     <!-- 动态背景粒子 -->
     <div class="particles" id="particles"></div>
 
     <!-- 导航栏 -->
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">
-                <img src="img/logo/LogoNavBar.png" alt="EXQ Studio">
+    <nav>        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <img src="../img/logo/LogoNavBar.png" alt="EXQ Studio">
             </a>
             <div class="menu-toggle" onclick="toggleMobileMenu()">☰</div>
             <ul class="nav-menu" id="navMenu">
@@ -38,15 +46,8 @@
                 <li><a href="../donation.html">赞助我们</a></li>
                 <li><a href="../recentupdate.html">最近更新</a></li>
             </ul>
-        </div>
-    </nav>
-    <script>
-        // 移动端菜单切换
-        document.querySelector('.menu-toggle').addEventListener('click', function () {
-            const navMenu = document.querySelector('.nav-menu');
-            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
-        });
-    </script>
+        </div>    </nav>
+    <script src="../js/nav.js"></script>
 
     <!-- 主要内容区域 -->
     <section class="hero-section">

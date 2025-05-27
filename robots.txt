@@ -1,6 +1,22 @@
 User-agent: *
 Allow: /
-User-agent: bingbot
-Disallow: / (如果存在这类规则，需修改为允许爬行)
 
+# 阻止爬取敏感目录
+Disallow: /api/
+Disallow: /template/
+Disallow: /*.json$
+
+# 特别允许重要页面
+Allow: /index.html
+Allow: /about.html
+Allow: /download.html
+Allow: /donation.html
+Allow: /recentupdate.html
+Allow: /CoreBox/
+Allow: /blog/
+
+# 网站地图
 Sitemap: https://exqstudio.cn/sitemap.xml
+
+# 爬虫延迟（可选）
+Crawl-delay: 1
