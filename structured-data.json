@@ -1,0 +1,36 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "EXQ Studio",
+  "alternateName": "笑曲工作室",
+  "url": "https://exqstudio.cn",
+  "logo": "https://exqstudio.cn/img/logo/LogoEXQStudio.png",
+  "description": "EXQ Studio是一个成立于2022年的充满活力的综合性工作室，专注于技术创新、工具开发和社区建设。",
+  "foundingDate": "2022",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "exqstudio@exqstudio.cn",
+    "contactType": "customer service"
+  },
+  "sameAs": [
+    "https://github.com/EXQ-Studio",
+    "https://forum.exqstudio.cn"
+  ],
+  "offers": [
+    {
+      "@type": "Service",
+      "name": "CoreBox工具箱",
+      "description": "强大的核心工具箱，集成多种实用功能"
+    },
+    {
+      "@type": "Service", 
+      "name": "技术论坛",
+      "description": "活跃的技术交流社区"
+    },
+    {
+      "@type": "Service",
+      "name": "工具下载",
+      "description": "提供各种技术工具和资源下载"
+    }
+  ]
+}

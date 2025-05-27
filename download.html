@@ -47,22 +47,20 @@
             </ul>
         </div>
     </nav>
-    <script src="js/nav.js"></script>
-    <!-- 弹窗部分 -->
-    <div class="overlay" id="dlOverlay">
+    <script src="js/nav.js"></script>    <!-- 弹窗部分 -->
+    <div class="overlay" id="dlOverlay" role="dialog" aria-modal="true" aria-labelledby="popup-title">
         <div class="popup">
-            <h1>欢迎来到 EXQ Studio 下载页面！</h1>
-            <p class="msg">
+            <h1 id="popup-title">欢迎来到 EXQ Studio 下载页面！</h1>            <p class="msg">
                 该页面为临时备用页面，在服务器恢复后会重新启用Alist网盘下载。<br>
                 <br>
                 在下载病毒样本前，请注意以下几点：<br>
-                1.该页面所有文件都是病毒样本，解压密码一律为infected<br>
-                2.在处理病毒样本时请务必小心，不要在实体机上运行病毒程序，必须使用虚拟机测试病毒程序，禁止使用病毒破坏他人的机器。<br>
-                3.我们对不当使用（比如在实体机上运行、传播）造成的损失概不负责。
+                1.<span class="important">该页面所有文件都是病毒样本</span>，解压密码一律为<span class="important">infected</span><br>
+                2.在处理病毒样本时请务必小心，<span class="important">不要在实体机上运行病毒程序</span>，<span class="important">必须使用虚拟机测试病毒程序</span>，<span class="important">禁止使用病毒破坏他人的机器</span>。<br>
+                3.<span class="important">我们对不当使用（比如在实体机上运行、传播）造成的损失概不负责。</span>
             </p>
             <p class="note">
-                当你点击确定或下载病毒样本时，即视为同意以上规定<br><br><br></p>
-            <button class="OK" id="closeBtn">确定</button>
+                当你点击确定或下载病毒样本时，<span class="important">即视为同意以上规定</span><br><br><br></p>
+            <button class="OK" id="closeBtn" aria-label="确认并关闭弹窗">确定</button>
         </div>
     </div>
     <div class="background"></div>
@@ -262,7 +260,7 @@
 
         </div>
     </div>
-    <footer class="footer">
+  <footer class="footer">
         <div class="footer-container">
             <div class="footer-content">
                 <!-- 品牌信息 -->
@@ -275,27 +273,49 @@
                         致力于提供优质的产品与服务，创造更美好的用户体验。
                     </p>
                 </div>
-                
-                <!-- 快速链接 -->
+                  <!-- 快速链接 -->
                 <div class="footer-section">
-                    <h4>快速链接</h4>
+                    <h4>🔗 快速链接</h4>
                     <ul class="footer-links">
-                        <li><a href="https://exqstudio.cn">🏠 首页</a></li>
-                        <li><a href="CoreBox/corebox.html">📦 CoreBox</a></li>
-                        <li><a href="https://forum.exqstudio.cn">👥 论坛</a></li>
-                        <li><a href="donation.html">📣 赞助我们</a></li>
-                        <li><a href="recentupdate.html">🕒 最近更新</a></li>
-                </ul>
+                        <li><a href="https://exqstudio.cn">
+                            <span class="footer-icon">🏠</span>
+                            <span>首页</span>
+                        </a></li>
+                        <li><a href="CoreBox/corebox.html">
+                            <span class="footer-icon">🛠️</span>
+                            <span>CoreBox</span>
+                        </a></li>
+                        <li><a href="https://forum.exqstudio.cn" target="_blank">
+                            <span class="footer-icon">💬</span>
+                            <span>论坛</span>
+                        </a></li>
+                        <li><a href="donation.html">
+                            <span class="footer-icon">❤️</span>
+                            <span>赞助我们</span>
+                        </a></li>
+                        <li><a href="recentupdate.html">
+                            <span class="footer-icon">📝</span>
+                            <span>最近更新</span>
+                        </a></li>
                     </ul>
                 </div>
                 
                 <!-- 联系方式 -->
                 <div class="footer-section">
-                    <h4>联系我们</h4>
+                    <h4>📞 联系我们</h4>
                     <ul class="footer-links contact-links">
-                        <li><a href="https://github.com/EXQ-Studio/exq.github.io" target="_blank">🐱 GitHub</a></li>
-                        <li><a href="https://mail.qq.com" target="_blank">📧 邮箱：exqstudio@exqstudio.cn</a></li>
-                        <li><a href="https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=s9hmkfGoSf-wJU7F9utssiFY1H8n1Wm1&authKey=xn9gD93GzSQuPXeL6iGcDgVtqgeCgWuPGYUSSSGJUoztP/0fE0yZxwu7mb+Pvg0M&noverify=0&group_code=538933981" target="_blank">💬 QQ群: 538933981</a></li>
+                        <li><a href="https://github.com/EXQ-Studio/exq.github.io" target="_blank">
+                            <span class="footer-icon">⚡</span>
+                            <span>GitHub</span>
+                        </a></li>
+                        <li><a href="mailto:exqstudio@exqstudio.cn" target="_blank">
+                            <span class="footer-icon">✉️</span>
+                            <span>exqstudio@exqstudio.cn</span>
+                        </a></li>
+                        <li><a href="https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=s9hmkfGoSf-wJU7F9utssiFY1H8n1Wm1&authKey=xn9gD93GzSQuPXeL6iGcDgVtqgeCgWuPGYUSSSGJUoztP/0fE0yZxwu7mb+Pvg0M&noverify=0&group_code=538933981" target="_blank">
+                            <span class="footer-icon">🐧</span>
+                            <span>QQ群: 538933981</span>
+                        </a></li>
                     </ul>
                 </div>
             </div>
