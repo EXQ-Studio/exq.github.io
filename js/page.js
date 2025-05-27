@@ -161,29 +161,13 @@ class ResourceLoader {
             this.loadingCurrentResource.textContent = `加载失败: ${this.getFriendlyResourceName(resource)}`;
         }
         this.updateProgress();
-    }
-
-    // 获取更友好的资源名称用于显示
+    }    // 获取更友好的资源名称用于显示
     getFriendlyResourceName(resource) {
         if (typeof resource !== 'string') {
             return '未知资源';
         }
         if (resource === 'font') {
             return '字体文件';
-        }
-        // 检查是否为QQ头像资源
-        if (resource.startsWith('qq-avatar-')) {
-            const pageIndex = resource.replace('qq-avatar-', '');
-            const memberNames = {
-                '1': 'Disunited',
-                '2': '咕咕十三awa', 
-                '3': 'Jared',
-                '4': 'Vilian',
-                '5': 'D某人00',
-                '6': 'Orange',
-                '7': 'ZyEternity'
-            };
-            return `${memberNames[pageIndex] || '成员'}的QQ头像`;
         }
         try {
             const url = new URL(resource, document.baseURI);
@@ -232,13 +216,10 @@ class ResourceLoader {
                 const isExternal = img.src.startsWith('http') && !img.src.includes(window.location.hostname);
                 
                 if (isExternal) {
-                    // 外部图片：添加到资源列表但不阻塞加载
-                    console.log(`External image (non-blocking): ${img.src}`);
-                    // 立即标记为已加载，不影响主加载进度
-                    this.addResource(img.src);
-                    this.handleResourceLoad(img.src);
+                    // 外部图片：不添加到主加载流程，完全后台处理
+                    console.log(`External image (background loading): ${img.src}`);
                     
-                    // 异步加载外部图片
+                    // 异步加载外部图片（不计入主要资源）
                     const tempImg = new Image();
                     tempImg.onload = () => console.log(`✅ External image loaded: ${img.src}`);
                     tempImg.onerror = () => console.log(`❌ External image failed: ${img.src}`);

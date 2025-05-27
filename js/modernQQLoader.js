@@ -190,19 +190,10 @@ function integrateQQLoadingToMainSystem() {
             const originalStartLoading = ResourceLoader.prototype.startLoading;
               ResourceLoader.prototype.startLoading = function() {
                 // 调用原始的startLoading
-                originalStartLoading.call(this);
-                  // QQ头像加载策略：不阻塞主加载流程
-                console.log('开始QQ头像优化加载...');
+                originalStartLoading.call(this);                // QQ头像加载策略：完全后台加载，不计入主要资源
+                console.log('开始QQ头像后台加载...');
                 
-                // 立即添加并标记QQ头像资源为已加载（避免阻塞）
-                Object.entries(QQ_NUMBERS).forEach(([pageIndex, qqNumber]) => {
-                    const resourceName = `qq-avatar-${pageIndex}`;
-                    this.addResource(resourceName);
-                    // 立即标记为已加载，不阻塞主流程
-                    this.handleResourceLoad(resourceName);
-                });
-                
-                // 异步在后台加载QQ头像（不影响主加载进度）
+                // 异步在后台加载QQ头像（不计入主要资源数量）
                 setTimeout(() => {
                     this.loadQQAvatarsAsync();
                 }, 100);
