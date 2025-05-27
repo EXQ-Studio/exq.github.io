@@ -783,6 +783,20 @@ html {
     display: inline-block; /* 使max-width生效 */
 }
 
+/* 加载统计样式 */
+.loading-stats {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 16px;
+    font-family: "站酷文艺体", sans-serif;
+    margin-top: 10px;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.loaded-count, .total-count {
+    font-weight: bold;
+    color: #fff;
+}
 
 @keyframes spin {
     0% { transform: rotate(0deg); }

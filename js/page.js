@@ -11,8 +11,11 @@ document.body.insertAdjacentHTML('afterbegin', `
                 <div class="progress-percentage">0%</div>
                 <div class="progress-bar"></div>
             </div>
-            <div class="loading-text">加载中</div>
+            <div class="loading-text">正在加载团队资源</div>
             <div class="loading-current-resource">正在初始化...</div>
+            <div class="loading-stats">
+                <span class="loaded-count">0</span> / <span class="total-count">0</span> 个资源
+            </div>
         </div>
     </div>
 `);
@@ -23,29 +26,36 @@ class ResourceLoader {
         this.loadingContainer = document.querySelector('.loading-container');
         this.progressBar = document.querySelector('.progress-bar');
         this.progressPercentage = document.querySelector('.progress-percentage');
-        this.loadingCurrentResource = document.querySelector('.loading-current-resource'); // 新增
+        this.loadingCurrentResource = document.querySelector('.loading-current-resource');
+        this.loadedCountElement = document.querySelector('.loaded-count');
+        this.totalCountElement = document.querySelector('.total-count');
         this.pages = document.querySelector('.pages');
         this.resources = new Set();
         this.loadedResources = new Set();
         this.totalResources = 0;
         this.isLoading = true;
         this.loadingTimeout = null;
-    }
-
-    // 添加需要加载的资源
+    }// 添加需要加载的资源
     addResource(resource) {
         if (!this.resources.has(resource)) {
             this.resources.add(resource);
             this.totalResources++;
+            // 更新总数显示
+            if (this.totalCountElement) {
+                this.totalCountElement.textContent = this.totalResources;
+            }
         }
-    }
-
-    // 更新加载进度
+    }    // 更新加载进度
     updateProgress() {
+        // 更新已加载计数
+        if (this.loadedCountElement) {
+            this.loadedCountElement.textContent = this.loadedResources.size;
+        }
+
         if (this.totalResources === 0) {
             this.progressBar.style.width = '100%';
             this.progressPercentage.textContent = '100%';
-            if (this.isLoading) { // 只有在加载过程中才更新文本并完成
+            if (this.isLoading) {
                 this.loadingCurrentResource.textContent = '未找到需加载的资源';
                 this.completeLoading();
             }
@@ -53,15 +63,15 @@ class ResourceLoader {
         }
 
         const progress = Math.min(100, Math.round((this.loadedResources.size / this.totalResources) * 100));
+        
+        // 更新进度条
         this.progressBar.style.width = `${progress}%`;
         this.progressPercentage.textContent = `${progress}%`;
 
         if (this.loadedResources.size === this.totalResources && this.isLoading) {
             this.completeLoading();
         }
-    }
-
-    // 完成加载
+    }    // 完成加载
     completeLoading() {
         if (!this.isLoading) return;
         this.isLoading = false;
@@ -76,7 +86,7 @@ class ResourceLoader {
         this.progressPercentage.textContent = '100%';
         this.loadingCurrentResource.textContent = '加载完成!';
 
-        // 延迟隐藏加载页面
+        // 强制显示一段时间，让用户能看到100%的状态
         setTimeout(() => {
             this.loadingContainer.style.opacity = '0';
             setTimeout(() => {
@@ -90,36 +100,52 @@ class ResourceLoader {
                     initializePages();
                 });
             }, 600);
-        }, 500);
-    }
-
-    // 处理资源加载完成
+        }, 1500); // 增加显示时间，让用户能看到完成状态
+    }    // 处理资源加载完成（添加延迟来演示进度）
     handleResourceLoad(resource) {
-        this.loadedResources.add(resource);
-        // 更新当前加载的资源文本
-        if (this.isLoading) { // 只有在加载过程中才更新
-            this.loadingCurrentResource.textContent = `已加载: ${this.getFriendlyResourceName(resource)}`;
-        }
-        this.updateProgress();
+        // 添加小延迟来演示加载过程
+        setTimeout(() => {
+            this.loadedResources.add(resource);
+            // 更新当前加载的资源文本
+            if (this.isLoading) { // 只有在加载过程中才更新
+                this.loadingCurrentResource.textContent = `已加载: ${this.getFriendlyResourceName(resource)}`;
+            }
+            this.updateProgress();
+        }, Math.random() * 500 + 200); // 200-700ms的随机延迟
     }
 
-    // 处理资源加载失败
+    // 处理资源加载失败（添加延迟来演示进度）
     handleResourceError(resource) {
         console.warn(`Failed to load resource: ${resource}`);
-        // 更新当前加载的资源文本（即使失败）
-        if (this.isLoading) { // 只有在加载过程中才更新
-            this.loadingCurrentResource.textContent = `加载失败: ${this.getFriendlyResourceName(resource)}`;
-        }
-        this.handleResourceLoad(resource); // 即使失败也计入进度，并触发updateProgress
-    }
-
-    // 获取更友好的资源名称用于显示
+        setTimeout(() => {
+            // 更新当前加载的资源文本（即使失败）
+            if (this.isLoading) { // 只有在加载过程中才更新
+                this.loadingCurrentResource.textContent = `加载失败: ${this.getFriendlyResourceName(resource)}`;
+            }
+            this.loadedResources.add(resource); // 即使失败也计入进度
+            this.updateProgress();
+        }, Math.random() * 500 + 200); // 200-700ms的随机延迟
+    }// 获取更友好的资源名称用于显示
     getFriendlyResourceName(resource) {
         if (typeof resource !== 'string') {
             return '未知资源';
         }
         if (resource === 'font') {
             return '字体文件';
+        }
+        // 检查是否为QQ头像资源
+        if (resource.startsWith('qq-avatar-')) {
+            const pageIndex = resource.replace('qq-avatar-', '');
+            const memberNames = {
+                '1': 'Disunited',
+                '2': '咕咕十三awa', 
+                '3': 'Jared',
+                '4': 'Vilian',
+                '5': 'D某人00',
+                '6': 'Orange',
+                '7': 'ZyEternity'
+            };
+            return `${memberNames[pageIndex] || '成员'}的QQ头像`;
         }
         try {
             const url = new URL(resource, document.baseURI);
