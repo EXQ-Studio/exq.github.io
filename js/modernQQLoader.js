@@ -54,32 +54,55 @@ async function loadMemberAvatar(pageIndex, qqNumber, resourceLoader = null) {
         }
         
         const avatarUrl = getQQAvatarUrl(qqNumber);
-        
-        // 使用Promise来处理图片加载
+          // 使用Promise来处理图片加载，添加超时机制
         return new Promise((resolve) => {
             const testImg = new Image();
+            let isResolved = false;
+            
+            // 设置5秒超时
+            const timeout = setTimeout(() => {
+                if (!isResolved) {
+                    isResolved = true;
+                    console.log(`⏰ QQ头像加载超时 - 页面${pageIndex} (QQ:${qqNumber})，保持原图`);
+                    
+                    // 超时也通知资源加载器
+                    if (resourceLoader) {
+                        resourceLoader.handleResourceError(`qq-avatar-${pageIndex}`);
+                    }
+                    
+                    resolve(false);
+                }
+            }, 5000);
             
             testImg.onload = () => {
-                img.src = avatarUrl;
-                console.log(`✅ 成功加载QQ头像 - 页面${pageIndex} (QQ:${qqNumber})`);
-                
-                // 如果有资源加载器，通知加载完成
-                if (resourceLoader) {
-                    resourceLoader.handleResourceLoad(`qq-avatar-${pageIndex}`);
+                if (!isResolved) {
+                    isResolved = true;
+                    clearTimeout(timeout);
+                    img.src = avatarUrl;
+                    console.log(`✅ 成功加载QQ头像 - 页面${pageIndex} (QQ:${qqNumber})`);
+                    
+                    // 如果有资源加载器，通知加载完成
+                    if (resourceLoader) {
+                        resourceLoader.handleResourceLoad(`qq-avatar-${pageIndex}`);
+                    }
+                    
+                    resolve(true);
                 }
-                
-                resolve(true);
             };
             
             testImg.onerror = () => {
-                console.log(`❌ QQ头像加载失败 - 页面${pageIndex} (QQ:${qqNumber})，保持原图`);
-                
-                // 即使失败也通知资源加载器
-                if (resourceLoader) {
-                    resourceLoader.handleResourceError(`qq-avatar-${pageIndex}`);
+                if (!isResolved) {
+                    isResolved = true;
+                    clearTimeout(timeout);
+                    console.log(`❌ QQ头像加载失败 - 页面${pageIndex} (QQ:${qqNumber})，保持原图`);
+                    
+                    // 即使失败也通知资源加载器
+                    if (resourceLoader) {
+                        resourceLoader.handleResourceError(`qq-avatar-${pageIndex}`);
+                    }
+                    
+                    resolve(false);
                 }
-                
-                resolve(false);
             };
             
             // 开始加载测试

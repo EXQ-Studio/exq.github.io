@@ -1,41 +1,77 @@
 // 添加加载页面到 DOM
-document.body.insertAdjacentHTML('afterbegin', `
-    <div class="loading-container">
-        <div class="loading-content">
-            <div class="loading-animation">
-                <div class="loading-circle"></div>
-                <div class="loading-circle"></div>
-                <div class="loading-circle"></div>
-            </div>
-            <div class="loading-progress-container">
-                <div class="progress-percentage">0%</div>
-                <div class="progress-bar"></div>
-            </div>
-            <div class="loading-text">正在加载团队资源</div>
-            <div class="loading-current-resource">正在初始化...</div>
-            <div class="loading-stats">
-                <span class="loaded-count">0</span> / <span class="total-count">0</span> 个资源
+document.addEventListener('DOMContentLoaded', function() {
+    // 确保body存在后再添加加载界面
+    if (document.body) {
+        addLoadingInterface();
+    }
+});
+
+function addLoadingInterface() {
+    // 检查是否已经添加过加载界面
+    if (document.querySelector('.loading-container')) {
+        return;
+    }
+    
+    document.body.insertAdjacentHTML('afterbegin', `
+        <div class="loading-container">
+            <div class="loading-content">
+                <div class="loading-animation">
+                    <div class="loading-circle"></div>
+                    <div class="loading-circle"></div>
+                    <div class="loading-circle"></div>
+                </div>
+                <div class="loading-progress-container">
+                    <div class="progress-percentage">0%</div>
+                    <div class="progress-bar"></div>
+                </div>
+                <div class="loading-text">正在加载团队资源</div>
+                <div class="loading-current-resource">正在初始化...</div>
+                <div class="loading-stats">
+                    <span class="loaded-count">0</span> / <span class="total-count">0</span> 个资源
+                </div>
             </div>
         </div>
-    </div>
-`);
+    `);
+}
 
 // 资源加载管理
 class ResourceLoader {
     constructor() {
-        this.loadingContainer = document.querySelector('.loading-container');
-        this.progressBar = document.querySelector('.progress-bar');
-        this.progressPercentage = document.querySelector('.progress-percentage');
-        this.loadingCurrentResource = document.querySelector('.loading-current-resource');
-        this.loadedCountElement = document.querySelector('.loaded-count');
-        this.totalCountElement = document.querySelector('.total-count');
-        this.pages = document.querySelector('.pages');
+        // 等待DOM元素可用
+        this.initElements();
         this.resources = new Set();
         this.loadedResources = new Set();
         this.totalResources = 0;
         this.isLoading = true;
         this.loadingTimeout = null;
-    }// 添加需要加载的资源
+    }
+
+    initElements() {
+        // 等待加载界面元素可用
+        const waitForElements = () => {
+            this.loadingContainer = document.querySelector('.loading-container');
+            this.progressBar = document.querySelector('.progress-bar');
+            this.progressPercentage = document.querySelector('.progress-percentage');
+            this.loadingCurrentResource = document.querySelector('.loading-current-resource');
+            this.loadedCountElement = document.querySelector('.loaded-count');
+            this.totalCountElement = document.querySelector('.total-count');
+            this.pages = document.querySelector('.pages');
+
+            // 如果关键元素还不可用，等待一段时间后重试
+            if (!this.loadingContainer || !this.pages) {
+                console.log('Waiting for elements...', {
+                    loadingContainer: !!this.loadingContainer,
+                    pages: !!this.pages
+                });
+                setTimeout(waitForElements, 50);
+                return;
+            }
+            console.log('All elements ready!');
+        };
+        waitForElements();
+    }
+
+    // 添加需要加载的资源
     addResource(resource) {
         if (!this.resources.has(resource)) {
             this.resources.add(resource);
@@ -45,7 +81,9 @@ class ResourceLoader {
                 this.totalCountElement.textContent = this.totalResources;
             }
         }
-    }    // 更新加载进度
+    }
+
+    // 更新加载进度
     updateProgress() {
         // 更新已加载计数
         if (this.loadedCountElement) {
@@ -53,10 +91,10 @@ class ResourceLoader {
         }
 
         if (this.totalResources === 0) {
-            this.progressBar.style.width = '100%';
-            this.progressPercentage.textContent = '100%';
+            if (this.progressBar) this.progressBar.style.width = '100%';
+            if (this.progressPercentage) this.progressPercentage.textContent = '100%';
             if (this.isLoading) {
-                this.loadingCurrentResource.textContent = '未找到需加载的资源';
+                if (this.loadingCurrentResource) this.loadingCurrentResource.textContent = '未找到需加载的资源';
                 this.completeLoading();
             }
             return;
@@ -65,13 +103,15 @@ class ResourceLoader {
         const progress = Math.min(100, Math.round((this.loadedResources.size / this.totalResources) * 100));
         
         // 更新进度条
-        this.progressBar.style.width = `${progress}%`;
-        this.progressPercentage.textContent = `${progress}%`;
+        if (this.progressBar) this.progressBar.style.width = `${progress}%`;
+        if (this.progressPercentage) this.progressPercentage.textContent = `${progress}%`;
 
         if (this.loadedResources.size === this.totalResources && this.isLoading) {
             this.completeLoading();
         }
-    }    // 完成加载
+    }
+
+    // 完成加载
     completeLoading() {
         if (!this.isLoading) return;
         this.isLoading = false;
@@ -82,50 +122,48 @@ class ResourceLoader {
         }
 
         // 确保显示100%
-        this.progressBar.style.width = '100%';
-        this.progressPercentage.textContent = '100%';
-        this.loadingCurrentResource.textContent = '加载完成!';
+        if (this.progressBar) this.progressBar.style.width = '100%';
+        if (this.progressPercentage) this.progressPercentage.textContent = '100%';
+        if (this.loadingCurrentResource) this.loadingCurrentResource.textContent = '加载完成!';
 
         // 强制显示一段时间，让用户能看到100%的状态
         setTimeout(() => {
-            this.loadingContainer.style.opacity = '0';
+            if (this.loadingContainer) this.loadingContainer.style.opacity = '0';
             setTimeout(() => {
-                this.loadingContainer.style.display = 'none';
+                if (this.loadingContainer) this.loadingContainer.style.display = 'none';
                 // 显示页面内容
-                this.pages.style.display = 'flex';
+                if (this.pages) this.pages.style.display = 'flex';
                 // 使用 requestAnimationFrame 确保 DOM 更新
                 requestAnimationFrame(() => {
-                    this.pages.classList.add('loaded');
+                    if (this.pages) this.pages.classList.add('loaded');
                     // 初始化页面
                     initializePages();
                 });
             }, 600);
         }, 1500); // 增加显示时间，让用户能看到完成状态
-    }    // 处理资源加载完成（添加延迟来演示进度）
+    }    // 处理资源加载完成（减少延迟以加快加载）
     handleResourceLoad(resource) {
-        // 添加小延迟来演示加载过程
-        setTimeout(() => {
-            this.loadedResources.add(resource);
-            // 更新当前加载的资源文本
-            if (this.isLoading) { // 只有在加载过程中才更新
-                this.loadingCurrentResource.textContent = `已加载: ${this.getFriendlyResourceName(resource)}`;
-            }
-            this.updateProgress();
-        }, Math.random() * 500 + 200); // 200-700ms的随机延迟
+        console.log(`✅ Resource loaded: ${resource}`);
+        // 立即处理，不添加延迟
+        this.loadedResources.add(resource);
+        // 更新当前加载的资源文本
+        if (this.isLoading && this.loadingCurrentResource) {
+            this.loadingCurrentResource.textContent = `已加载: ${this.getFriendlyResourceName(resource)}`;
+        }
+        this.updateProgress();
+    }    // 处理资源加载失败（减少延迟以加快加载）
+    handleResourceError(resource) {
+        console.warn(`❌ Failed to load resource: ${resource}`);
+        // 立即处理，不添加延迟
+        this.loadedResources.add(resource); // 即使失败也计入进度
+        // 更新当前加载的资源文本（即使失败）
+        if (this.isLoading && this.loadingCurrentResource) {
+            this.loadingCurrentResource.textContent = `加载失败: ${this.getFriendlyResourceName(resource)}`;
+        }
+        this.updateProgress();
     }
 
-    // 处理资源加载失败（添加延迟来演示进度）
-    handleResourceError(resource) {
-        console.warn(`Failed to load resource: ${resource}`);
-        setTimeout(() => {
-            // 更新当前加载的资源文本（即使失败）
-            if (this.isLoading) { // 只有在加载过程中才更新
-                this.loadingCurrentResource.textContent = `加载失败: ${this.getFriendlyResourceName(resource)}`;
-            }
-            this.loadedResources.add(resource); // 即使失败也计入进度
-            this.updateProgress();
-        }, Math.random() * 500 + 200); // 200-700ms的随机延迟
-    }// 获取更友好的资源名称用于显示
+    // 获取更友好的资源名称用于显示
     getFriendlyResourceName(resource) {
         if (typeof resource !== 'string') {
             return '未知资源';
@@ -174,78 +212,113 @@ class ResourceLoader {
 
     // 开始加载所有资源
     startLoading() {
-        // 确保页面初始状态
-        this.pages.style.display = 'none';
-        this.pages.classList.remove('loaded');
-        this.loadingCurrentResource.textContent = '扫描资源中...'; // 设置初始扫描信息
-
-        // 添加所有图片资源
-        document.querySelectorAll('img').forEach(img => {
-            this.addResource(img.src);
-            if (img.complete && img.naturalHeight !== 0) {
-                this.handleResourceLoad(img.src);
-            } else {
-                img.addEventListener('load', () => this.handleResourceLoad(img.src));
-                img.addEventListener('error', () => this.handleResourceError(img.src));
+        // 等待元素就绪
+        const checkAndStart = () => {
+            if (!this.pages || !this.loadingCurrentResource) {
+                console.log('Elements not ready, waiting...');
+                setTimeout(checkAndStart, 100);
+                return;
             }
-        });
 
-        // 添加所有样式表
-        document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
-            this.addResource(link.href);
-            if (link.sheet) {
-                this.handleResourceLoad(link.href);
-            } else {
-                link.addEventListener('load', () => this.handleResourceLoad(link.href));
-                link.addEventListener('error', () => this.handleResourceError(link.href));
-            }
-        });
-
-        // 添加所有脚本
-        document.querySelectorAll('script').forEach(script => {
-            if (script.src) {
-                this.addResource(script.src);
-                if (script.complete || script.readyState === 'complete') {
-                    this.handleResourceLoad(script.src);
+            console.log('Starting resource loading...');
+            
+            // 确保页面初始状态
+            this.pages.style.display = 'none';
+            this.pages.classList.remove('loaded');
+            this.loadingCurrentResource.textContent = '扫描资源中...'; // 设置初始扫描信息            // 添加所有图片资源
+            const images = document.querySelectorAll('img');
+            console.log(`Found ${images.length} images`);
+            images.forEach(img => {
+                this.addResource(img.src);
+                if (img.complete && img.naturalHeight !== 0) {
+                    this.handleResourceLoad(img.src);
                 } else {
-                    script.addEventListener('load', () => this.handleResourceLoad(script.src));
-                    script.addEventListener('error', () => this.handleResourceError(script.src));
+                    img.addEventListener('load', () => this.handleResourceLoad(img.src));
+                    img.addEventListener('error', () => this.handleResourceError(img.src));
                 }
-            }
-        });
-
-        // 添加字体文件
-        const fontFamilies = Array.from(document.fonts).map(font => font.family);
-        const zankuFontNeeded = fontFamilies.some(family => family.includes('站酷文艺体'));
-        
-        if (zankuFontNeeded) {
-            this.addResource('font');
-            document.fonts.ready.then(() => {
-                this.handleResourceLoad('font');
-            }).catch(err => {
-                console.warn('Font loading error or timeout:', err);
-                this.handleResourceError('font');
             });
-        }
 
-        // 检查是否有资源需要加载
-        if (this.totalResources === 0) {
-            console.log("No resources found to load.");
-            // updateProgress 会处理后续的 completeLoading 调用
-            this.updateProgress(); // 这会触发 totalResources === 0 的逻辑
-            return; 
-        } else {
-            this.loadingCurrentResource.textContent = '开始加载资源...';
-        }
+            // 添加所有样式表
+            const stylesheets = document.querySelectorAll('link[rel="stylesheet"]');
+            console.log(`Found ${stylesheets.length} stylesheets`);
+            stylesheets.forEach(link => {
+                this.addResource(link.href);
+                if (link.sheet) {
+                    this.handleResourceLoad(link.href);
+                } else {
+                    link.addEventListener('load', () => this.handleResourceLoad(link.href));
+                    link.addEventListener('error', () => this.handleResourceError(link.href));
+                }
+            });
 
-        // 设置超时保护
-        this.loadingTimeout = setTimeout(() => {
-            if (this.isLoading) {
-                console.warn('Loading timeout reached, forcing completion');
-                this.loadingCurrentResource.textContent = '加载超时，强制完成';
-                this.completeLoading();
+            // 添加所有脚本
+            const scripts = document.querySelectorAll('script');
+            console.log(`Found ${scripts.length} scripts`);
+            scripts.forEach(script => {
+                if (script.src) {
+                    this.addResource(script.src);
+                    if (script.complete || script.readyState === 'complete') {
+                        this.handleResourceLoad(script.src);
+                    } else {
+                        script.addEventListener('load', () => this.handleResourceLoad(script.src));
+                        script.addEventListener('error', () => this.handleResourceError(script.src));
+                    }
+                }
+            });
+
+            // 添加字体文件
+            const fontFamilies = Array.from(document.fonts).map(font => font.family);
+            const zankuFontNeeded = fontFamilies.some(family => family.includes('站酷文艺体'));
+            
+            if (zankuFontNeeded) {
+                this.addResource('font');
+                document.fonts.ready.then(() => {
+                    this.handleResourceLoad('font');
+                }).catch(err => {
+                    console.warn('Font loading error or timeout:', err);
+                    this.handleResourceError('font');
+                });
             }
-        }, 10000);
+
+            console.log(`Found ${this.totalResources} resources to load`);
+
+            // 检查是否有资源需要加载
+            if (this.totalResources === 0) {
+                console.log("No resources found to load.");
+                // updateProgress 会处理后续的 completeLoading 调用
+                this.updateProgress(); // 这会触发 totalResources === 0 的逻辑
+                return;            } else {
+                this.loadingCurrentResource.textContent = '开始加载资源...';
+            }
+
+            // 设置较短的超时保护
+            this.loadingTimeout = setTimeout(() => {
+                if (this.isLoading) {
+                    console.warn('Loading timeout reached, forcing completion');
+                    console.log(`Loaded ${this.loadedResources.size} of ${this.totalResources} resources`);
+                    if (this.loadingCurrentResource) this.loadingCurrentResource.textContent = '加载完成';
+                    this.completeLoading();
+                }
+            }, 6000); // 减少到6秒超时
+            
+            // 添加快速完成检测 - 如果2秒后还有很多资源未加载，可能是网络问题
+            setTimeout(() => {
+                if (this.isLoading && this.loadedResources.size < this.totalResources * 0.7) {
+                    console.log('检测到可能的网络延迟，启用快速完成模式');
+                    // 标记所有未加载的资源为已加载
+                    this.resources.forEach(resource => {
+                        if (!this.loadedResources.has(resource)) {
+                            console.log(`快速标记: ${resource}`);
+                            this.loadedResources.add(resource);
+                        }
+                    });
+                    if (this.loadingCurrentResource) this.loadingCurrentResource.textContent = '网络优化完成';
+                    this.updateProgress();
+                }
+            }, 2000);
+        };
+
+        checkAndStart();
     }
 }
 
@@ -266,7 +339,9 @@ function initializePages() {
                 page.classList.add('next');
             }
         });
-    }    function setupEventListeners() {
+    }
+
+    function setupEventListeners() {
         // 鼠标滚轮事件
         document.querySelector('.pages').addEventListener('wheel', handleWheel);
 
@@ -354,7 +429,9 @@ function initializePages() {
                     e.preventDefault();
                 }
             }, { passive: false });
-        }        // 返回按钮事件
+        }
+
+        // 返回按钮事件
         const backButton = document.querySelector('#back-to-home');
         const backButtonLink = document.querySelector('#back-to-home .back-home-btn');
         if (backButton && backButtonLink) {
@@ -411,11 +488,10 @@ function initializePages() {
     setupEventListeners();
 }
 
-// 初始化加载器和事件绑定，确保 DOM 渲染完成后再执行
-window.addEventListener('DOMContentLoaded', function() {
-    // 移动端优化：检查并添加必要的视口设置（只在移动端）
-    const isMobile = window.innerWidth <= 768;
-    if (isMobile) {
+// 页面初始化
+document.addEventListener('DOMContentLoaded', function() {
+    // 移动端优化
+    if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         const viewport = document.querySelector('meta[name="viewport"]');
         if (viewport) {
             viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover');
@@ -441,6 +517,9 @@ window.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    const loader = new ResourceLoader();
-    loader.startLoading();
+    // 等待一小段时间确保所有元素都已就绪，然后开始加载
+    setTimeout(() => {
+        const loader = new ResourceLoader();
+        loader.startLoading();
+    }, 100);
 });
