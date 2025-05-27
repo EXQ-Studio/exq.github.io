@@ -35,6 +35,66 @@ function debugPageStructure() {
     });
 }
 
+// 后台异步加载单个头像（不影响主加载进度）
+async function loadMemberAvatarBackground(pageIndex, qqNumber) {
+    try {
+        const pages = document.querySelectorAll('.page');
+        const targetPage = pages[pageIndex];
+        
+        if (!targetPage) {
+            console.log(`⚠️ 页面${pageIndex}不存在`);
+            return false;
+        }
+        
+        const img = targetPage.querySelector('.card img');
+        if (!img) {
+            console.log(`⚠️ 页面${pageIndex}没有找到图片元素`);
+            return false;
+        }
+        
+        const avatarUrl = getQQAvatarUrl(qqNumber);
+        
+        return new Promise((resolve) => {
+            const testImg = new Image();
+            let isResolved = false;
+            
+            // 设置5秒超时
+            const timeout = setTimeout(() => {
+                if (!isResolved) {
+                    isResolved = true;
+                    console.log(`⏰ QQ头像后台加载超时 - 页面${pageIndex} (QQ:${qqNumber})`);
+                    resolve(false);
+                }
+            }, 5000);
+            
+            testImg.onload = () => {
+                if (!isResolved) {
+                    isResolved = true;
+                    clearTimeout(timeout);
+                    img.src = avatarUrl;
+                    console.log(`✅ 后台成功加载QQ头像 - 页面${pageIndex} (QQ:${qqNumber})`);
+                    resolve(true);
+                }
+            };
+            
+            testImg.onerror = () => {
+                if (!isResolved) {
+                    isResolved = true;
+                    clearTimeout(timeout);
+                    console.log(`❌ QQ头像后台加载失败 - 页面${pageIndex} (QQ:${qqNumber})`);
+                    resolve(false);
+                }
+            };
+            
+            testImg.src = avatarUrl;
+        });
+        
+    } catch (error) {
+        console.error(`❌ 后台加载页面${pageIndex}头像时出错:`, error);
+        return false;
+    }
+}
+
 // 异步加载单个头像（集成到主加载系统）
 async function loadMemberAvatar(pageIndex, qqNumber, resourceLoader = null) {
     try {
@@ -128,30 +188,41 @@ function integrateQQLoadingToMainSystem() {
         if (typeof ResourceLoader !== 'undefined') {
             // 扩展ResourceLoader类，添加QQ头像加载
             const originalStartLoading = ResourceLoader.prototype.startLoading;
-            
-            ResourceLoader.prototype.startLoading = function() {
+              ResourceLoader.prototype.startLoading = function() {
                 // 调用原始的startLoading
                 originalStartLoading.call(this);
+                  // QQ头像加载策略：不阻塞主加载流程
+                console.log('开始QQ头像优化加载...');
                 
-                // 添加QQ头像资源
+                // 立即添加并标记QQ头像资源为已加载（避免阻塞）
                 Object.entries(QQ_NUMBERS).forEach(([pageIndex, qqNumber]) => {
-                    this.addResource(`qq-avatar-${pageIndex}`);
+                    const resourceName = `qq-avatar-${pageIndex}`;
+                    this.addResource(resourceName);
+                    // 立即标记为已加载，不阻塞主流程
+                    this.handleResourceLoad(resourceName);
                 });
                 
-                // 更新当前资源文本
-                if (this.isLoading) {
-                    this.loadingCurrentResource.textContent = '开始加载QQ头像...';
-                }
-                
-                // 开始加载QQ头像
-                this.loadQQAvatars();
+                // 异步在后台加载QQ头像（不影响主加载进度）
+                setTimeout(() => {
+                    this.loadQQAvatarsAsync();
+                }, 100);
             };
-            
-            // 添加QQ头像加载方法
-            ResourceLoader.prototype.loadQQAvatars = function() {
+              // 添加异步QQ头像加载方法
+            ResourceLoader.prototype.loadQQAvatarsAsync = async function() {
+                console.log('🔄 开始后台加载QQ头像...');
+                const promises = [];
+                
                 Object.entries(QQ_NUMBERS).forEach(([pageIndex, qqNumber]) => {
-                    loadMemberAvatar(parseInt(pageIndex), qqNumber, this);
+                    promises.push(loadMemberAvatarBackground(parseInt(pageIndex), qqNumber));
                 });
+                
+                try {
+                    const results = await Promise.allSettled(promises);
+                    const successful = results.filter(result => result.status === 'fulfilled' && result.value).length;
+                    console.log(`✅ 后台QQ头像加载完成: ${successful}/${results.length} 成功`);
+                } catch (error) {
+                    console.warn('QQ头像后台加载出错:', error);
+                }
             };
             
         } else {

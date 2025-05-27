@@ -225,16 +225,33 @@ class ResourceLoader {
             // 确保页面初始状态
             this.pages.style.display = 'none';
             this.pages.classList.remove('loaded');
-            this.loadingCurrentResource.textContent = '扫描资源中...'; // 设置初始扫描信息            // 添加所有图片资源
+            this.loadingCurrentResource.textContent = '扫描资源中...'; // 设置初始扫描信息            // 添加所有图片资源（区分本地和外部资源）
             const images = document.querySelectorAll('img');
-            console.log(`Found ${images.length} images`);
-            images.forEach(img => {
-                this.addResource(img.src);
-                if (img.complete && img.naturalHeight !== 0) {
+            console.log(`Found ${images.length} images`);            images.forEach(img => {
+                // 检查是否为外部资源（非本站域名的http/https链接）
+                const isExternal = img.src.startsWith('http') && !img.src.includes(window.location.hostname);
+                
+                if (isExternal) {
+                    // 外部图片：添加到资源列表但不阻塞加载
+                    console.log(`External image (non-blocking): ${img.src}`);
+                    // 立即标记为已加载，不影响主加载进度
+                    this.addResource(img.src);
                     this.handleResourceLoad(img.src);
+                    
+                    // 异步加载外部图片
+                    const tempImg = new Image();
+                    tempImg.onload = () => console.log(`✅ External image loaded: ${img.src}`);
+                    tempImg.onerror = () => console.log(`❌ External image failed: ${img.src}`);
+                    tempImg.src = img.src;
                 } else {
-                    img.addEventListener('load', () => this.handleResourceLoad(img.src));
-                    img.addEventListener('error', () => this.handleResourceError(img.src));
+                    // 本地图片：正常加载流程
+                    this.addResource(img.src);
+                    if (img.complete && img.naturalHeight !== 0) {
+                        this.handleResourceLoad(img.src);
+                    } else {
+                        img.addEventListener('load', () => this.handleResourceLoad(img.src));
+                        img.addEventListener('error', () => this.handleResourceError(img.src));
+                    }
                 }
             });
 
@@ -501,12 +518,10 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.userSelect = 'none';
         document.body.style.webkitUserSelect = 'none';
         document.body.style.webkitTouchCallout = 'none';
-        document.body.style.webkitTapHighlightColor = 'transparent';
-
-        // 预连接到图片服务器
+        document.body.style.webkitTapHighlightColor = 'transparent';        // 预连接到外部图片服务器
         const preconnectLinks = [
-            'https://www.helloimg.com',
-            'https://upload-bbs.miyoushe.com'
+            'https://upload-bbs.miyoushe.com',
+            'https://q1.qlogo.cn'
         ];
         
         preconnectLinks.forEach(url => {
