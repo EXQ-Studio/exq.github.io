@@ -240,45 +240,115 @@ function initializePages() {
                 page.classList.add('next');
             }
         });
-    }
-
-    function setupEventListeners() {
+    }    function setupEventListeners() {
         // 鼠标滚轮事件
         document.querySelector('.pages').addEventListener('wheel', handleWheel);
 
-        // 触摸事件
-        let touchStartY = 0;
-        let touchTimeout = null;
+        // 触摸事件（只在移动端启用）
+        if (window.innerWidth <= 768) {
+            let touchStartY = 0;
+            let touchStartX = 0;
+            let touchStartTime = 0;
+            let touchTimeout = null;
+            let isTouching = false;
 
-        document.querySelector('.pages').addEventListener('touchstart', (e) => {
-            touchStartY = e.touches[0].clientY;
-        });
-
-        document.querySelector('.pages').addEventListener('touchmove', (e) => {
-            e.preventDefault();
-            const touchEndY = e.touches[0].clientY;
-            const deltaY = touchStartY - touchEndY;
-
-            if (Math.abs(deltaY) > 50 && !isScrolling) {
+            document.querySelector('.pages').addEventListener('touchstart', (e) => {
+                touchStartY = e.touches[0].clientY;
+                touchStartX = e.touches[0].clientX;
+                touchStartTime = Date.now();
+                isTouching = true;
+                
+                // 清除之前的超时
                 if (touchTimeout) {
                     clearTimeout(touchTimeout);
+                    touchTimeout = null;
                 }
+            }, { passive: true });
 
-                touchTimeout = setTimeout(() => {
-                    if (deltaY > 0 && currentPage < pages.length - 1) {
-                        changePage(1);
-                    } else if (deltaY < 0 && currentPage > 0) {
-                        changePage(-1);
+            document.querySelector('.pages').addEventListener('touchmove', (e) => {
+                if (!isTouching) return;
+                
+                // 防止页面滚动
+                e.preventDefault();
+                
+                const touchEndY = e.touches[0].clientY;
+                const touchEndX = e.touches[0].clientX;
+                const deltaY = touchStartY - touchEndY;
+                const deltaX = touchStartX - touchEndX;
+                
+                // 检查是否为垂直滑动（而不是水平滑动）
+                if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 30) {
+                    // 防抖处理
+                    if (touchTimeout) {
+                        clearTimeout(touchTimeout);
                     }
-                }, 30);
-            }
-        });
+                    
+                    touchTimeout = setTimeout(() => {
+                        if (!isScrolling && isTouching) {
+                            if (deltaY > 50 && currentPage < pages.length - 1) {
+                                changePage(1);
+                                isTouching = false;
+                            } else if (deltaY < -50 && currentPage > 0) {
+                                changePage(-1);
+                                isTouching = false;
+                            }
+                        }
+                    }, 100);
+                }
+            }, { passive: false });
 
-        // 返回按钮事件
+            document.querySelector('.pages').addEventListener('touchend', (e) => {
+                const touchEndTime = Date.now();
+                const touchDuration = touchEndTime - touchStartTime;
+                
+                // 快速滑动检测
+                if (touchDuration < 300 && isTouching) {
+                    const touchEndY = e.changedTouches[0].clientY;
+                    const deltaY = touchStartY - touchEndY;
+                    
+                    if (Math.abs(deltaY) > 80 && !isScrolling) {
+                        if (deltaY > 0 && currentPage < pages.length - 1) {
+                            changePage(1);
+                        } else if (deltaY < 0 && currentPage > 0) {
+                            changePage(-1);
+                        }
+                    }
+                }
+                
+                isTouching = false;
+                if (touchTimeout) {
+                    clearTimeout(touchTimeout);
+                    touchTimeout = null;
+                }
+            }, { passive: true });
+
+            // 阻止双击缩放（只在移动端）
+            document.querySelector('.pages').addEventListener('touchstart', (e) => {
+                if (e.touches.length > 1) {
+                    e.preventDefault();
+                }
+            }, { passive: false });
+        }        // 返回按钮事件
         const backButton = document.querySelector('#back-to-home');
-        if (backButton) {
+        const backButtonLink = document.querySelector('#back-to-home .back-home-btn');
+        if (backButton && backButtonLink) {
+            // 为整个按钮容器添加点击事件
             backButton.addEventListener('click', (e) => {
                 e.preventDefault();
+                e.stopPropagation();
+                if (currentPage > 0) {
+                    // 如果不在第一页，返回第一页
+                    changePage(-currentPage);
+                } else {
+                    // 如果在第一页，跳转到首页
+                    window.location.href = '/';
+                }
+            });
+            
+            // 为链接本身也添加点击事件（防止默认跳转）
+            backButtonLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 if (currentPage > 0) {
                     // 如果不在第一页，返回第一页
                     changePage(-currentPage);
@@ -317,26 +387,34 @@ function initializePages() {
 
 // 初始化加载器和事件绑定，确保 DOM 渲染完成后再执行
 window.addEventListener('DOMContentLoaded', function() {
-    const loader = new ResourceLoader();
-    loader.startLoading();
+    // 移动端优化：检查并添加必要的视口设置（只在移动端）
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+        const viewport = document.querySelector('meta[name="viewport"]');
+        if (viewport) {
+            viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover');
+        }
 
-    // 修改返回按钮行为（防止重复绑定）
-    const backBtn = document.querySelector('#back-to-home');
-    if (backBtn) {
-        backBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            const pages = document.querySelectorAll('.page');
-            const currentPage = document.querySelector('.page.current');
-            const index = Array.from(pages).indexOf(currentPage);
-            if (index > 0) {
-                // changePage 需在 initializePages 作用域内
-                // 这里触发 wheel 事件模拟翻页
-                for (let i = 0; i < index; i++) {
-                    document.querySelector('.pages').dispatchEvent(new WheelEvent('wheel', {deltaY: -100}));
-                }
-            } else {
-                window.location.href = '/';
-            }
+        // 移动端优化：禁用文本选择和拖拽
+        document.body.style.userSelect = 'none';
+        document.body.style.webkitUserSelect = 'none';
+        document.body.style.webkitTouchCallout = 'none';
+        document.body.style.webkitTapHighlightColor = 'transparent';
+
+        // 预连接到图片服务器
+        const preconnectLinks = [
+            'https://www.helloimg.com',
+            'https://upload-bbs.miyoushe.com'
+        ];
+        
+        preconnectLinks.forEach(url => {
+            const link = document.createElement('link');
+            link.rel = 'preconnect';
+            link.href = url;
+            document.head.appendChild(link);
         });
     }
+
+    const loader = new ResourceLoader();
+    loader.startLoading();
 });
