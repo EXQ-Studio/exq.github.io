@@ -81,8 +81,8 @@ body {
 .cta-button {
     padding: 20px 30px;
     border: none;
-    border-radius: var(--radius-sm);
-    font-size: 0.9em;
+    border-radius: var(--radius-button);
+    font-size: var(--font-base);
     font-weight: 600;
     text-decoration: none;
     cursor: pointer;
@@ -97,7 +97,7 @@ body {
 }
 
 .cta-primary {
-    background: var(--gradient-button);
+    background: var(--gradient-home-rules);
     color: var(--text-white);
     border: 2px solid var(--glass-border);
 }
@@ -340,7 +340,8 @@ body {
     .hero-section {
         padding: 1rem;
         min-height: calc(100vh - 60px);
-        margin-top: 10px; /* Updated from 60px to move title up */
+        margin-top: 10px;
+        /* Updated from 60px to move title up */
     }
 
     .hero-title {
