@@ -1,0 +1,201 @@
+/* 导入全局样式 */
+@import url('variables.css');
+@import url('reset.css');
+@import url('animations.css');
+
+/* 404页面样式 */
+body {
+    display: flex;
+    flex-direction: column;
+    background: var(--gradient-hero);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    font-family: var(--font-noto-sans);
+    min-height: 100vh;
+}
+
+.container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bg-white);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    width: 256px;
+    box-shadow: var(--shadow-md);
+}
+
+.container h1 {
+    color: var(--text-dark);
+    font-size: 1.5em;
+    text-align: left;
+    margin-bottom: var(--spacing-xs);
+}
+
+.container > p {
+    padding-top: 3px;
+    color: var(--text-secondary);
+    font-size: 1em;
+}
+
+.msg {
+    font-size: 18px;
+}
+
+.back-button {
+    display: block;
+    width: max-content;
+    margin: 30px 0 0 auto;
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 1em;
+    color: var(--text-white);
+    background-color: var(--primary-blue);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    text-decoration: none;
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: var(--primary-blue-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* 导航栏样式覆盖 */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0 1rem;
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 60px;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-white);
+    text-decoration: none;
+}
+
+.nav-logo img {
+    width: 87px;
+    height: auto;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-menu a {
+    color: var(--text-white-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius-md);
+    transition: all 0.2s ease;
+}
+
+.nav-menu a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-white);
+}
+
+.menu-toggle {
+    display: none;
+    color: var(--text-white);
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: var(--border-radius-sm);
+    transition: background 0.2s ease;
+}
+
+.menu-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-menu.mobile-active {
+    display: flex !important;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    nav {
+        padding: 0 1rem;
+    }
+
+    .nav-container {
+        height: 60px;
+    }
+
+    .nav-logo img {
+        width: 80px;
+        height: 32px;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 2rem 0;
+        gap: 0;
+        display: none;
+        animation: slideDown 0.3s ease;
+    }
+
+    .nav-menu li {
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-menu a {
+        display: block;
+        padding: 1rem 2rem;
+        width: 100%;
+        text-align: left;
+        border-radius: 0;
+    }
+
+    .nav-menu a:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 300px;
+        padding: var(--spacing-lg);
+    }
+}

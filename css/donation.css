@@ -1,54 +1,18 @@
-html,
+/* 导入全局样式 */
+@import url('variables.css');
+@import url('reset.css');
+@import url('animations.css');
+
+/* Donation页面样式 */
 body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--gradient-purple-blue);
     background-attachment: fixed;
-    font-family: 'Noto Sans SC', sans-serif;
+    font-family: var(--font-noto-sans);
     overflow-x: hidden;
+    min-height: 100vh;
 }
 
-/* 添加动画关键帧 */
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-@keyframes glow {
-    0%, 100% {
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-    }
-    50% {
-        box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
-    }
-}
+/* 使用全局动画：fadeInDown、fadeInUp、float、glow */
 
 .juan {
     max-width: 800px;

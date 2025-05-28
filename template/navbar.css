@@ -1,3 +1,7 @@
+/* 导入全局样式 */
+@import url('../css/variables.css');
+@import url('../css/animations.css');
+
 /* 导航栏 */
 nav {
     position: fixed;
@@ -86,28 +90,7 @@ nav.scrolled {
     animation: slideDown 0.3s ease;
 }
 
-/* 滑动动画 */
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes slideUp {
-    from {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    to {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-}
+/* 使用全局定义的slideDown和slideUp动画 */
 
 /* 导航栏响应式设计 */
 @media (max-width: 768px) {
@@ -268,17 +251,8 @@ nav.scrolled {
 
     /* 调整小屏幕的页面内容 */
     .page {
-        padding-top: 45px;
+            padding-top: 45px;
     }
 }
 
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+/* 使用全局定义的slideDown动画 */

@@ -1,0 +1,364 @@
+/* 响应式工具类和通用布局 */
+
+/* 容器类 */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+.container-fluid {
+    width: 100%;
+    padding: 0 var(--spacing-md);
+}
+
+/* Flexbox 工具类 */
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.items-start {
+    align-items: flex-start;
+}
+
+.items-end {
+    align-items: flex-end;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.justify-around {
+    justify-content: space-around;
+}
+
+.justify-start {
+    justify-content: flex-start;
+}
+
+.justify-end {
+    justify-content: flex-end;
+}
+
+/* Grid 工具类 */
+.grid {
+    display: grid;
+}
+
+.grid-cols-1 {
+    grid-template-columns: 1fr;
+}
+
+.grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-cols-auto {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.gap-1 {
+    gap: var(--spacing-xs);
+}
+
+.gap-2 {
+    gap: var(--spacing-sm);
+}
+
+.gap-4 {
+    gap: var(--spacing-md);
+}
+
+.gap-6 {
+    gap: var(--spacing-lg);
+}
+
+.gap-8 {
+    gap: var(--spacing-xl);
+}
+
+/* 文本对齐 */
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+/* 字体大小 */
+.text-xs {
+    font-size: var(--font-xs);
+}
+
+.text-sm {
+    font-size: var(--font-sm);
+}
+
+.text-base {
+    font-size: var(--font-base);
+}
+
+.text-lg {
+    font-size: var(--font-lg);
+}
+
+.text-xl {
+    font-size: var(--font-xl);
+}
+
+.text-2xl {
+    font-size: var(--font-2xl);
+}
+
+.text-3xl {
+    font-size: var(--font-3xl);
+}
+
+.text-4xl {
+    font-size: var(--font-4xl);
+}
+
+.text-5xl {
+    font-size: var(--font-5xl);
+}
+
+/* 间距工具类 */
+.m-0 { margin: 0; }
+.m-1 { margin: var(--spacing-xs); }
+.m-2 { margin: var(--spacing-sm); }
+.m-4 { margin: var(--spacing-md); }
+.m-6 { margin: var(--spacing-lg); }
+.m-8 { margin: var(--spacing-xl); }
+
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: var(--spacing-xs); }
+.mt-2 { margin-top: var(--spacing-sm); }
+.mt-4 { margin-top: var(--spacing-md); }
+.mt-6 { margin-top: var(--spacing-lg); }
+.mt-8 { margin-top: var(--spacing-xl); }
+.mt-12 { margin-top: var(--spacing-2xl); }
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: var(--spacing-xs); }
+.mb-2 { margin-bottom: var(--spacing-sm); }
+.mb-4 { margin-bottom: var(--spacing-md); }
+.mb-6 { margin-bottom: var(--spacing-lg); }
+.mb-8 { margin-bottom: var(--spacing-xl); }
+.mb-12 { margin-bottom: var(--spacing-2xl); }
+
+.p-0 { padding: 0; }
+.p-1 { padding: var(--spacing-xs); }
+.p-2 { padding: var(--spacing-sm); }
+.p-4 { padding: var(--spacing-md); }
+.p-6 { padding: var(--spacing-lg); }
+.p-8 { padding: var(--spacing-xl); }
+
+/* 显示/隐藏 */
+.hidden {
+    display: none;
+}
+
+.block {
+    display: block;
+}
+
+.inline {
+    display: inline;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+/* 响应式断点 */
+/* 小屏幕手机 */
+@media (max-width: 375px) {
+    .container {
+        padding: 0 var(--spacing-sm);
+    }
+    
+    .sm-hidden {
+        display: none;
+    }
+    
+    .sm-block {
+        display: block;
+    }
+    
+    .sm-text-center {
+        text-align: center;
+    }
+}
+
+/* 手机 */
+@media (max-width: 480px) {
+    .xs-hidden {
+        display: none;
+    }
+    
+    .xs-block {
+        display: block;
+    }
+    
+    .xs-flex-col {
+        flex-direction: column;
+    }
+    
+    .xs-text-center {
+        text-align: center;
+    }
+}
+
+/* 平板 */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 var(--spacing-md);
+    }
+    
+    .md-hidden {
+        display: none;
+    }
+    
+    .md-block {
+        display: block;
+    }
+    
+    .md-flex-col {
+        flex-direction: column;
+    }
+    
+    .md-text-center {
+        text-align: center;
+    }
+    
+    .md-grid-cols-1 {
+        grid-template-columns: 1fr;
+    }
+    
+    .md-grid-cols-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 小桌面 */
+@media (max-width: 1024px) {
+    .lg-hidden {
+        display: none;
+    }
+    
+    .lg-block {
+        display: block;
+    }
+    
+    .lg-grid-cols-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .lg-grid-cols-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* 大桌面 */
+@media (min-width: 1025px) {
+    .xl-block {
+        display: block;
+    }
+    
+    .xl-grid-cols-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .xl-grid-cols-4 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* 通用按钮样式 */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transition-normal);
+    border: none;
+    font-size: var(--font-base);
+    min-height: 44px; /* 确保触摸友好 */
+}
+
+.btn-primary {
+    background: var(--gradient-button);
+    color: var(--text-white);
+}
+
+.btn-secondary {
+    background: var(--glass-bg);
+    color: var(--text-white);
+    border: 2px solid var(--glass-border);
+}
+
+.btn-success {
+    background: var(--gradient-secondary-button);
+    color: var(--text-white);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+/* 卡片样式 */
+.card {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--glass-border);
+    padding: var(--spacing-lg);
+    transition: var(--transition-normal);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+}
+
+/* 玻璃效果工具类 */
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+}

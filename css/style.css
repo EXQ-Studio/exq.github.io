@@ -1,33 +1,20 @@
+/* 引入通用样式文件 */
+@import url('variables.css');
+@import url('reset.css');
+@import url('animations.css');
+
 @font-face {
     font-family: 'Noto Sans SC';
     src: local('Noto Sans SC'),
         local('Noto Sans CJK SC');
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-:root {
-    --text-primary: #2d3748;
-    --text-secondary: #718096;
-    --glass-bg: rgba(255, 255, 255, 0.1);
-    --glass-border: rgba(255, 255, 255, 0.2);
-}
-
 body {
-    font-family: 'Noto Sans SC', sans-serif;
-    background: linear-gradient(45deg, #146c8a, #add8e6) no-repeat;
+    background: var(--gradient-hero) no-repeat;
     background-size: cover;
-    /* 背景图片填满容器 */
     background-position: center;
-    /* 背景居中 */
     background-attachment: fixed;
-    /* 背景固定不随页面滚动 */
     background-repeat: no-repeat;
-    /* 不重复显示背景 */
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
@@ -45,21 +32,9 @@ body {
 
 .particle {
     position: absolute;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
+    background: var(--glass-bg);
+    border-radius: var(--radius-full);
     animation: float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-
-    0%,
-    100% {
-        transform: translateY(0px) rotate(0deg);
-    }
-
-    50% {
-        transform: translateY(-20px) rotate(180deg);
-    }
 }
 
 /* 主要内容区域 */
@@ -79,9 +54,9 @@ body {
 }
 
 .hero-title {
-    font-size: clamp(2.5rem, 6vw, 4rem); /* Reduced max font size and vw for desktop */
+    font-size: clamp(2.5rem, 6vw, 4rem);
     font-weight: 700;
-    color: white;
+    color: var(--text-white);
     margin-bottom: 1.5rem;
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     animation: fadeInUp 1s ease-out, textGlow 3s ease-in-out infinite alternate;
@@ -89,7 +64,7 @@ body {
 
 .hero-subtitle {
     font-size: clamp(1rem, 3vw, 1.25rem);
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--text-white-secondary);
     margin-bottom: 3rem;
     line-height: 1.6;
     animation: fadeInUp 1s ease-out 0.3s both;
@@ -104,14 +79,14 @@ body {
 }
 
 .cta-button {
-    padding: 20px 30px; /* Reduced padding for desktop */
+    padding: 20px 30px;
     border: none;
-    border-radius: 5px;
-    font-size: 0.9em; /* Reduced font size for desktop */
+    border-radius: var(--radius-sm);
+    font-size: 0.9em;
     font-weight: 600;
     text-decoration: none;
     cursor: pointer;
-    transition: all 0.3s ease; /* 保留其他过渡效果（如阴影） */
+    transition: var(--transition-normal);
     position: relative;
     overflow: hidden;
     display: inline-flex;
@@ -122,16 +97,16 @@ body {
 }
 
 .cta-primary {
-    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-    color: white;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: var(--gradient-button);
+    color: var(--text-white);
+    border: 2px solid var(--glass-border);
 }
 
 .cta-secondary {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(10px);
+    background: var(--glass-bg);
+    color: var(--text-white);
+    border: 2px solid var(--glass-border);
+    backdrop-filter: var(--glass-blur);
 }
 
 /* 修改后的悬停状态 */
@@ -358,51 +333,6 @@ body {
 #closePopup:hover:enabled {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-}
-
-/* 动画效果 */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes textGlow {
-    0% {
-        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    }
-
-    100% {
-        text-shadow: 0 4px 20px rgba(255, 255, 255, 0.3), 0 0 30px rgba(255, 255, 255, 0.2);
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes popIn {
-    0% {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.8);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-    }
 }
 
 /* 主要内容区域移动端优化 */

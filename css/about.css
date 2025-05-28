@@ -1,31 +1,20 @@
-/* 重置样式 */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* 导入全局样式 */
+@import url('variables.css');
+@import url('reset.css');
+@import url('animations.css');
 
+/* About页面样式 */
 body,
 html {
     height: 100%;
     overflow: hidden;
-    /* 禁止滚动条出现 */
     scroll-snap-type: y mandatory;
     overflow-y: hidden;
-    margin: 0;
-    padding: 0%;
-    background: linear-gradient(45deg, #FFD700, #FF4500) no-repeat;
+    background: var(--gradient-sunset);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
-}
-
-/* 页面容器 */
-@font-face {
-    font-family: '站酷文艺体';
-    /* 给字体起个名字 */
-    src: url('/font/站酷文艺体.ttf') format('ttf');
 }
 
 .pages {
@@ -798,26 +787,9 @@ html {
     color: #fff;
 }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
+/* 自定义动画 - 使用全局定义的spin、shimmer、glow动画 */
 
-@keyframes shimmer {
-    0% { transform: translateX(-150%); } /* 调整光泽动画范围 */
-    100% { transform: translateX(150%); }
-}
-
-@keyframes glow {
-    0%, 100% { 
-        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-    }
-    50% { 
-        text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-    }
-}
-
-/* 页面切换时的内容动画 */
+/* 页面切换时的内容动画使用全局动画 */
 .page.current .text-content-left,
 .page.current .text-content-right,
 .page.current .card-container-left,
@@ -841,17 +813,6 @@ html {
 
 .page.current .card-container-right {
     animation-delay: 0.5s;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 /* 页面切换时的背景动画 */

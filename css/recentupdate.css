@@ -1,43 +1,18 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* 导入全局样式 */
+@import url('variables.css');
+@import url('reset.css');
+@import url('animations.css');
 
-/* 添加导航栏滚动样式 */
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 0 1rem;
-    transition: background-color 0.3s ease;
-}
+/* Recent Update页面样式 */
 
-nav.scrolled {
-    background: rgba(51, 51, 51, 0.95) !important;
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-nav.scrolled .nav-menu a {
-    color: white !important;
-}
-
-nav.scrolled .menu-toggle {
-    color: white !important;
-}
+/* 移除重复的导航栏样式 - 使用全局navbar.css中的统一样式 */
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: var(--font-segoe-ui);
+    background: var(--gradient-purple-blue);
     min-height: 100vh;
-    padding: 20px;
-    color: #333;
+    padding: var(--spacing-md);
+    color: var(--text-dark);
 }
 
 .container {
@@ -217,29 +192,7 @@ body {
     margin-top: 5px;
 }
 
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+/* 使用全局定义的fadeInDown和fadeInUp动画 */
 
 .github-sync {
     background: rgba(255, 255, 255, 0.9);
@@ -377,22 +330,7 @@ body {
     color: #666;
 }
 
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-
-    50% {
-        transform: scale(1.2);
-        opacity: 0.7;
-    }
-
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
+/* 使用全局定义的pulse动画 */
 
 .contributors-list {
     display: flex;
