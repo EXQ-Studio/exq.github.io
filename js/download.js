@@ -9,8 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     // 防止移动端滚动穿透
     document.body.style.overflow = 'hidden';
-    
-    // 设置弹窗为可聚焦并聚焦到弹窗
+      // 设置弹窗为可聚焦并聚焦到弹窗
     popup.setAttribute('tabindex', '-1');
     setTimeout(() => {
         popup.focus();
@@ -26,18 +25,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     closeBtn.addEventListener('click', closePopup);
-
-    // 点击遮罩层也可关闭（可选）
-    overlay.addEventListener('click', function (e) {
-        if (e.target === overlay) {
-            closePopup();
-        }
-    });
-    
-    // 阻止弹窗内部点击事件冒泡
-    popup.addEventListener('click', function(e) {
-        e.stopPropagation();
-    });
     
     // ESC键关闭弹窗
     document.addEventListener('keydown', function(e) {

@@ -11,14 +11,15 @@ body {
     font-family: var(--font-segoe-ui);
     background: var(--gradient-purple-blue);
     min-height: 100vh;
-    padding: var(--spacing-md);
+    margin: 0;
+    padding: 0;
     color: var(--text-dark);
 }
 
 .container {
     max-width: 900px;
     margin: 0 auto;
-    padding-top: 80px;
+    padding: 80px 1rem 3rem;
 }
 
 .title {
@@ -364,7 +365,7 @@ body {
 
 @media (max-width: 768px) {
     .container {
-        padding: 60px 10px 20px;
+        padding: 60px 1rem 2rem;
     }
 
     .title h1 {

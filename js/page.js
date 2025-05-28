@@ -324,9 +324,7 @@ class ResourceLoader {
 function initializePages() {
     const pages = document.querySelectorAll('.page');
     let currentPage = 0;
-    let isScrolling = false;
-
-    function updatePageClasses() {
+    let isScrolling = false;    function updatePageClasses() {
         pages.forEach((page, index) => {
             page.classList.remove('prev', 'current', 'next');
             if (index < currentPage) {
@@ -337,6 +335,44 @@ function initializePages() {
                 page.classList.add('next');
             }
         });
+        
+        // 控制返回第一页按钮的显示/隐藏
+        updateBackToHomeButton();
+    }    function updateBackToHomeButton() {
+        const backButton = document.querySelector('#back-to-home');
+        if (backButton) {
+            if (currentPage === 0) {
+                // 在第一页时隐藏按钮 - 使用淡出动画
+                if (backButton.classList.contains('show')) {
+                    backButton.classList.remove('show', 'animate-in');
+                    backButton.classList.add('animate-out');
+                    
+                    // 动画结束后隐藏元素
+                    setTimeout(() => {
+                        if (currentPage === 0) { // 确保仍在第一页
+                            backButton.style.display = 'none';
+                            backButton.classList.remove('animate-out');
+                        }
+                    }, 400);
+                } else {
+                    backButton.style.display = 'none';
+                }
+            } else {
+                // 从第二页开始显示按钮 - 使用滑入动画
+                if (backButton.style.display === 'none') {
+                    backButton.style.display = 'block';
+                    backButton.classList.remove('animate-out');
+                    backButton.classList.add('animate-in', 'show');
+                    
+                    // 动画结束后移除动画类
+                    setTimeout(() => {
+                        backButton.classList.remove('animate-in');
+                    }, 600);
+                } else if (!backButton.classList.contains('show')) {
+                    backButton.classList.add('show');
+                }
+            }
+        }
     }
 
     function setupEventListeners() {
