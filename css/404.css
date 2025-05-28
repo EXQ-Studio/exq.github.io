@@ -21,9 +21,9 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: var(--bg-white);
+    background: white;
     padding: var(--spacing-md);
-    border-radius: var(--border-radius-md);
+    border-radius: 8px;
     width: 256px;
     box-shadow: var(--shadow-md);
 }
@@ -52,9 +52,9 @@ body {
     padding: var(--spacing-sm) var(--spacing-md);
     font-size: 1em;
     color: var(--text-white);
-    background-color: var(--primary-blue);
+    background-color: var(--color-primary);
     border: none;
-    border-radius: var(--border-radius-sm);
+    border-radius: 5px;
     text-decoration: none;
     box-shadow: var(--shadow-sm);
     cursor: pointer;
