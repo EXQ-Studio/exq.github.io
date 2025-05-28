@@ -79,7 +79,7 @@ body {
 }
 
 .hero-title {
-    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-size: clamp(2.5rem, 6vw, 4rem); /* Reduced max font size and vw for desktop */
     font-weight: 700;
     color: white;
     margin-bottom: 1.5rem;
@@ -104,10 +104,10 @@ body {
 }
 
 .cta-button {
-    padding: 30px 40px;
+    padding: 20px 30px; /* Reduced padding for desktop */
     border: none;
     border-radius: 5px;
-    font-size: 1em;
+    font-size: 0.9em; /* Reduced font size for desktop */
     font-weight: 600;
     text-decoration: none;
     cursor: pointer;
@@ -406,33 +406,35 @@ body {
 }
 
 /* 主要内容区域移动端优化 */
-.hero-section {
-    padding: 1rem;
-    min-height: calc(100vh - 60px);
-    margin-top: 60px;
-}
+@media screen and (max-width: 768px) {
+    .hero-section {
+        padding: 1rem;
+        min-height: calc(100vh - 60px);
+        margin-top: 10px; /* Updated from 60px to move title up */
+    }
 
-.hero-title {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
+    .hero-title {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
 
-.hero-subtitle {
-    font-size: 1rem;
-    margin-bottom: 2rem;
-}
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
 
-.cta-buttons {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-}
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
 
-.cta-button {
-    width: 100%;
-    max-width: 280px;
-    padding: 1rem;
-    font-size: 1rem;
+    .cta-button {
+        width: 100%;
+        max-width: 280px;
+        padding: 1rem;
+        font-size: 1rem;
+    }
 }
 
 /* 特色功能区域移动端优化 */

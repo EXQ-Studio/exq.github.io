@@ -65,9 +65,30 @@ body {
 /* 病毒列表样式 */
 .virus-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* Changed from minmax(300px, 1fr) to minmax(250px, 1fr) for better fitting */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
     margin-bottom: 60px;
+}
+
+/* Media queries for desktop multi-column layout */
+@media screen and (min-width: 768px) {
+    .virus-list {
+        /* Try to fit at least 2 columns, items can be a bit wider */
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .virus-list {
+        grid-template-columns: repeat(3, 1fr); /* Force 3 columns */
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .virus-list {
+        grid-template-columns: repeat(4, 1fr); /* Force 4 columns */
+    }
 }
 
 /* 病毒项目样式 */
@@ -78,6 +99,9 @@ body {
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex; /* Added to control alignment of children */
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center children horizontally */
 }
 
 .virus-item:hover {
