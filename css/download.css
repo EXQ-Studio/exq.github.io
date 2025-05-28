@@ -124,7 +124,7 @@ body {
 /* 病毒项目样式 */
 .virus-item {
     background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
+    border-radius: 8px;
     padding: 15px;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
@@ -165,9 +165,9 @@ body {
 /* 下载按钮样式 */
 .dl-button {
     display: block;
-    padding: 8px 10px;
+    padding: 10px 10px;
     margin: 3px 0;
-    background: linear-gradient(45deg, #007bff, #0056b3);
+    background: rgba(255, 255, 255, 0.28);
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -177,16 +177,16 @@ body {
     max-width: 180px;
     box-sizing: border-box;
     word-wrap: break-word;
-    font-size: 13px;
+    font-size: 14px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 .dl-button:hover {
-    background: linear-gradient(45deg, #0056b3, #004085);
+    background: rgba(255, 255, 255, 0.4);
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
 }
 
 /* 遮罩层样式 */
