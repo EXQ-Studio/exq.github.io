@@ -1,0 +1,98 @@
+# 🛡️ EXQ Studio 安全配置 - Apache .htaccess
+# ================================
+
+# 1. HTTPS 强制重定向
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# 2. 安全头部设置
+<IfModule mod_headers.c>
+    # HTTP 严格传输安全 (HSTS)
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    
+    # 内容安全策略 (CSP) - 备用设置
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' cdn.staticfile.org unpkg.com; style-src 'self' 'unsafe-inline' cdn.staticfile.org fonts.googleapis.com; font-src 'self' fonts.gstatic.com cdn.staticfile.org; img-src 'self' data: q1.qlogo.cn q2.qlogo.cn; connect-src 'self' api.github.com; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self';"
+    
+    # 防止点击劫持
+    Header always set X-Frame-Options "DENY"
+    
+    # 防止 MIME 类型嗅探
+    Header always set X-Content-Type-Options "nosniff"
+    
+    # XSS 保护
+    Header always set X-XSS-Protection "1; mode=block"
+    
+    # 引用者策略
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # 权限策略
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+    
+    # 移除服务器信息
+    Header unset Server
+    Header unset X-Powered-By
+</IfModule>
+
+# 3. PHP 安全配置
+<IfModule mod_php.c>
+    # 隐藏 PHP 版本
+    php_flag expose_php off
+    
+    # 禁用危险函数
+    php_flag allow_url_fopen off
+    php_flag allow_url_include off
+    
+    # 会话安全
+    php_value session.cookie_httponly 1
+    php_value session.cookie_secure 1
+    php_value session.use_strict_mode 1
+</IfModule>
+
+# 4. 文件访问控制
+# 禁止访问敏感文件
+<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|sql|tar|gz)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# 保护配置文件
+<Files "*.config">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# 5. 目录浏览禁用
+Options -Indexes
+
+# 6. 错误页面
+ErrorDocument 400 /404.html
+ErrorDocument 401 /404.html
+ErrorDocument 403 /404.html
+ErrorDocument 404 /404.html
+ErrorDocument 500 /404.html
+
+# 7. 缓存控制
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+</IfModule>
+
+# 8. 压缩优化
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+</IfModule>
