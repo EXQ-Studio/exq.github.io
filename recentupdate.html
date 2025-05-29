@@ -2,6 +2,9 @@
 <html lang="zh-CN">
 
 <head>
+    <!-- 🚫 IP访问拦截器 - 必须在最前面加载 -->
+    <script src="js/ip-block.js"></script>
+    
     <!-- 🛡️ EXQ Studio 安全防护框架 v1.0 -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' cdn.staticfile.org unpkg.com; style-src 'self' 'unsafe-inline' cdn.staticfile.org fonts.googleapis.com; font-src 'self' fonts.gstatic.com cdn.staticfile.org; img-src 'self' data: q1.qlogo.cn q2.qlogo.cn; connect-src 'self' api.github.com; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self';">
     <meta http-equiv="X-Frame-Options" content="DENY">
