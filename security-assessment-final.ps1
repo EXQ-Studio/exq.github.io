@@ -96,17 +96,17 @@ $headerResults = @{}
 
 try {
     $response = Invoke-WebRequest -Uri $TargetUrl -UseBasicParsing -TimeoutSec 10
-      foreach ($headerName in $securityHeaders.Keys) {
+    foreach ($headerName in $securityHeaders.Keys) {
         if ($response.Headers[$headerName]) {
             Write-ColorOutput "   [PASS] $headerName`: Present" "Green"
-            $headerScore += $securityHeaders[$headerName]
-            $headerResults[$headerName] = @{ 
+            $headerScore += $securityHeaders["$headerName"]
+            $headerResults["$headerName"] = @{ 
                 "present" = $true
                 "value" = $response.Headers[$headerName]
             }
         } else {
             Write-ColorOutput "   [FAIL] $headerName`: Missing" "Red"
-            $headerResults[$headerName] = @{ 
+            $headerResults["$headerName"] = @{ 
                 "present" = $false
                 "value" = $null
             }
