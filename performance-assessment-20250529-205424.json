@@ -1,0 +1,52 @@
+﻿{
+    "test_iterations":  5,
+    "target_url":  "https://exqstudio.cn",
+    "max_response_time_ms":  null,
+    "performance_rating":  [
+                               "Excellent (Fast)",
+                               "Good (Acceptable)",
+                               "Fair (Slow)",
+                               "Poor (Very Slow)"
+                           ],
+    "success_rate_percent":  100,
+    "detailed_results":  [
+                             {
+                                 "iteration":  1,
+                                 "content_length":  12373,
+                                 "response_time_ms":  1099,
+                                 "status_code":  200,
+                                 "success":  true
+                             },
+                             {
+                                 "iteration":  2,
+                                 "content_length":  12373,
+                                 "response_time_ms":  403,
+                                 "status_code":  200,
+                                 "success":  true
+                             },
+                             {
+                                 "iteration":  3,
+                                 "content_length":  12373,
+                                 "response_time_ms":  371,
+                                 "status_code":  200,
+                                 "success":  true
+                             },
+                             {
+                                 "iteration":  4,
+                                 "content_length":  12373,
+                                 "response_time_ms":  334,
+                                 "status_code":  200,
+                                 "success":  true
+                             },
+                             {
+                                 "iteration":  5,
+                                 "content_length":  12373,
+                                 "response_time_ms":  341,
+                                 "status_code":  200,
+                                 "success":  true
+                             }
+                         ],
+    "timestamp":  "2025-05-29 20:54:24",
+    "min_response_time_ms":  null,
+    "avg_response_time_ms":  0
+}

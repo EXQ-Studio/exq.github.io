@@ -96,13 +96,3 @@ ErrorDocument 500 /404.html
     AddOutputFilterByType DEFLATE application/javascript
     AddOutputFilterByType DEFLATE application/x-javascript
 </IfModule>
-# 9. 额外文件保护
-<Files "*.md">
-    Order allow,deny
-    Deny from all
-</Files>
-
-<Files "*.log">
-    Order allow,deny
-    Deny from all
-</Files>
