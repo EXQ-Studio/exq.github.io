@@ -80,20 +80,26 @@
                 setCookie('seenPopup', 'true', 365);
             }
         }
-    }
-
-    // 移动端菜单切换
-    document.querySelector('.menu-toggle').addEventListener('click', function() {
-        const navMenu = document.querySelector('.nav-menu');
-        navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
-    });
-
-    // 点击遮罩关闭弹窗
-    document.getElementById('mask').addEventListener('click', closePopup);
-
-    // 页面加载时执行
+    }    // 页面加载时执行
     document.addEventListener('DOMContentLoaded', () => {
         createParticles();
+        
+        // 移动端菜单切换
+        const menuToggle = document.querySelector('.menu-toggle');
+        if (menuToggle) {
+            menuToggle.addEventListener('click', function() {
+                const navMenu = document.querySelector('.nav-menu');
+                if (navMenu) {
+                    navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+                }
+            });
+        }
+
+        // 点击遮罩关闭弹窗
+        const mask = document.getElementById('mask');
+        if (mask) {
+            mask.addEventListener('click', closePopup);
+        }
         
         // 检查用户是否第一次访问
         let seenPopup = false;

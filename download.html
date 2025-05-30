@@ -2,18 +2,14 @@
 <html lang="zh-CN">
 
 <head>
-    <!-- 🚫 IP访问拦截器 - 必须在最前面加载 -->
-    <script src="js/ip-block.js"></script>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- 🛡️ EXQ Studio 安全防护框架 v1.0 -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://q1.qlogo.cn https://q2.qlogo.cn https://thirdqq.qlogo.cn; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: http:; font-src 'self' data:; connect-src 'self' https://api.github.com; frame-ancestors 'none'; form-action 'self'; base-uri 'self';">
-    <meta http-equiv="X-Frame-Options" content="DENY">
+      <!-- 🛡️ EXQ Studio 安全防护框架 v1.0 -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://q1.qlogo.cn https://q2.qlogo.cn https://thirdqq.qlogo.cn https://blog-static.cnblogs.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: http:; font-src 'self' data:; connect-src 'self' https://api.github.com; form-action 'self'; base-uri 'self';">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
     
     <meta name="description" content="EXQ Studio下载页面 - 提供各种工具和病毒样本下载，请在虚拟机环境中安全使用，遵循安全操作规范。">
     <meta name="keywords" content="EXQ Studio,下载,工具下载,病毒样本,安全测试,虚拟机">
@@ -32,13 +28,10 @@
     <link rel="stylesheet" type="text/css" href="template/footer.css">
     <link rel="stylesheet" type="text/css" href="template/navbar.css">
     <link rel="icon" sizes="16x16" href="img/logo/LogoIcon.png" type="image/png">
-    <link rel="icon" sizes="32x32" href="img/logo/LogoIcon.png" type="image/png">
-    <link rel="icon" sizes="48x48" href="img/logo/LogoIcon.png" type="image/png">
+    <link rel="icon" sizes="32x32" href="img/logo/LogoIcon.png" type="image/png">    <link rel="icon" sizes="48x48" href="img/logo/LogoIcon.png" type="image/png">
 </head>
 
 <body>
-    <!-- 鼠标点击效果 -->
-    <script src="https://blog-static.cnblogs.com/files/e-cat/cursor-effects.js"></script>
     <!-- 导航栏 -->
     <nav>
         <div class="nav-container">
@@ -56,10 +49,9 @@
                         target="_blank">加入我们</a></li>
                 <li><a href="donation.html">赞助我们</a></li>
                 <li><a href="recentupdate.html">最近更新</a></li>
-            </ul>
-        </div>
+            </ul>        </div>
     </nav>
-    <script src="js/nav.js"></script>    <!-- 弹窗部分 -->
+    <!-- 弹窗部分 -->
     <div class="overlay" id="dlOverlay" role="dialog" aria-modal="true" aria-labelledby="popup-title">
         <div class="popup">
             <h1 id="popup-title">欢迎来到 EXQ Studio 下载页面！</h1>            <p class="msg">
@@ -72,10 +64,9 @@
             </p>
             <p class="note">
                 当你点击确定或下载病毒样本时，<span class="important">即视为同意以上规定</span><br><br><br></p>
-            <button class="OK" id="closeBtn" aria-label="确认并关闭弹窗">确定</button>
-        </div>
-    </div>    <div class="background"></div>
-    <script src="js/download.js"></script>
+            <button class="OK" id="closeBtn" aria-label="确认并关闭弹窗">确定</button>        </div>
+    </div>
+    <div class="background"></div>
     
     <!-- 主页面内容 -->
     <div class="main-content">
@@ -336,10 +327,14 @@
             <div class="footer-bottom">
                 <div class="footer-copyright">
                     © 2025 EXQ STUDIO. All rights reserved.
-                </div>
-            </div>
+                </div>            </div>
         </div>
     </footer>
+    
+    <!-- JavaScript 文件 -->
+    <script src="https://blog-static.cnblogs.com/files/e-cat/cursor-effects.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/download.js"></script>
 </body>
 
 </html>

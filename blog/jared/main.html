@@ -2,11 +2,16 @@
 <html lang="en">
 
 <head>
-	<!-- 🚫 IP访问拦截器 - 必须在最前面加载 -->
-	<script src="../../js/ip-block.js"></script>
-	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<!-- 🛡️ EXQ Studio 安全防护框架 v1.0 -->
+	<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: https: http:; font-src 'self' data: https://cdnjs.cloudflare.com; form-action 'self'; base-uri 'self';">
+	<meta http-equiv="X-Content-Type-Options" content="nosniff">
+	<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+	<meta http-equiv="X-XSS-Protection" content="1; mode=block">
+	<meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+	
 	<title>Jared's home</title>
 	<link rel="stylesheet" href="style.css">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">

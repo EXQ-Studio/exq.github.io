@@ -2,19 +2,15 @@
 <html lang="zh-CN">
 
 <head>
-    <!-- 🚫 IP访问拦截器 - 必须在最前面加载 -->
-    <script src="js/ip-block.js"></script>
-    
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
-    <!-- 🛡️ EXQ Studio 安全防护框架 v1.0 -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://q1.qlogo.cn https://q2.qlogo.cn https://thirdqq.qlogo.cn; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: http:; font-src 'self' data:; connect-src 'self' https://api.github.com; frame-ancestors 'none'; form-action 'self'; base-uri 'self';">
-    <meta http-equiv="X-Frame-Options" content="DENY">
+      <!-- 🛡️ EXQ Studio 安全防护框架 v1.0 -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://q1.qlogo.cn https://q2.qlogo.cn https://thirdqq.qlogo.cn https://blog-static.cnblogs.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: http:; font-src 'self' data:; connect-src 'self' https://api.github.com; form-action 'self'; base-uri 'self';">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
     
     <link rel="canonical" href="https://exqstudio.cn/">
     <meta name="description" content="欢迎访问EXQ STUDIO官网！专业的技术团队，提供优质的工具、资源下载，活跃的社区论坛。探索CoreBox工具箱，加入我们的技术交流社区。">
@@ -31,11 +27,10 @@
     <title>EXQ Studio - 笑曲工作室</title>
     <link rel="icon" sizes="16x16" href="img/logo/LogoIcon.png" type="image/png">
     <link rel="icon" sizes="32x32" href="img/logo/LogoIcon.png" type="image/png">
-    <link rel="icon" sizes="48x48" href="img/logo/LogoIcon.png" type="image/png">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="icon" sizes="48x48" href="img/logo/LogoIcon.png" type="image/png">    <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="template/footer.css">
     <link rel="stylesheet" type="text/css" href="template/navbar.css">
-    <script src="js/index.js"></script>
+</head>
 
 <body>
     <!-- 动态背景粒子 -->
@@ -203,13 +198,15 @@
                     </ul>
                 </div>
             </div>
-            
-            <div class="footer-bottom">
+              <div class="footer-bottom">
                 <div class="footer-copyright">
                     © 2025 EXQ STUDIO. All rights reserved.
                 </div>
             </div>
         </div>
     </footer>
+    
+    <!-- JavaScript 文件 -->
+    <script src="js/index.js"></script>
 </body>
 </html>

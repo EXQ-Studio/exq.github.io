@@ -2,11 +2,16 @@
 <html lang="en">
 
 <head>
-    <!-- 🚫 IP访问拦截器 - 必须在最前面加载 -->
-    <script src="../js/ip-block.js"></script>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- 🛡️ EXQ Studio 安全防护框架 v1.0 -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: http:; font-src 'self' data:; form-action 'self'; base-uri 'self';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+    
     <title>Core Box - 历史版本</title>
     <link rel="stylesheet" type="text/css" href="historyversion.css">
     <link rel="stylesheet" type="text/css" href="../template/footer.css">
