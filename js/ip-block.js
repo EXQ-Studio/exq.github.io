@@ -3,6 +3,22 @@
 (function() {
     'use strict';
     
+    // 私有IP地址检测函数
+    const isPrivateIP = (ip) => {
+        const parts = ip.split('.').map(num => parseInt(num));
+        if (parts.length !== 4) return false;
+        
+        // 私有IP段：
+        // 10.0.0.0 - 10.255.255.255
+        // 172.16.0.0 - 172.31.255.255  
+        // 192.168.0.0 - 192.168.255.255
+        // 127.0.0.0 - 127.255.255.255 (回环地址)
+        return (parts[0] === 10) ||
+               (parts[0] === 172 && parts[1] >= 16 && parts[1] <= 31) ||
+               (parts[0] === 192 && parts[1] === 168) ||
+               (parts[0] === 127);
+    };
+    
     // 开发模式检测 - 可以通过URL参数或localStorage设置
     const isDevelopmentMode = () => {
         // 检查URL参数
@@ -32,36 +48,48 @@
         ''  // 本地文件协议 (file://)
     ];
     
+    // 服务器IP列表 - 这些IP必须被拦截
+    const SERVER_IPS = [
+        '47.84.202.74'  // 你的服务器IP，必须通过域名访问
+    ];
+    
     const currentHost = window.location.hostname;
     const currentProtocol = window.location.protocol;
     
-    // 检查是否为本地开发环境
-    const isLocalDev = LOCAL_HOSTS.includes(currentHost) || 
-                       currentProtocol === 'file:' ||
-                       currentHost.startsWith('127.') ||
-                       currentHost.startsWith('192.168.') ||
-                       currentHost.startsWith('10.') ||
-                       isDevelopmentMode();
+    // 检查是否为IP地址格式
+    const isIP = /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(currentHost);
     
-    // 如果是本地开发环境，直接允许访问
-    if (isLocalDev) {
-        console.log('🔓 本地开发环境检测到，允许访问');
-        console.log('💡 环境信息:', {
-            host: currentHost,
-            protocol: currentProtocol,
-            devMode: isDevelopmentMode()
-        });
+    // 第一优先级：强制拦截服务器IP访问
+    if (SERVER_IPS.includes(currentHost)) {
+        console.log('🚫 服务器IP访问被拦截:', currentHost);
+        // 立即重定向到正确域名
+        window.location.replace('https://exqstudio.cn' + window.location.pathname + window.location.search);
         return;
     }
     
-    // 检查是否为IP地址
-    const isIP = /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(currentHost);
+    // 第二优先级：检查是否为本地开发环境
+    const isLocalDev = LOCAL_HOSTS.includes(currentHost) || 
+                       currentProtocol === 'file:' ||
+                       (isIP && isPrivateIP(currentHost)) ||
+                       isDevelopmentMode();
     
-    // 检查是否为允许的域名
+    // 如果是本地开发环境，允许访问
+    if (isLocalDev) {
+        console.log('🔓 本地开发环境，允许访问');
+        return;
+    }
+    
+    // 第三优先级：检查是否为允许的域名
     const isDomainAllowed = ALLOWED_DOMAINS.includes(currentHost);
-      // 如果是IP访问或不在允许域名列表中，直接断开连接
+    if (isDomainAllowed) {
+        console.log('✅ 授权域名访问');
+        return;
+    }
+      // 第四优先级：拦截所有其他IP访问和未授权域名
     if (isIP || !isDomainAllowed) {
-        // 记录拦截日志（静默模式，不在console输出避免暴露）
+        console.log('🚫 拦截未授权访问:', currentHost);
+        
+        // 记录拦截日志（静默模式）
         
         // 立即停止页面加载
         if (window.stop) {
@@ -97,7 +125,6 @@
         
         // 强制停止所有网络请求
         if (navigator.sendBeacon) {
-            // 发送最后一个信号表示连接被拒绝
             navigator.sendBeacon('data:text/plain,connection_denied');
         }
         
