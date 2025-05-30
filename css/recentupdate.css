@@ -262,8 +262,19 @@ body {
     animation: pulse 2s infinite;
 }
 
+.status-loading {
+    background: #2196F3 !important;
+    animation: pulse 1s infinite !important;
+}
+
+.status-success {
+    background: #4CAF50 !important;
+    animation: pulse 2s infinite !important;
+}
+
 .status-error {
-    background: #f44336;
+    background: #f44336 !important;
+    animation: none !important;
 }
 
 .github-input {
@@ -361,6 +372,21 @@ body {
     color: white;
     font-weight: bold;
     font-size: 0.8rem;
+}
+
+.contributor-avatar-container {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.contributor-avatar-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 @media (max-width: 768px) {

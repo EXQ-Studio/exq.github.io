@@ -1,7 +1,21 @@
 // EXQ Studio IP访问拦截器
-// 禁止通过IP地址直接访问网站
+// 禁止通过IP地址直接访问网站，但允许本地开发
 (function() {
     'use strict';
+    
+    // 开发模式检测 - 可以通过URL参数或localStorage设置
+    const isDevelopmentMode = () => {
+        // 检查URL参数
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('dev') === 'true') return true;
+        
+        // 检查localStorage
+        try {
+            if (localStorage.getItem('dev_mode') === 'true') return true;
+        } catch(e) {}
+        
+        return false;
+    };
     
     // 允许的域名列表
     const ALLOWED_DOMAINS = [
@@ -10,7 +24,35 @@
         'exq-studio.github.io'
     ];
     
+    // 本地开发环境检测
+    const LOCAL_HOSTS = [
+        'localhost',
+        '127.0.0.1',
+        '::1',
+        ''  // 本地文件协议 (file://)
+    ];
+    
     const currentHost = window.location.hostname;
+    const currentProtocol = window.location.protocol;
+    
+    // 检查是否为本地开发环境
+    const isLocalDev = LOCAL_HOSTS.includes(currentHost) || 
+                       currentProtocol === 'file:' ||
+                       currentHost.startsWith('127.') ||
+                       currentHost.startsWith('192.168.') ||
+                       currentHost.startsWith('10.') ||
+                       isDevelopmentMode();
+    
+    // 如果是本地开发环境，直接允许访问
+    if (isLocalDev) {
+        console.log('🔓 本地开发环境检测到，允许访问');
+        console.log('💡 环境信息:', {
+            host: currentHost,
+            protocol: currentProtocol,
+            devMode: isDevelopmentMode()
+        });
+        return;
+    }
     
     // 检查是否为IP地址
     const isIP = /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(currentHost);

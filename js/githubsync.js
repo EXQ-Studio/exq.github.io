@@ -19,10 +19,9 @@ async function syncGitHub() {
     syncInProgress = true;
     button.disabled = true;
     button.innerHTML = '<span>⏳</span>同步中...';
-    updateStatus('loading', '正在获取最新数据...');
-
-    try {
+    updateStatus('loading', '正在获取最新数据...');    try {
         // 获取仓库信息（包含总提交数）
+        updateStatus('loading', '正在获取仓库信息...');
         const repoResponse = await fetch(`https://api.github.com/repos/${repo}`);
         if (!repoResponse.ok) {
             throw new Error(`GitHub API 错误: ${repoResponse.status}`);
@@ -30,6 +29,7 @@ async function syncGitHub() {
         const repoInfo = await repoResponse.json();
 
         // 获取所有贡献者信息
+        updateStatus('loading', '正在获取贡献者信息...');
         const contributorsResponse = await fetch(`https://api.github.com/repos/${repo}/contributors?per_page=100`);
         if (!contributorsResponse.ok) {
             throw new Error(`获取贡献者失败: ${contributorsResponse.status}`);
@@ -37,6 +37,7 @@ async function syncGitHub() {
         const contributors = await contributorsResponse.json();
 
         // 获取最近的提交数据用于统计
+        updateStatus('loading', '正在获取提交记录...');
         const commitsResponse = await fetch(`https://api.github.com/repos/${repo}/commits?per_page=100`);
         if (!commitsResponse.ok) {
             throw new Error(`获取提交记录失败: ${commitsResponse.status}`);
@@ -45,6 +46,7 @@ async function syncGitHub() {
         commitData = commits;
 
         // 更新统计数据
+        updateStatus('loading', '正在处理数据...');
         updateStatistics(commits, repoInfo, contributors);
 
         // 更新图表
@@ -56,11 +58,41 @@ async function syncGitHub() {
         // 更新提交历史
         updateCommitHistory(commits);
 
-        updateStatus('success', `同步成功！总计 ${repoInfo.size || 0}KB 代码，${contributors.length} 位贡献者`);
-
-    } catch (error) {
+        updateStatus('success', `同步成功！总计 ${repoInfo.size || 0}KB 代码，${contributors.length} 位贡献者`);} catch (error) {
         console.error('同步失败:', error);
-        updateStatus('error', `同步失败: ${error.message}`);
+        
+        // 根据错误类型提供不同的处理建议
+        let errorMessage = '同步失败: ';
+        let suggestion = '';
+        
+        if (error.message.includes('Failed to fetch')) {
+            errorMessage += '网络连接失败';
+            suggestion = '请检查网络连接或稍后重试';
+        } else if (error.message.includes('404')) {
+            errorMessage += '仓库不存在';
+            suggestion = '请检查仓库地址是否正确';
+        } else if (error.message.includes('403')) {
+            errorMessage += 'API访问受限';
+            suggestion = 'GitHub API访问频率限制，请稍后重试';
+        } else if (error.message.includes('CORS')) {
+            errorMessage += '跨域访问被阻止';
+            suggestion = '请检查安全策略设置';
+        } else {
+            errorMessage += error.message;
+            suggestion = '请稍后重试或联系技术支持';
+        }
+        
+        updateStatus('error', `${errorMessage} - ${suggestion}`);
+        
+        // 为贡献者列表提供默认内容
+        const contributorsContainer = document.querySelector('.contributors-list');
+        if (contributorsContainer) {
+            contributorsContainer.innerHTML = `
+                <div style="color: #666; font-style: italic; padding: 10px;">
+                    ⚠️ 无法加载贡献者信息，请稍后重试
+                </div>
+            `;
+        }
     } finally {
         syncInProgress = false;
         button.disabled = false;
@@ -72,9 +104,18 @@ function updateStatus(type, message) {
     const indicator = document.getElementById('statusIndicator');
     const status = document.getElementById('statusText');
 
+    if (!indicator || !status) {
+        console.error('状态指示器元素未找到');
+        return;
+    }
+
     indicator.className = 'status-indicator';
-    if (type === 'error') {
+    if (type === 'loading') {
+        indicator.classList.add('status-loading');
+    } else if (type === 'error') {
         indicator.classList.add('status-error');
+    } else if (type === 'success') {
+        indicator.classList.add('status-success');
     }
 
     status.textContent = message;
@@ -115,7 +156,10 @@ function updateStatistics(commits, repoInfo, contributors) {
 
 function updateContributorsList(contributors) {
     const contributorsContainer = document.querySelector('.contributors-list');
-    if (!contributorsContainer) return;
+    if (!contributorsContainer) {
+        console.error('找不到贡献者容器元素');
+        return;
+    }
 
     contributorsContainer.innerHTML = '';
 
@@ -124,21 +168,21 @@ function updateContributorsList(contributors) {
         .sort((a, b) => b.contributions - a.contributions)
         .slice(0, 10);
 
-    sortedContributors.forEach(contributor => {
+    sortedContributors.forEach((contributor, index) => {
         const contributorElement = document.createElement('div');
         contributorElement.className = 'contributor';
         
         contributorElement.innerHTML = `
-            <div class="contributor-avatar" style="position: relative;">
+            <div class="contributor-avatar-container" style="position: relative; width: 32px; height: 32px;">
                 <img src="${contributor.avatar_url}" 
                      alt="${contributor.login}" 
-                     style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;"
+                     style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; display: block; background: none;"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div style="display: none; width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(45deg, #667eea, #764ba2); color: white; align-items: center; justify-content: center; font-weight: bold; font-size: 14px;">
+                <div style="display: none; width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(45deg, #667eea, #764ba2); color: white; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; position: absolute; top: 0; left: 0;">
                     ${contributor.login.charAt(0).toUpperCase()}
                 </div>
             </div>
-            <span>${contributor.login}</span>
+            <span style="margin-left: 8px;">${contributor.login}</span>
             <span style="font-size: 12px; color: #666; margin-left: auto;">${contributor.contributions} commits</span>
         `;
 
