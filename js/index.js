@@ -5,8 +5,6 @@ function forceIOSBackground() {
     const isSafari = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
     
     if (isIOS || isSafari || 'ontouchstart' in window) {
-        console.log('检测到iOS/Safari设备，强制设置背景');
-        
         // 强制设置html和body的背景
         const htmlElement = document.documentElement;
         const bodyElement = document.body;
@@ -29,10 +27,8 @@ function forceIOSBackground() {
         setTimeout(() => {
             const computedStyle = window.getComputedStyle(bodyElement);
             const background = computedStyle.background || computedStyle.backgroundColor;
-            console.log('当前body背景:', background);
             
             if (!background.includes('gradient') && !background.includes('rgb')) {
-                console.log('背景仍未生效，再次强制设置');
                 bodyElement.style.cssText += `
                     background: linear-gradient(45deg, #146c8a, #add8e6) !important;
                     background-size: 100% 100% !important;

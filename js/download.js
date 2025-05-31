@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     popup.style.alignItems = 'center';
                 }
                 
-                console.log('移动端按钮位置修复已应用');
+                // 移动端按钮位置修复已应用（静默处理）
             }
         }
         

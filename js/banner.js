@@ -3,8 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
     var isActivityOn = true; // 若需要显示横幅，请将此变量改为 true，反之则改为 false
 
     if (isActivityOn) {
-        console.log('初始化横幅...'); // 调试信息
-        
         var banner = document.createElement('div');
         banner.className = 'banner';
         banner.innerHTML = '<span>EXQ Studio 网站发布正式版本！<a href="recentupdate.html">>点此查看最近更新<</a></span><span class="close-btn">×</span>';
@@ -16,15 +14,10 @@ document.addEventListener('DOMContentLoaded', function () {
         
         // 为body添加banner-active类，提供顶部间距
         document.body.classList.add('banner-active');
-        
-        console.log('横幅已添加到页面'); // 调试信息
 
         closeBtn.addEventListener('click', function () {
             banner.style.display = 'none'; // 隐藏横幅
             document.body.classList.remove('banner-active'); // 移除顶部间距
-            console.log('横幅已关闭'); // 调试信息
         });
-    } else {
-        console.log('横幅功能已禁用'); // 调试信息
     }
 });
