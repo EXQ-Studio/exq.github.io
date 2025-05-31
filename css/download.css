@@ -564,3 +564,10 @@ body {
         transform: translateY(0);
     }
 }
+
+/* 修复 iOS 不支持 background-attachment: fixed 导致背景不显示的问题 */
+@media (max-width: 768px) {
+    body {
+        background-attachment: scroll !important;
+    }
+}

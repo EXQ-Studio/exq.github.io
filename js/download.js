@@ -56,9 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     // 触摸设备优化 - 防止双击缩放
     if ('ontouchstart' in window) {
-        closeBtn.addEventListener('touchstart', function(e) {
-            e.preventDefault();
-        });
+        // 移除 touchstart.preventDefault 以确保 click 事件正常触发
         
         // 为移动端添加触觉反馈（如果支持）
         closeBtn.addEventListener('click', function() {
