@@ -75,6 +75,22 @@ html {
     touch-action: pan-y;
     overscroll-behavior: none;
     -webkit-overflow-scrolling: touch;
+    /* iOS Safari 触摸优化 */
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+}
+
+/* iOS Safari 触摸事件优化 */
+@supports (-webkit-appearance: none) {
+    .pages {
+        touch-action: manipulation;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+    }
 }
 
 .pages.loaded {
