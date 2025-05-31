@@ -23,49 +23,45 @@ body {
     transform: translate(-50%, -50%);
     background: white;
     padding: 30px;
-    border-radius: 12px;
+    border-radius: 8px;
     width: 380px;
     max-width: 90vw;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     background: white;
 }
 
 .container h1 {
-    color: #333;
     font-size: 1.8em;
-    text-align: center;
-    margin-bottom: 15px;
+    text-align: left;
+    margin-bottom: 8px;
 }
 
 .container>p {
-    padding-top: 10px;
     color: #666;
     font-size: 1.1em;
-    text-align: center;
-    line-height: 1.5;
-    margin-bottom: 10px;
 }
 
 .msg {
-    font-size: 20px;
-    color: #666;
+    font-size: 18px;
 }
 
 .back-button {
     display: block;
+    /* 改为块级元素 */
     width: max-content;
-    margin: 25px auto 0 auto;
-    padding: 12px 25px;
-    font-size: 1.1em;
+    /* 保持原有内容宽度 */
+    margin: 30px 0 0 auto;
+    /* 上边距30px + 右对齐 */
+    padding: 10px 20px;
+    font-size: 1em;
     color: #fff;
     background-color: #007bff;
     border: none;
     border-radius: var(--radius-button);
     text-decoration: none;
-    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     cursor: pointer;
     transition: all 0.3s ease;
-    font-weight: 500;
 }
 
 .back-button:hover {
@@ -198,9 +194,11 @@ nav {
 
     .menu-toggle {
         display: block;
-    }    .container {
-        width: 95%;
-        max-width: 400px;
-        padding: 25px;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 300px;
+        padding: var(--spacing-lg);
     }
 }
