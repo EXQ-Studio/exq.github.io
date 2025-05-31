@@ -18,11 +18,6 @@
   ],
   "offers": [
     {
-      "@type": "Service",
-      "name": "CoreBox工具箱",
-      "description": "强大的核心工具箱，集成多种实用功能"
-    },
-    {
       "@type": "Service", 
       "name": "技术论坛",
       "description": "活跃的技术交流社区"

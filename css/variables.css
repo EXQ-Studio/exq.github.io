@@ -10,7 +10,7 @@
 
   /* 背景渐变 */
   --gradient-primary: linear-gradient(135deg, #667eea, #764ba2);
-  --gradient-hero: linear-gradient(45deg, #146c8a, #add8e6);
+  --gradient-hero: linear-gradient(135deg, #667eea, #764ba2);
   --gradient-download: linear-gradient(165deg, #43cea2, #2fa886, #236f92, #185a9d);
   --gradient-about: linear-gradient(45deg, #FFD700, #FF4500);
   --gradient-home-rules: linear-gradient(135deg, #ff6b6b, #ee5a24);
