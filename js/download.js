@@ -58,6 +58,38 @@ document.addEventListener('DOMContentLoaded', function () {
     if ('ontouchstart' in window) {
         // 移除 touchstart.preventDefault 以确保 click 事件正常触发
         
+        // 移动端按钮位置动态修复
+        function fixMobileButtonPosition() {
+            const isMobile = window.innerWidth <= 768;
+            if (isMobile && closeBtn) {
+                // 强制设置按钮样式
+                closeBtn.style.position = 'relative';
+                closeBtn.style.left = 'auto';
+                closeBtn.style.right = 'auto';
+                closeBtn.style.margin = '20px auto 10px auto';
+                closeBtn.style.display = 'block';
+                closeBtn.style.width = 'auto';
+                closeBtn.style.maxWidth = '200px';
+                closeBtn.style.minWidth = '120px';
+                closeBtn.style.textAlign = 'center';
+                
+                // 确保父容器支持居中
+                if (popup) {
+                    popup.style.display = 'flex';
+                    popup.style.flexDirection = 'column';
+                    popup.style.alignItems = 'center';
+                }
+                
+                console.log('移动端按钮位置修复已应用');
+            }
+        }
+        
+        // 页面加载时修复
+        setTimeout(fixMobileButtonPosition, 200);
+        
+        // 窗口大小变化时重新修复
+        window.addEventListener('resize', fixMobileButtonPosition);
+        
         // 为移动端添加触觉反馈（如果支持）
         closeBtn.addEventListener('click', function() {
             if ('vibrate' in navigator) {
