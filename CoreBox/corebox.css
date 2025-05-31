@@ -30,8 +30,50 @@ body {
     background-repeat: no-repeat;
     /* 不重复显示背景 */
     min-height: 100vh;
-    overflow-x: hidden;
-    position: relative;
+}
+
+/* iOS Safari 特殊修复 - 强制背景显示 */
+@supports (-webkit-appearance: none) {
+    body {
+        background: linear-gradient(45deg, #236f92, #2fa886) !important;
+        background-attachment: scroll !important;
+        background-size: 100% 100% !important;
+        background-position: 0 0 !important;
+        background-repeat: no-repeat !important;
+        min-height: 100vh !important;
+    }
+}
+
+/* 修复 iOS 不支持 background-attachment: fixed 导致背景不显示的问题 */
+@media (max-width: 768px) {
+    body {
+        background-attachment: scroll !important;
+        background: linear-gradient(45deg, #236f92, #2fa886) !important;
+        background-size: 100% 100% !important;
+        background-position: 0 0 !important;
+        background-repeat: no-repeat !important;
+    }
+}
+
+/* iOS Safari 额外修复 - WebKit特定 */
+@media screen and (-webkit-min-device-pixel-ratio: 1) {
+    body {
+        background: linear-gradient(45deg, #236f92, #2fa886) !important;
+        background-attachment: scroll !important;
+        background-size: 100% 100% !important;
+        min-height: 100vh !important;
+    }
+}
+
+/* 移动设备通用背景修复 */
+@media only screen and (max-device-width: 1024px) {
+    body {
+        background: linear-gradient(45deg, #236f92, #2fa886) !important;
+        background-attachment: scroll !important;
+        background-size: 100% 100% !important;
+        background-position: 0 0 !important;
+        background-repeat: no-repeat !important;
+    }
 }
 
 /* 主要内容区域 */

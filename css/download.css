@@ -30,8 +30,46 @@ body {
     body {
         background: linear-gradient(165deg, #43cea2, #2fa886, #236f92, #185a9d) !important;
         background-attachment: scroll !important;
+        background-size: 100% 100% !important;
+        background-position: 0 0 !important;
+        background-repeat: no-repeat !important;
         animation: none !important;
         min-height: 100vh !important;
+    }
+}
+
+/* 修复 iOS 不支持 background-attachment: fixed 导致背景不显示的问题 */
+@media (max-width: 768px) {
+    body {
+        background-attachment: scroll !important;
+        background: linear-gradient(165deg, #43cea2, #2fa886, #236f92, #185a9d) !important;
+        background-size: 100% 100% !important;
+        background-position: 0 0 !important;
+        background-repeat: no-repeat !important;
+        animation: none !important;
+    }
+}
+
+/* iOS Safari 额外修复 - WebKit特定 */
+@media screen and (-webkit-min-device-pixel-ratio: 1) {
+    body {
+        background: linear-gradient(165deg, #43cea2, #2fa886, #236f92, #185a9d) !important;
+        background-attachment: scroll !important;
+        background-size: 100% 100% !important;
+        animation: none !important;
+        min-height: 100vh !important;
+    }
+}
+
+/* 移动设备通用背景修复 */
+@media only screen and (max-device-width: 1024px) {
+    body {
+        background: linear-gradient(165deg, #43cea2, #2fa886, #236f92, #185a9d) !important;
+        background-attachment: scroll !important;
+        background-size: 100% 100% !important;
+        background-position: 0 0 !important;
+        background-repeat: no-repeat !important;
+        animation: none !important;
     }
 }
 
