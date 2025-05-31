@@ -376,71 +376,92 @@ body {
         background-color: #0056b3;
         transform: scale(0.98);
     }
-    
-    /* 确保移动端触摸区域足够大并居中 */
-    .OK {
-        min-height: 48px;
-        min-width: 48px;
-        position: relative !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        display: block !important;
-    }
 }
 
-/* 移动端按钮额外居中修复 */
+/* 移动端按钮完全重新定义 - 最高优先级 */
 @media screen and (max-width: 768px) {
-    .popup .OK {
-        margin-left: auto !important;
-        margin-right: auto !important;
-        text-align: center;
-        justify-self: center;
-    }
-}
-
-/* 移动端按钮位置强制修复 - 最高优先级 */
-@media screen and (max-width: 768px) {
-    .popup .OK,
-    button.OK,
-    .OK {
-        /* 强制重置所有定位相关属性 */
-        position: relative !important;
-        left: auto !important;
-        right: auto !important;
-        top: auto !important;
-        bottom: auto !important;
-        
-        /* 强制居中布局 */
-        display: block !important;
-        margin: 20px auto 10px auto !important;
-        width: auto !important;
-        max-width: 200px !important;
-        min-width: 120px !important;
-        
-        /* 文本居中 */
-        text-align: center !important;
-        
-        /* Flexbox父容器对齐 */
-        align-self: center !important;
-        justify-self: center !important;
-    }
-    
-    /* 确保弹窗容器支持居中 */
+    /* 确保弹窗使用flexbox布局并内容居中 */
     .popup {
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
         justify-content: flex-start !important;
+        position: relative !important;
+        text-align: center !important;
     }
     
-    /* 弹窗内容区域保持正确布局 */
+    /* 弹窗内所有直接子元素都居中 */
     .popup > * {
-        width: 100%;
-        text-align: center;
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        text-align: center !important;
     }
     
+    /* 消息文本特殊处理，保持左对齐便于阅读 */
     .popup .msg {
-        text-align: left !important; /* 消息文本保持左对齐 */
+        text-align: left !important;
+        padding: 0 10px !important;
+    }
+    
+    /* 按钮完全重置和居中 - 使用多个选择器确保覆盖 */
+    .popup .OK,
+    button.OK,
+    .OK,
+    #closeBtn,
+    .popup #closeBtn,
+    .popup button.OK {
+        /* 移除absolute定位 */
+        position: static !important;
+        left: unset !important;
+        right: unset !important;
+        top: unset !important;
+        bottom: unset !important;
+        
+        /* 使用block + margin auto实现水平居中 */
+        display: block !important;
+        margin: 20px auto 0 auto !important;
+        
+        /* 设置合适的宽度 */
+        width: 120px !important;
+        min-width: 120px !important;
+        max-width: 120px !important;
+        min-height: 48px !important;
+        
+        /* 文本居中 */
+        text-align: center !important;
+        
+        /* 其他样式 */
+        padding: 12px 20px !important;
+        border-radius: 5px !important;
+        
+        /* 移除可能干扰的flexbox属性 */
+        align-self: auto !important;
+        justify-self: auto !important;
+        flex: none !important;
+        
+        /* 确保按钮在容器中绝对居中 */
+        transform: translateX(0) !important;
+    }
+}
+
+/* 专门针对closeBtn ID的强制居中规则 */
+@media screen and (max-width: 768px) {
+    #closeBtn {
+        /* 强制覆盖所有可能的定位 */
+        position: relative !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        right: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+        margin: 20px 0 0 0 !important;
+        
+        /* 确保按钮尺寸 */
+        width: 120px !important;
+        min-height: 48px !important;
+        display: block !important;
+        text-align: center !important;
     }
 }
 
