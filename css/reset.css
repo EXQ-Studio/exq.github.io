@@ -7,9 +7,6 @@
 
 html {
     scroll-behavior: smooth;
-    background: linear-gradient(45deg, #146c8a, #add8e6) !important;
-    background-size: 100% 100% !important;
-    background-attachment: scroll !important;
     min-height: 100vh;
 }
 
@@ -17,9 +14,6 @@ body {
     font-family: 'Noto Sans SC', sans-serif;
     line-height: 1.6;
     color: var(--text-primary);
-    background: linear-gradient(45deg, #146c8a, #add8e6) !important;
-    background-size: 100% 100% !important;
-    background-attachment: scroll !important;
     min-height: 100vh;
 }
 
