@@ -3,64 +3,94 @@
 @import url('reset.css');
 @import url('animations.css');
 
+/* iOS Safari 强制背景修复 - 必须在最前面 */
+html, body {
+    background: linear-gradient(45deg, #146c8a, #add8e6) !important;
+    background-size: 100% 100% !important;
+    background-attachment: scroll !important;
+    background-repeat: no-repeat !important;
+}
+
+/* iOS Safari 特殊检测和强制修复 */
+@supports (-webkit-overflow-scrolling: touch) {
+    html, body {
+        background: linear-gradient(45deg, #146c8a, #add8e6) !important;
+        background-size: 100% 100% !important;
+        background-attachment: scroll !important;
+        background-repeat: no-repeat !important;
+        -webkit-background-size: 100% 100% !important;
+    }
+}
+
 @font-face {
     font-family: 'Noto Sans SC';
     src: local('Noto Sans SC'),
         local('Noto Sans CJK SC');
 }
 
-body {
-    background: var(--gradient-hero) no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
+html {
+    background: linear-gradient(45deg, #146c8a, #add8e6) !important;
+    background-size: 100% 100% !important;
+    background-attachment: scroll !important;
     min-height: 100vh;
+}
+
+body {
+    background: linear-gradient(45deg, #146c8a, #add8e6) !important;
+    background-size: 100% 100% !important;
+    background-position: center !important;
+    background-attachment: scroll !important;
+    background-repeat: no-repeat !important;
+    min-height: 100vh !important;
     overflow-x: hidden;
     position: relative;
 }
 
 /* iOS Safari 特殊修复 - 强制背景显示 */
 @supports (-webkit-appearance: none) {
-    body {
+    html, body {
         background: linear-gradient(45deg, #146c8a, #add8e6) !important;
         background-attachment: scroll !important;
         background-size: 100% 100% !important;
         background-position: 0 0 !important;
         background-repeat: no-repeat !important;
         min-height: 100vh !important;
+        -webkit-background-size: 100% 100% !important;
     }
 }
 
 /* 修复 iOS 不支持 background-attachment: fixed 导致背景不显示的问题 */
 @media (max-width: 768px) {
-    body {
+    html, body {
         background-attachment: scroll !important;
         background: linear-gradient(45deg, #146c8a, #add8e6) !important;
         background-size: 100% 100% !important;
         background-position: 0 0 !important;
         background-repeat: no-repeat !important;
+        -webkit-background-size: 100% 100% !important;
     }
 }
 
 /* iOS Safari 额外修复 - WebKit特定 */
 @media screen and (-webkit-min-device-pixel-ratio: 1) {
-    body {
+    html, body {
         background: linear-gradient(45deg, #146c8a, #add8e6) !important;
         background-attachment: scroll !important;
         background-size: 100% 100% !important;
         min-height: 100vh !important;
+        -webkit-background-size: 100% 100% !important;
     }
 }
 
 /* 移动设备通用背景修复 */
 @media only screen and (max-device-width: 1024px) {
-    body {
+    html, body {
         background: linear-gradient(45deg, #146c8a, #add8e6) !important;
         background-attachment: scroll !important;
         background-size: 100% 100% !important;
         background-position: 0 0 !important;
         background-repeat: no-repeat !important;
+        -webkit-background-size: 100% 100% !important;
     }
 }
 
