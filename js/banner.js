@@ -12,12 +12,11 @@ document.addEventListener('DOMContentLoaded', function () {
         // 将横幅添加到页面顶部
         document.body.insertBefore(banner, document.body.firstChild);
         
-        // 为body添加banner-active类，提供顶部间距
-        document.body.classList.add('banner-active');
+        // 横幅设为浮动覆盖，不影响页面布局
 
         closeBtn.addEventListener('click', function () {
             banner.style.display = 'none'; // 隐藏横幅
-            document.body.classList.remove('banner-active'); // 移除顶部间距
+            // 横幅隐藏时不需要移除任何类，因为没有添加影响布局的类
         });
     }
 });

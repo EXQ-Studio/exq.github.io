@@ -531,10 +531,8 @@ body {
     }
 }
 
-/* 当横幅显示时，为页面内容添加顶部间距 */
-body.banner-active {
-    padding-top: 120px; /* 导航栏60px + 横幅约60px */
-}
+/* 当横幅显示时，不添加顶部间距 - 让横幅完全浮动覆盖 */
+/* 移除 body.banner-active 的 padding-top 以避免推挤页面内容 */
 
 /* 移动端响应式调整 */
 @media (max-width: 768px) {
@@ -546,9 +544,5 @@ body.banner-active {
     .banner .close-btn {
         right: 15px;
         font-size: 16px;
-    }
-    
-    body.banner-active {
-        padding-top: 110px; /* 移动端稍微调整 */
     }
 }
