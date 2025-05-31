@@ -18,6 +18,15 @@ html {
     font-family: var(--font-noto-sans), sans-serif;
 }
 
+/* iOS Safari 特殊修复 - 强制背景显示 */
+@supports (-webkit-appearance: none) {
+    body, html {
+        background: linear-gradient(45deg, #FFD700, #FF4500) !important;
+        background-attachment: scroll !important;
+        min-height: 100vh !important;
+    }
+}
+
 .pages {
     height: 100vh;
     display: none;
@@ -28,8 +37,9 @@ html {
     opacity: 0;
     transition: opacity 0.8s ease;
     visibility: hidden;
-    touch-action: none;
-    overscroll-behavior: contain;
+    touch-action: pan-y;
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
 }
 
 .pages.loaded {
@@ -616,6 +626,14 @@ html {
     .pages {
         touch-action: pan-y;
         -webkit-overflow-scrolling: touch;
+        overscroll-behavior: none;
+    }
+    
+    /* 强制启用触摸滑动 */
+    .page {
+        touch-action: pan-y;
+        -webkit-user-select: none;
+        user-select: none;
     }
 }
 

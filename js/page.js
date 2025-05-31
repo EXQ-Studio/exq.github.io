@@ -373,92 +373,80 @@ function initializePages() {
                 }
             }
         }
-    }
-
-    function setupEventListeners() {
+    }    function setupEventListeners() {
         // 鼠标滚轮事件
         document.querySelector('.pages').addEventListener('wheel', handleWheel);
 
-        // 触摸事件（只在移动端启用）
-        if (window.innerWidth <= 768) {
+        // 触摸事件（改进的移动端支持）
+        if (window.innerWidth <= 768 || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
             let touchStartY = 0;
             let touchStartX = 0;
             let touchStartTime = 0;
-            let touchTimeout = null;
             let isTouching = false;
+            let lastChangePage = 0;
 
-            document.querySelector('.pages').addEventListener('touchstart', (e) => {
+            const pagesElement = document.querySelector('.pages');
+            
+            pagesElement.addEventListener('touchstart', (e) => {
                 touchStartY = e.touches[0].clientY;
                 touchStartX = e.touches[0].clientX;
                 touchStartTime = Date.now();
                 isTouching = true;
-                
-                // 清除之前的超时
-                if (touchTimeout) {
-                    clearTimeout(touchTimeout);
-                    touchTimeout = null;
-                }
+                console.log('Touch start:', touchStartY);
             }, { passive: true });
 
-            document.querySelector('.pages').addEventListener('touchmove', (e) => {
+            pagesElement.addEventListener('touchmove', (e) => {
                 if (!isTouching) return;
                 
-                // 防止页面滚动
-                e.preventDefault();
+                const touchCurrentY = e.touches[0].clientY;
+                const touchCurrentX = e.touches[0].clientX;
+                const deltaY = touchStartY - touchCurrentY;
+                const deltaX = touchStartX - touchCurrentX;
                 
-                const touchEndY = e.touches[0].clientY;
-                const touchEndX = e.touches[0].clientX;
-                const deltaY = touchStartY - touchEndY;
-                const deltaX = touchStartX - touchEndX;
-                
-                // 检查是否为垂直滑动（而不是水平滑动）
-                if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 30) {
-                    // 防抖处理
-                    if (touchTimeout) {
-                        clearTimeout(touchTimeout);
-                    }
-                    
-                    touchTimeout = setTimeout(() => {
-                        if (!isScrolling && isTouching) {
-                            if (deltaY > 50 && currentPage < pages.length - 1) {
-                                changePage(1);
-                                isTouching = false;
-                            } else if (deltaY < -50 && currentPage > 0) {
-                                changePage(-1);
-                                isTouching = false;
-                            }
-                        }
-                    }, 100);
+                // 只处理垂直滑动，且滑动距离足够
+                if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 20) {
+                    e.preventDefault();
+                    console.log('Touch move deltaY:', deltaY);
                 }
             }, { passive: false });
 
-            document.querySelector('.pages').addEventListener('touchend', (e) => {
+            pagesElement.addEventListener('touchend', (e) => {
+                if (!isTouching) return;
+                
                 const touchEndTime = Date.now();
                 const touchDuration = touchEndTime - touchStartTime;
+                const touchEndY = e.changedTouches[0].clientY;
+                const deltaY = touchStartY - touchEndY;
+                const now = Date.now();
                 
-                // 快速滑动检测
-                if (touchDuration < 300 && isTouching) {
-                    const touchEndY = e.changedTouches[0].clientY;
-                    const deltaY = touchStartY - touchEndY;
-                    
-                    if (Math.abs(deltaY) > 80 && !isScrolling) {
-                        if (deltaY > 0 && currentPage < pages.length - 1) {
-                            changePage(1);
-                        } else if (deltaY < 0 && currentPage > 0) {
-                            changePage(-1);
-                        }
+                console.log('Touch end - deltaY:', deltaY, 'duration:', touchDuration, 'isScrolling:', isScrolling);
+                
+                // 防止频繁切换页面
+                if (now - lastChangePage < 800) {
+                    isTouching = false;
+                    return;
+                }
+                
+                // 判断滑动方向和距离
+                if (Math.abs(deltaY) > 50 && !isScrolling) {
+                    if (deltaY > 0 && currentPage < pages.length - 1) {
+                        // 向上滑动，下一页
+                        console.log('Next page');
+                        changePage(1);
+                        lastChangePage = now;
+                    } else if (deltaY < 0 && currentPage > 0) {
+                        // 向下滑动，上一页
+                        console.log('Previous page');
+                        changePage(-1);
+                        lastChangePage = now;
                     }
                 }
                 
                 isTouching = false;
-                if (touchTimeout) {
-                    clearTimeout(touchTimeout);
-                    touchTimeout = null;
-                }
             }, { passive: true });
 
-            // 阻止双击缩放（只在移动端）
-            document.querySelector('.pages').addEventListener('touchstart', (e) => {
+            // 阻止双击缩放
+            pagesElement.addEventListener('touchstart', (e) => {
                 if (e.touches.length > 1) {
                     e.preventDefault();
                 }

@@ -20,10 +20,20 @@ body {
     position: relative;
 }
 
+/* iOS Safari 特殊修复 - 强制背景显示 */
+@supports (-webkit-appearance: none) {
+    body {
+        background: linear-gradient(45deg, #146c8a, #add8e6) !important;
+        background-attachment: scroll !important;
+        min-height: 100vh !important;
+    }
+}
+
 /* 修复 iOS 不支持 background-attachment: fixed 导致背景不显示的问题 */
 @media (max-width: 768px) {
     body {
         background-attachment: scroll;
+        background: linear-gradient(45deg, #146c8a, #add8e6);
     }
 }
 

@@ -25,6 +25,16 @@ body {
     animation: gradientBG 15s ease infinite;
 }
 
+/* iOS Safari 特殊修复 - 强制背景显示 */
+@supports (-webkit-appearance: none) {
+    body {
+        background: linear-gradient(165deg, #43cea2, #2fa886, #236f92, #185a9d) !important;
+        background-attachment: scroll !important;
+        animation: none !important;
+        min-height: 100vh !important;
+    }
+}
+
 /* 背景渐变动画 */
 @keyframes gradientBG {
     0% {

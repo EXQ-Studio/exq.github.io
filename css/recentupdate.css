@@ -16,6 +16,14 @@ body {
     color: var(--text-dark);
 }
 
+/* iOS Safari 特殊修复 - 强制背景显示 */
+@supports (-webkit-appearance: none) {
+    body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        min-height: 100vh !important;
+    }
+}
+
 .container {
     max-width: 900px;
     margin: 0 auto;
