@@ -9,55 +9,57 @@
 <url>
  <loc>https://exqstudio.cn/</loc>
  <priority>1.0</priority>
- <lastmod>2025-05-27</lastmod>
+ <lastmod>2025-06-02</lastmod>
  <changefreq>weekly</changefreq>
 </url>
 
 <url>
  <loc>https://exqstudio.cn/index.html</loc>
  <priority>1.0</priority>
- <lastmod>2025-05-27</lastmod>
+ <lastmod>2025-06-02</lastmod>
  <changefreq>weekly</changefreq>
 </url>
 
 <url>
  <loc>https://exqstudio.cn/about.html</loc>
  <priority>0.8</priority>
- <lastmod>2025-05-27</lastmod>
+ <lastmod>2025-06-02</lastmod>
  <changefreq>monthly</changefreq>
 </url>
 
 <url>
  <loc>https://exqstudio.cn/download.html</loc>
  <priority>0.9</priority>
- <lastmod>2025-05-27</lastmod>
+ <lastmod>2025-06-02</lastmod>
  <changefreq>weekly</changefreq>
 </url>
 
 <url>
  <loc>https://exqstudio.cn/CoreBox/corebox.html</loc>
  <priority>0.9</priority>
- <lastmod>2025-05-27</lastmod>
+ <lastmod>2025-06-02</lastmod>
  <changefreq>weekly</changefreq>
 </url>
 
 <url>
  <loc>https://exqstudio.cn/CoreBox/historyversion.html</loc>
  <priority>0.6</priority>
- <lastmod>2025-05-27</lastmod>
+ <lastmod>2025-06-02</lastmod>
  <changefreq>monthly</changefreq>
 </url>
 
 <url>
  <loc>https://exqstudio.cn/donation.html</loc>
  <priority>0.7</priority>
- <lastmod>2025-05-27</lastmod>
+ <lastmod>2025-06-02</lastmod>
  <changefreq>monthly</changefreq>
 </url>
 
 <url>
  <loc>https://exqstudio.cn/recentupdate.html</loc>
  <priority>0.8</priority>
- <lastmod>2025-05-27</lastmod>
+ <lastmod>2025-06-02</lastmod>
  <changefreq>weekly</changefreq>
 </url>
+
+</urlset>
