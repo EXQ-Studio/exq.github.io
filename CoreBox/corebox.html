@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- 🛡️ EXQ Studio 安全防护框架 v1.0 -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://q1.qlogo.cn https://q2.qlogo.cn https://thirdqq.qlogo.cn https://blog-static.cnblogs.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: http:; font-src 'self' data:; connect-src 'self' https://api.github.com; form-action 'self'; base-uri 'self';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+    
+    <link rel="canonical" href="https://exqstudio.cn/CoreBox/corebox.html">
+    <meta name="description" content="CoreBox - 仅供一乐的工具箱，EXQ Studio 开发的强大核心工具箱，集成多种实用功能，助力您的工作效率。">
+    <meta name="keywords" content="CoreBox,工具箱,EXQ Studio,实用工具,软件下载">
+    <meta name="author" content="EXQ Studio">
+      <!-- Open Graph 标签 - 用于微信、QQ等社交分享预览 -->
+    <meta property="og:title" content="CoreBox - 仅供一乐的工具箱">
+    <meta property="og:description" content="CoreBox - 仅供一乐的工具箱，EXQ Studio 开发的强大核心工具箱，集成多种实用功能。">
+    <meta property="og:url" content="https://exqstudio.cn/CoreBox/corebox.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://exqstudio.cn/img/logo/LogoEXQStudio.png">
+    <meta property="og:site_name" content="EXQ Studio">
+    
+    <title>CoreBox - 仅供一乐的工具箱 | EXQ Studio</title>
+    <link rel="icon" sizes="16x16" href="../img/logo/LogoIcon.png" type="image/png">
+    <link rel="icon" sizes="32x32" href="../img/logo/LogoIcon.png" type="image/png">
+    <link rel="icon" sizes="48x48" href="../img/logo/LogoIcon.png" type="image/png">    <link rel="stylesheet" type="text/css" href="corebox.css">
+    <link rel="stylesheet" type="text/css" href="../template/footer.css">
+    <link rel="stylesheet" type="text/css" href="../template/navbar.css">
+</head>
+
+<body>
+    <!-- 动态背景粒子 -->
+    <div class="particles" id="particles"></div>
+
+    <!-- 导航栏 -->
+    <nav>        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <img src="../img/logo/LogoNavBar.png" alt="EXQ Studio">
+            </a>
+            <div class="menu-toggle" onclick="toggleMobileMenu()">☰</div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="https://forum.exqstudio.cn" target="_blank">论坛</a></li>
+                <li><a href="../download.html">下载</a></li>
+                <li><a href="corebox.html">CoreBox</a></li>
+                <li><a href="../about.html">关于团队</a></li>
+                <li><a href="https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=s9hmkfGoSf-wJU7F9utssiFY1H8n1Wm1&authKey=xn9gD93GzSQuPXeL6iGcDgVtqgeCgWuPGYUSSSGJUoztP/0fE0yZxwu7mb+Pvg0M&noverify=0&group_code=538933981"
+                        target="_blank">加入我们</a></li>
+                <li><a href="../donation.html">赞助我们</a></li>
+                <li><a href="../recentupdate.html">最近更新</a></li>            </ul>
+        </div>
+    </nav>
+
+    <!-- 主要内容区域 -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Core Box 工具箱</h1>
+            <p class="hero-subtitle">
+                一个免费、纯净、仅限娱乐的小工具箱<br><br>
+                提示：受限于作者的编程水平，目前只能开发出这点可能没什么用的功能，还有一些bug，敬请见谅。
+            </p>
+            <div class="cta-buttons">
+                <a href="#" class="cta-button cta-primary">
+                    立即下载
+                </a>
+                <a href="historyversion.html" class="cta-button cta-secondary" target="_blank">
+                    历史版本
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特色功能区域 -->
+    <section class="features-section">
+        <div class="features-container">
+            <h2 class="features-title">我们的特色</h2>
+            <div class="features-grid">
+                <!-- 系统优化工具 -->
+                <div class="feature-card">
+                    <a href="sys-optimizer.html">
+                        <span class="feature-icon">🚀</span>
+                        <h3 class="feature-title">系统性能调校</h3>
+                        <p class="feature-description">深度系统加速 | 冗余文件清理 | 启动项管理</p>
+                    </a>
+                </div>
+
+                <!-- 安全防护中心 -->
+                <div class="feature-card">
+                    <a href="security-center.html">
+                        <span class="feature-icon">🛡️</span>
+                        <h3 class="feature-title">安全防护套件</h3>
+                        <p class="feature-description">实时威胁拦截 | 隐私数据加密 | 漏洞修复</p>
+                    </a>
+                </div>
+
+                <!-- 维护工具箱 -->
+                <div class="feature-card">
+                    <a href="maintenance-toolkit.html">
+                        <span class="feature-icon">🔧</span>
+                        <h3 class="feature-title">智能维护工具</h3>
+                        <p class="feature-description">驱动管理 | 系统诊断 | 硬件健康检测</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+
+                <!-- 快速链接 -->
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://exqstudio.cn">首页</a></li>
+                        <li><a href="CoreBox/corebox.html">CoreBox</a></li>
+                        <li><a href="https://forum.exqstudio.cn">论坛</a></li>
+                        <li><a href="https://forum.exqstudio.cn">加入我们</a></li>
+                        <li><a href="https://forum.exqstudio.cn">赞助我们</a></li>
+                        <li><a href="https://forum.exqstudio.cn">最近更新</a></li>
+                    </ul>
+                </div>
+
+                <!-- 联系方式 -->
+                <div class="footer-section">
+                    <h4>联系我们</h4>
+                    <ul class="footer-links contact-links">
+                        <li><a href="https://github.com/EXQ-Studio/exq.github.io" target="_blank">GitHub</a></li>
+                        <li><a href="https://mail.qq.com" target="_blank">邮箱：exqstudio@exqstudio.cn</a></li>
+                        <li><a href="https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=s9hmkfGoSf-wJU7F9utssiFY1H8n1Wm1&authKey=xn9gD93GzSQuPXeL6iGcDgVtqgeCgWuPGYUSSSGJUoztP/0fE0yZxwu7mb+Pvg0M&noverify=0&group_code=538933981"
+                                target="_blank">QQ群: 538933981</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    © 2025 EXQ STUDIO. All rights reserved.
+                </div>
+            </div>        </div>
+    </footer>
+
+    <!-- JavaScript 文件 -->
+    <script src="../js/index.js"></script>
+    <script src="../js/nav.js"></script>
+</body>
+
+</html>
