@@ -4,31 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <!-- 🛡️ EXQ Studio 安全防护框架 v1.0 -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://q1.qlogo.cn https://q2.qlogo.cn https://thirdqq.qlogo.cn https://blog-static.cnblogs.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: http:; font-src 'self' data:; connect-src 'self' https://api.github.com; form-action 'self'; base-uri 'self';">
+    <!-- 🛡️ EXQ Studio 安全防护框架 v1.0 -->
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://q1.qlogo.cn https://q2.qlogo.cn https://thirdqq.qlogo.cn https://blog-static.cnblogs.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: http:; font-src 'self' data:; connect-src 'self' https://api.github.com; form-action 'self'; base-uri 'self';">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
-    
+
     <meta name="description" content="EXQ Studio下载页面 - 提供各种工具和病毒样本下载，请在虚拟机环境中安全使用，遵循安全操作规范。">
     <meta name="keywords" content="EXQ Studio,下载,工具下载,病毒样本,安全测试,虚拟机">
     <meta name="author" content="EXQ Studio">
     <link rel="canonical" href="https://exqstudio.cn/download.html">
-      <!-- Open Graph 标签 - 用于微信、QQ等社交分享预览 -->
+    <!-- Open Graph 标签 - 用于微信、QQ等社交分享预览 -->
     <meta property="og:title" content="下载页面 - EXQ Studio">
     <meta property="og:description" content="EXQ Studio下载页面 - 提供各种工具和病毒样本下载，请在虚拟机环境中安全使用。">
     <meta property="og:url" content="https://exqstudio.cn/download.html">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://exqstudio.cn/img/logo/LogoEXQStudio.png">
     <meta property="og:site_name" content="EXQ Studio">
-    
+
     <title>下载页面 - EXQ Studio</title>
     <link rel="stylesheet" href="css/download.css">
     <link rel="stylesheet" type="text/css" href="template/footer.css">
     <link rel="stylesheet" type="text/css" href="template/navbar.css">
     <link rel="icon" sizes="16x16" href="img/logo/LogoIcon.png" type="image/png">
-    <link rel="icon" sizes="32x32" href="img/logo/LogoIcon.png" type="image/png">    <link rel="icon" sizes="48x48" href="img/logo/LogoIcon.png" type="image/png">
+    <link rel="icon" sizes="32x32" href="img/logo/LogoIcon.png" type="image/png">
+    <link rel="icon" sizes="48x48" href="img/logo/LogoIcon.png" type="image/png">
 </head>
 
 <body>
@@ -48,25 +50,31 @@
                         target="_blank">加入我们</a></li>
                 <li><a href="donation.html">赞助我们</a></li>
                 <li><a href="recentupdate.html">最近更新</a></li>
-            </ul>        </div>
+            </ul>
+        </div>
     </nav>
     <!-- 弹窗部分 -->
     <div class="overlay" id="dlOverlay" role="dialog" aria-modal="true" aria-labelledby="popup-title">
         <div class="popup">
-            <h1 id="popup-title">欢迎来到 EXQ Studio 下载页面！</h1>            <p class="msg">
+            <h1 id="popup-title">欢迎来到 EXQ Studio 下载页面！</h1>
+            <p class="msg">
                 该页面为临时备用页面，在服务器恢复后会重新启用Alist网盘下载。<br>
                 <br>
                 在下载病毒样本前，请注意以下几点：<br>
                 1.<span class="important">该页面所有文件都是病毒样本</span>，解压密码一律为<span class="important">infected</span><br>
-                2.在处理病毒样本时请务必小心，<span class="important">不要在实体机上运行病毒程序</span>，<span class="important">必须使用虚拟机测试病毒程序</span>，<span class="important">禁止使用病毒破坏他人的机器</span>。<br>
-                3.<span class="important">我们对不当使用（比如在实体机上运行、传播）造成的损失概不负责。</span>
+                2.在处理病毒样本时请务必小心，<span class="important">不要在实体机上运行病毒程序</span>，<span
+                    class="important">必须使用虚拟机测试病毒程序</span>，<span class="important">禁止使用病毒破坏他人的机器</span>。<br>
+                3.<span class="important">我们对不当使用（比如在实体机上运行、传播）造成的损失概不负责。</span><br><br>
+                注：病毒样本名称标红的为恶意程序（病毒行为包括但不限于加密删除用户文件，传播自身……），在运行时需格外谨慎！<br>
+                标绿的为玩笑程序，通常无害.
             </p>
             <p class="note">
                 当你点击确定或下载病毒样本时，<span class="important">即视为同意以上规定</span><br><br><br></p>
-            <button class="OK" id="closeBtn" aria-label="确认并关闭弹窗">确定</button>        </div>
+            <button class="OK" id="closeBtn" aria-label="确认并关闭弹窗">确定</button>
+        </div>
     </div>
     <div class="background"></div>
-    
+
     <!-- 主页面内容 -->
     <div class="main-content">
         <div class="title">
@@ -74,196 +82,216 @@
             <p>警告：该页面所有文件都是病毒样本！下载时请小心处理，避免造成数据损失！<br>（解压密码一律为infected）</p>
         </div>
         <div class="container">
-        <div class="virus-list">
+            <div class="virus-list">
+                <div class="virus-item">
+                    <p>升天.exe</p>
+                    <a href="https://wwbxu.lanzouv.com/iseRE3k4285i" class="dl-button" target="_blank">点击下载</a>
+                    <a href="https://www.bilibili.com/video/BV1PPACznEeH/?spm_id_from=333.1387.homepage.video_card.click" class="dl-button" target="_blank">视频链接</a>
+  
+                </div>
 
-            <div class="virus-item">
-                <p>Windows_XP_Horror.exe</p>
-                <a href="https://wwzu.lanzouo.com/iGDsQ28ucvyd" target="_blank" class="dl-button">
-                    网盘下载
-                </a>
-                <a href="https://www.bilibili.com/video/BV13e4y1Q7Av/?spm_id_from=333.1387.upload.video_card.click"
-                    class="dl-button" target="_blank">
-                    跳转视频
-                </a>
-            </div>
+                <div class="virus-item">
+                    <p class="malicious_virus">磁碟机.exe</p>
+                    <a href="https://wwbxu.lanzouv.com/iuq0M3k4202h" class="dl-button" target="_blank">点击下载</a>
+                    <a href="https://www.bilibili.com/video/BV1JPz1BREGh/?spm_id_from=333.1387.homepage.video_card.click" class="dl-button" target="_blank">视频链接</a>
+                </div>
 
-            <div class="virus-item">
-                <p>360安全中心.exe</p>
-                <a href="https://wwzu.lanzouo.com/ixMTB28ud44h" target="_blank" class="dl-button">网盘下载</a>
-                <a href="https://www.bilibili.com/video/BV1QY4y1c7xX/?spm_id_from=333.1387.upload.video_card.click"
-                    class="dl-button" target="_blank">跳转视频</a>
-            </div>
-            <div class="virus-item">
-                <p>VineMEMZ.exe</p>
-                <a href="https://wwzu.lanzouo.com/i3pCr28udckb" target="_blank" class="dl-button">网盘下载</a>
-                <a href="https://www.bilibili.com/video/BV1Nt4y1372s/?spm_id_from=333.1387.upload.video_card.click"
-                    class="dl-button" target="_blank">跳转视频</a>
-            </div>
+                <div class="virus-item">
+                    <p>pet.exe</p>
+                    <a href="https://wwbxu.lanzouv.com/iGuMd3k41rsj" class="dl-button" target="_blank">点击下载</a>
+                    <a href="https://www.bilibili.com/video/BV1QsHVzFEfA/?spm_id_from=333.1387.homepage.video_card.click" class="dl-button" target="_blank">视频链接</a>
+                </div>
 
-            <div class="virus-item">
-                <p>Terminator_Harmful.exe</p>
-                <a href="https://wwzu.lanzouo.com/iU2YV28udm2d" target="_blank" class="dl-button">网盘下载</a>
-                <a href="https://www.bilibili.com/video/BV17t4y1E7D6/?spm_id_from=333.1387.upload.video_card.click"
-                    class="dl-button" target="_blank">跳转视频</a>
-            </div>
-            <div class="virus-item">
-                <p>Microsoft_Edge.exe</p>
-                <a href="https://wwzu.lanzouo.com/iuWfS28udwij" target="_blank" class="dl-button">网盘下载</a>
-                <a href="https://www.bilibili.com/video/BV1XD4y167cx/?spm_id_from=333.1387.upload.video_card.click"
-                    class="dl-button" target="_blank">跳转视频</a>
-            </div>
+                <div class="virus-item">
+                    <p>000.exe</p>
+                    <a href="https://wwbxu.lanzouv.com/iTSM13k40vpe" class="dl-button" target="_blank">点击下载</a>
+                    <a href="https://www.bilibili.com/video/BV1n9amzeEa5/?spm_id_from=333.1387.homepage.video_card.click" class="dl-button" target="_blank">视频链接</a>
+                </div>
 
-            <div class="virus-item">
-                <p>魔理沙.exe</p>
-                <a href="https://wwzu.lanzouo.com/iXt3728ue08d" target="_blank" class="dl-button">网盘下载</a>
-                <a href="https://www.bilibili.com/video/BV1ft4y177nM/?spm_id_from=333.1387.upload.video_card.click"
-                    class="dl-button" target="_blank">跳转视频</a>
-            </div>
+                <div class="virus-item">
+                    <p>SuierkuTemp4.0.exe</p>
+                    <a href="https://wwbxu.lanzouv.com/iQldk3k409uh" class="dl-button" target="_blank">点击下载</a>
+                    <a href="https://www.bilibili.com/video/BV11LuwzpE4J/?spm_id_from=333.1387.homepage.video_card.click" class="dl-button" target="_blank">视频链接</a>
+                </div>
 
-            <div class="virus-item">
-                <p>Spark.exe</p>
-                <a href="https://wwzu.lanzouo.com/itTTa28ueeqf" target="_blank" class="dl-button">网盘下载</a>
-                <a href="https://www.bilibili.com/video/BV1K8411s7aV/?spm_id_from=333.1387.upload.video_card.click"
-                    class="dl-button" target="_blank">跳转视频</a>
-            </div>
+                <div class="virus-item">
+                    <p>爱比较v14.exe</p>
+                    <a href="https://wwbxu.lanzouv.com/i7yQd3k3z83i" class="dl-button" target="_blank">点击下载</a>
+                    <a href="https://www.bilibili.com/video/BV1SzA5eWEen/?spm_id_from=333.1387.upload.video_card.click" class="dl-button" target="_blank">视频链接</a>
+                </div>
 
-            <div class="virus-item">
-                <p>Disk_Terminator.exe</p>
-                <a href="https://wwzu.lanzouo.com/imNY828uec6d" target="_blank" class="dl-button">网盘下载</a>
-                <a href="https://www.bilibili.com/video/BV1Ud4y1C7k9/?spm_id_from=333.1387.upload.video_card.click"
-                    class="dl-button" target="_blank">跳转视频</a>
-            </div>
+                <div class="virus-item">
+                    <p>Windows Update(Windows 10 Horror).exe</p>
+                    <a href="https://wwbxu.lanzouv.com/iVfFr3k3yw9c" class="dl-button" target="_blank">点击下载</a>
+                    <a href="https://www.bilibili.com/video/BV1vnFZeyEXK/?spm_id_from=333.1387.upload.video_card.click" class="dl-button" target="_blank">视频链接</a>
+                </div>
+                                
+                <div class="virus-item">
+                    <p>Error.exe</p>
+                    <a href="https://wwbxu.lanzouv.com/i6FVs3k3ypab" class="dl-button" target="_blank">点击下载</a>
+                    <a href="https://www.bilibili.com/video/BV1QJBbYNEEo/?spm_id_from=333.1387.upload.video_card.click" class="dl-button" target="_blank">视频链接</a>
+                </div>                
+                
+                <div class="virus-item">
+                    <p>Monoxide.exe</p>
+                    <a href="https://wwbxu.lanzouv.com/iWymv3k3zl5i" class="dl-button" target="_blank">点击下载</a>
+                    <a href="https://www.bilibili.com/video/BV187yaYoE9B/?spm_id_from=333.1387.upload.video_card.click" class="dl-button" target="_blank">视频链接</a>
+                </div>
+                                
+                <div class="virus-item">
+                    <p>Windows 8 Horror.exe</p>
+                    <a href="https://wwbxu.lanzouv.com/izrJu3k3ye3i" class="dl-button" target="_blank">点击下载</a>
+                    <a href="https://www.bilibili.com/video/BV1WRxfehER9/?spm_id_from=333.1387.upload.video_card.click" class="dl-button" target="_blank">视频链接</a>
+                </div>
+                                
+                <div class="virus-item">
+                    <p>WinRGB.exe</p>
+                    <a href="https://wwbxu.lanzouv.com/iyUJt3k3xwvi" class="dl-button" target="_blank">点击下载</a>
+                    <a href="https://www.bilibili.com/video/BV1yHYyeGERw/?spm_id_from=333.1387.upload.video_card.click" class="dl-button" target="_blank">视频链接</a>
+                </div>
+                                
+                <div class="virus-item">
+                    <p class="malicious_virus">Abantes.exe</p>
+                    <a href="https://wwbxu.lanzouv.com/iHKcU3k3x83g" class="dl-button" target="_blank">点击下载</a>
+                    <a href="https://www.bilibili.com/video/BV1fy411q7gj/?spm_id_from=333.1387.upload.video_card.click" class="dl-button" target="_blank">视频链接</a>
+                </div>
+                                
+                <div class="virus-item">
+                    <p>Veryfun.exe</p>
+                    <a href="https://wwbxu.lanzouv.com/iNR413k3x54j" class="dl-button" target="_blank">点击下载</a>
+                    <a href="https://www.bilibili.com/video/BV1Nj411s7cb/?spm_id_from=333.1387.upload.video_card.click" class="dl-button" target="_blank">视频链接</a>
+                </div>                
+                
+                <div class="virus-item">
+                    <p>你喜欢我？的世界？.exe</p>
+                    <a href="https://wwbxu.lanzouv.com/it4Rr3k3wqbg" class="dl-button" target="_blank">点击下载</a>
+                    <a href="https://www.bilibili.com/video/BV1wV4y1Y7zf/?spm_id_from=333.1387.upload.video_card.click" class="dl-button" target="_blank">视频链接</a>
+                </div>
+                                
+                <div class="virus-item">
+                    <p>Among Us.exe</p>
+                    <a href="https://wwbxu.lanzouv.com/i9UUn3k3wt7a" class="dl-button" target="_blank">点击下载</a>
+                    <a href="https://www.bilibili.com/video/BV1du41187a4/?spm_id_from=333.1387.upload.video_card.click" class="dl-button" target="_blank">视频链接</a>
+                </div>
+                                
+                <div class="virus-item">
+                    <p class="malicious_virus">Test.exe</p>
+                    <a href="https://wwbxu.lanzouv.com/i7r2h3k3w3eb" class="dl-button" target="_blank">点击下载</a>
+                    <a href="https://www.bilibili.com/video/BV15Y4y1d7Xd/?spm_id_from=333.1387.upload.video_card.click" class="dl-button" target="_blank">视频链接</a>
+                </div>
+                                
+                <div class="virus-item">
+                    <p class="joke_virus">SparkPro.exe</p>
+                    <a href="https://wwbxu.lanzouv.com/iJD003k3vzgj" class="dl-button" target="_blank">点击下载</a>
+                    <a href="https://www.bilibili.com/video/BV1kM411y7qJ/?spm_id_from=333.1387.upload.video_card.click" class="dl-button" target="_blank">视频链接</a>
+                </div>                
+                
+                <div class="virus-item">
+                    <p>奥利给.exe</p>
+                    <a href="https://wwbxu.lanzouv.com/iZGv83k3v4na" class="dl-button" target="_blank">点击下载</a>
+                    <a href="https://www.bilibili.com/video/BV1hR4y1D7hC/?spm_id_from=333.1387.upload.video_card.click" class="dl-button" target="_blank">视频链接</a>
+                </div>
+                                
+                <div class="virus-item">
+                    <p>钉钉.exe</p>
+                    <a href="https://wwbxu.lanzouv.com/iqIt43k3uowd" class="dl-button" target="_blank">点击下载</a>
+                    <a href="https://www.bilibili.com/video/BV1Q8411V7PS/?spm_id_from=333.1387.upload.video_card.click" class="dl-button" target="_blank">视频链接</a>
+                </div>
+                                
+                <div class="virus-item">
+                    <p>x.exe</p>
+                    <a href="https://wwbxu.lanzouv.com/iWXEg3k3u2hg" class="dl-button" target="_blank">点击下载</a>
+                    <a href="https://www.bilibili.com/video/BV1AR4y117bw/?spm_id_from=333.1387.upload.video_card.click" class="dl-button" target="_blank">视频链接</a>
+                </div>
+                                
+                <div class="virus-item">
+                    <p class="joke_virus">Terminator_无害版.exe</p>
+                    <a href="https://wwbxu.lanzouv.com/iSc6l3k3t64b" class="dl-button" target="_blank">点击下载</a>
+                    <a href="https://www.bilibili.com/video/BV1HM411k76F/?spm_id_from=333.1387.upload.video_card.click" class="dl-button" target="_blank">视频链接</a>
+                </div>
+                                
+                <div class="virus-item">
+                    <p class="malicious_virus">Kawaii 2.0.dll</p>
+                    <a href="https://wwbxu.lanzouv.com/iSc6l3k3t64b" class="dl-button" target="_blank">点击下载</a>
+                    <a href="https://www.bilibili.com/video/BV148411879s/?spm_id_from=333.1387.upload.video_card.click" class="dl-button" target="_blank">视频链接</a>
+                </div>
+                                
+                <div class="virus-item">
+                    <p>Windows Update.exe</p>
+                    <a href="https://wwbxu.lanzouv.com/idrpn3k3rn0h" class="dl-button" target="_blank">点击下载</a>
+                    <a href="https://www.bilibili.com/video/BV1kV4y137qJ/?spm_id_from=333.1387.upload.video_card.click" class="dl-button" target="_blank">视频链接</a>
+                </div>
 
-            <div class="virus-item">
-                <p>Windows_Update.exe</p>
-                <a href="https://wwzu.lanzouo.com/ixJrc28uexdg" target="_blank" class="dl-button">网盘下载</a>
-                <a href="https://www.bilibili.com/video/BV1kV4y137qJ/?spm_id_from=333.1387.upload.video_card.click"
-                    class="dl-button" target="_blank">跳转视频</a>
-            </div>
+                <div class="virus-item">
+                    <p class="malicious_virus">Disk Terminator 2.0.exe</p>
+                    <a href="https://wwbxu.lanzouv.com/iuD9a3k3qpwf" class="lost-program" target="_blank">1.0版本下载</a>
+                    <a href="https://www.bilibili.com/video/BV1Ud4y1C7k9/?spm_id_from=333.1387.upload.video_card.click" class="dl-button" target="_blank">视频链接</a>
+                </div>
+                                
+                <div class="virus-item">
+                    <p>czf.bat</p>
+                    <a href="" class="lost-program" target="_blank">样本丢失</a>
+                    <a href="https://www.bilibili.com/video/BV1484y1q7R1/?spm_id_from=333.1387.upload.video_card.click" class="dl-button" target="_blank">视频链接</a>
+                </div>
+                                
+                <div class="virus-item">
+                    <p>Spark.exe</p>
+                    <a href="https://wwbxu.lanzouv.com/ie52Y3k3qkkd" class="dl-button" target="_blank">点击下载</a>
+                    <a href="https://www.bilibili.com/video/BV1K8411s7aV/?spm_id_from=333.1387.upload.video_card.click" class="dl-button" target="_blank">视频链接</a>
+                </div>
 
-            <div class="virus-item">
-                <p>Kawaii2.0.dll</p>
-                <a href="https://wwzu.lanzouo.com/iedET0fv2dhe" target="_blank" class="dl-button">网盘下载</a>
-                <a href="https://www.bilibili.com/video/BV148411879s/?spm_id_from=333.1387.upload.video_card.click"
-                    class="dl-button" target="_blank">跳转视频</a>
-            </div>
+                <div class="virus-item">
+                    <p class="malicious_virus">Kawaii.dll</p>
+                    <a href="https://wwbxu.lanzouv.com/imAvs3k3mqgb" class="dl-button" target="_blank">点击下载</a>
+                    <a href="https://www.bilibili.com/video/BV1cT411F781/?spm_id_from=333.1387.upload.video_card.click" class="dl-button" target="_blank">视频链接</a>
+                </div>
 
-            <div class="virus-item">
-                <p>TerminatorHarmless无害版</p>
-                <a href="https://wwzu.lanzouo.com/idSST0h0vahg" target="_blank" class="dl-button">网盘下载</a>
-                <a href="https://www.bilibili.com/video/BV1HM411k76F/?spm_id_from=333.1387.homepage.video_card.click"
-                    class="dl-button" target="_blank">跳转视频</a>
-            </div>
+                <div class="virus-item">
+                    <p class="joke_virus">魔理沙.exe</p>
+                    <a href="https://wwbxu.lanzouv.com/ileLB3k39m3g" class="dl-button" target="_blank">点击下载</a>
+                    <a href="https://www.bilibili.com/video/BV1ft4y177nM/?spm_id_from=333.1387.upload.video_card.click" class="dl-button" target="_blank">视频链接</a>
+                </div>
+                                
+                <div class="virus-item">
+                    <p class="malicious_virus">Windows Update.exe</p>
+                    <a href="" class="lost-program" target="_blank">样本丢失</a>
+                    <a href="https://www.bilibili.com/video/BV1UD4y1B7KC/?spm_id_from=333.1387.upload.video_card.click" class="dl-button" target="_blank">视频链接</a>
+                </div>
+                                
+                <div class="virus-item">
+                    <p>Microsoft Edge.exe</p>
+                    <a href="https://wwbxu.lanzouv.com/iB43n3k39mha" class="dl-button" target="_blank">点击下载</a>
+                    <a href="https://www.bilibili.com/video/BV1XD4y167cx/?spm_id_from=333.1387.upload.video_card.click" class="dl-button" target="_blank">视频链接</a>
+                </div>
 
-            <div class="virus-item">
-                <p>x.exe</p>
-                <a href="https://wwzu.lanzouo.com/isYIH0hnepej" target="_blank" class="dl-button">网盘下载</a>
-                <a href="https://www.bilibili.com/video/BV1AR4y117bw/?spm_id_from=333.1387.homepage.video_card.click"
-                    class="dl-button" target="_blank">跳转视频</a>
+                <div class="virus-item">
+                    <p>Terminator.exe</p>
+                    <a href="https://wwbxu.lanzouv.com/iU6UO3k39j4j" class="dl-button" target="_blank">点击下载</a>
+                    <a href="https://www.bilibili.com/video/BV17t4y1E7D6/?spm_id_from=333.1387.upload.video_card.click" class="dl-button" target="_blank">视频链接</a>
+                </div>
+                                
+                <div class="virus-item">
+                    <p>VineMEMZ.exe</p>
+                    <a href="https://wwbxu.lanzouv.com/iuqZw3k32ead" class="dl-button" target="_blank">点击下载</a>
+                    <a href="https://www.bilibili.com/video/BV1Nt4y1372s/?spm_id_from=333.1387.upload.video_card.click" class="dl-button" target="_blank">视频链接</a>
+                </div>
+                                
+                <div class="virus-item">
+                    <p>360.exe</p>
+                    <a href="https://wwbxu.lanzouv.com/iQ1Bi3k31ufi" class="dl-button" target="_blank">点击下载</a>
+                    <a href="https://www.bilibili.com/video/BV1QY4y1c7xX/?spm_id_from=333.1387.upload.video_card.click" class="dl-button" target="_blank">视频链接</a>
+                </div>
+                                
+                <div class="virus-item">
+                    <p>Windows XP Horror.exe</p>
+                    <a href="https://wwbxu.lanzouv.com/iQeLQ3k3155i" class="dl-button" target="_blank">点击下载</a>
+                    <a href="https://www.bilibili.com/video/BV13e4y1Q7Av/?spm_id_from=333.1387.upload.video_card.click" class="dl-button" target="_blank">视频链接</a>
+                </div>
             </div>
-
-            <div class="virus-item">
-                <p>钉钉.exe</p>
-                <a href="https://wwzu.lanzouo.com/iIUGF2i33s4j" target="_blank" class="dl-button">网盘下载</a>
-                <a href="https://www.bilibili.com/video/BV1Q8411V7PS/?spm_id_from=333.1387.homepage.video_card.click"
-                    class="dl-button" target="_blank">跳转视频</a>
-            </div>
-
-            <div class="virus-item">
-                <p>奥利给病毒.exe</p>
-                <a href="https://wwzu.lanzouo.com/i3uey2i342qb" target="_blank" class="dl-button">网盘下载</a>
-                <a href="https://www.bilibili.com/video/BV1hR4y1D7hC/?spm_id_from=333.1387.homepage.video_card.click"
-                    class="dl-button" target="_blank">跳转视频</a>
-            </div>
-
-            <div class="virus-item">
-                <p>SparkPro.exe</p>
-                <a href="https://wwzu.lanzouo.com/i6g9v0jtr2kd" target="_blank" class="dl-button">网盘下载</a>
-                <a href="https://www.bilibili.com/video/BV1kM411y7qJ/?spm_id_from=333.1387.homepage.video_card.click"
-                    class="dl-button" target="_blank">跳转视频</a>
-            </div>
-
-            <div class="virus-item">
-                <p>Test.exe</p>
-                <a href="https://wwzu.lanzouo.com/iakep0m9qy4b" target="_blank" class="dl-button">网盘下载</a>
-                <a href="https://www.bilibili.com/video/BV15Y4y1d7Xd/?spm_id_from=333.1387.homepage.video_card.click"
-                    class="dl-button" target="_blank">跳转视频</a>
-            </div>
-
-            <div class="virus-item">
-                <p>Among_Us.exe</p>
-                <a href="https://wwzu.lanzouo.com/i4qIZ10exxuh" target="_blank" class="dl-button">网盘下载</a>
-                <a href="https://www.bilibili.com/video/BV1du41187a4/?spm_id_from=333.1387.homepage.video_card.click"
-                    class="dl-button" target="_blank">跳转视频</a>
-            </div>
-
-            <div class="virus-item">
-                <p>你喜欢我？的世界？.exe</p>
-                <a href="https://wwzu.lanzouo.com/iqj2e150bs5g" target="_blank" class="dl-button">网盘下载</a>
-                <a href="https://www.bilibili.com/video/BV1wV4y1Y7zf/?spm_id_from=333.1387.homepage.video_card.click"
-                    class="dl-button" target="_blank">跳转视频</a>
-            </div>
-
-            <div class="virus-item">
-                <p>Very_Fun.exe</p>
-                <a href="https://wwzu.lanzouo.com/is5EF28ufp9a" target="_blank" class="dl-button">网盘下载</a>
-                <a href="https://www.bilibili.com/video/BV1Nj411s7cb/?spm_id_from=333.1387.homepage.video_card.click"
-                    class="dl-button" target="_blank">跳转视频</a>
-            </div>
-
-            <div class="virus-item">
-                <p>000.exe</p>
-                <a href="https://wwzu.lanzouo.com/iYWd41l29duh" target="_blank" class="dl-button">网盘下载</a>
-                <a href="https://www.bilibili.com/video/BV12T4y187cu/?spm_id_from=333.1387.homepage.video_card.click"
-                    class="dl-button" target="_blank">跳转视频</a>
-            </div>
-
-            <div class="virus-item">
-                <p>Abantes.exe</p>
-                <a href="https://wwzu.lanzouo.com/iiTy722uo40d" target="_blank" class="dl-button">网盘下载</a>
-                <a href="https://www.bilibili.com/video/BV1fy411q7gj/?spm_id_from=333.1387.homepage.video_card.click"
-                    class="dl-button" target="_blank">跳转视频</a>
-            </div>
-
-            <div class="virus-item">
-                <p>WinRGB.exe</p>
-                <a href="https://wwzu.lanzouo.com/icB4p28ufwcf" target="_blank" class="dl-button">网盘下载</a>
-                <a href="https://www.bilibili.com/video/BV1yHYyeGERw/?spm_id_from=333.1387.homepage.video_card.click"
-                    class="dl-button" target="_blank">跳转视频</a>
-            </div>
-
-            <div class="virus-item">
-                <p>Windows_8_Horror.exe</p>
-                <a href="https://wwzu.lanzouo.com/iAz712i3cwqj" target="_blank" class="dl-button">网盘下载</a>
-                <a href="https://www.bilibili.com/video/BV1WRxfehER9/?spm_id_from=333.1387.homepage.video_card.click"
-                    class="dl-button" target="_blank">跳转视频</a>
-            </div>
-
-            <div class="virus-item">
-                <p>Error.exe</p>
-                <a href="https://wwzu.lanzouo.com/iUlSs2i3dv8b" target="_blank" class="dl-button">网盘下载</a>
-                <a href="https://www.bilibili.com/video/BV1QJBbYNEEo/?spm_id_from=333.1387.homepage.video_card.click"
-                    class="dl-button" target="_blank">跳转视频</a>
-            </div>
-
-            <div class="virus-item">
-                <p>Windows 10 Horror.exe</p>
-                <a href="https://wwzu.lanzouo.com/iovXw2nh6vje" target="_blank" class="dl-button">网盘下载</a>
-                <a href="https://www.bilibili.com/video/BV1vnFZeyEXK/?spm_id_from=333.999.0.0" class="dl-button"
-                    target="_blank">跳转视频</a>
-            </div>
-
-            <div class="virus-item">
-                <p>爱比较v14.0.exe</p>                <a href="https://wwzu.lanzouo.com/ig5WS2o3ztji" target="_blank" class="dl-button">网盘下载</a>
-                <a href="https://www.bilibili.com/video/BV1SzA5eWEen/?spm_id_from=333.999.0.0" class="dl-button"
-                    target="_blank">跳转视频</a>
-            </div>
-
         </div>
-    </div>
     </div> <!-- 关闭 main-content -->
-    
- <footer class="footer">
+
+    <footer class="footer">
         <div class="footer-container">
             <div class="footer-content">
                 <div class="footer-brand">
@@ -279,57 +307,59 @@
                     <h4>🔗 快速链接</h4>
                     <ul class="footer-links">
                         <li><a href="https://exqstudio.cn">
-                            <span class="footer-icon">🏠</span>
-                            <span>首页</span>
-                        </a></li>
+                                <span class="footer-icon">🏠</span>
+                                <span>首页</span>
+                            </a></li>
                         <li><a href="download.html">
-                            <span class="footer-icon">📥</span>
-                            <span>下载</span>
-                        </a></li>
+                                <span class="footer-icon">📥</span>
+                                <span>下载</span>
+                            </a></li>
                         <li><a href="https://forum.exqstudio.cn" target="_blank">
-                            <span class="footer-icon">💬</span>
-                            <span>论坛</span>
-                        </a></li>
+                                <span class="footer-icon">💬</span>
+                                <span>论坛</span>
+                            </a></li>
                         <li><a href="about.html">
-                            <span class="footer-icon">👥</span>
-                            <span>关于团队</span>
-                        </a></li>
+                                <span class="footer-icon">👥</span>
+                                <span>关于团队</span>
+                            </a></li>
                         <li><a href="donation.html">
-                            <span class="footer-icon">❤️</span>
-                            <span>赞助我们</span>
-                        </a></li>
+                                <span class="footer-icon">❤️</span>
+                                <span>赞助我们</span>
+                            </a></li>
                         <li><a href="recentupdate.html">
-                            <span class="footer-icon">📝</span>
-                            <span>最近更新</span>
-                        </a></li>
+                                <span class="footer-icon">📝</span>
+                                <span>最近更新</span>
+                            </a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>📞 联系我们</h4>
                     <ul class="footer-links contact-links">
                         <li><a href="https://github.com/EXQ-Studio/exq.github.io" target="_blank">
-                            <span class="footer-icon">⚡</span>
-                            <span>GitHub</span>
-                        </a></li>
+                                <span class="footer-icon">⚡</span>
+                                <span>GitHub</span>
+                            </a></li>
                         <li><a href="mailto:exqstudio@exqstudio.cn" target="_blank">
-                            <span class="footer-icon">✉️</span>
-                            <span>exqstudio@exqstudio.cn</span>
-                        </a></li>
-                        <li><a href="https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=s9hmkfGoSf-wJU7F9utssiFY1H8n1Wm1&authKey=xn9gD93GzSQuPXeL6iGcDgVtqgeCgWuPGYUSSSGJUoztP/0fE0yZxwu7mb+Pvg0M&noverify=0&group_code=538933981" target="_blank">
-                            <span class="footer-icon">🐧</span>
-                            <span>QQ群: 538933981</span>
-                        </a></li>
+                                <span class="footer-icon">✉️</span>
+                                <span>exqstudio@exqstudio.cn</span>
+                            </a></li>
+                        <li><a href="https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=s9hmkfGoSf-wJU7F9utssiFY1H8n1Wm1&authKey=xn9gD93GzSQuPXeL6iGcDgVtqgeCgWuPGYUSSSGJUoztP/0fE0yZxwu7mb+Pvg0M&noverify=0&group_code=538933981"
+                                target="_blank">
+                                <span class="footer-icon">🐧</span>
+                                <span>QQ群: 538933981</span>
+                            </a></li>
                     </ul>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
                 <div class="footer-copyright">
-                    © 2025 EXQ STUDIO. All rights reserved.
-                </div>            </div>
+                    © 2026 EXQ STUDIO. All rights reserved.
+                </div>
+            </div>
         </div>
     </footer>
-    
+
     <script src="https://blog-static.cnblogs.com/files/e-cat/cursor-effects.js"></script>
     <script src="js/nav.js"></script>
     <script src="js/download.js"></script>
