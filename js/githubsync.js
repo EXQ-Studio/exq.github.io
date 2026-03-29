@@ -6,19 +6,20 @@ async function syncGitHub() {
     if (syncInProgress) return;
 
     const button = document.querySelector('.sync-button');
-    const indicator = document.getElementById('statusIndicator');
-    const status = document.getElementById('statusText');
     const repoInput = document.getElementById('repoInput');
+    const defaultRepo = 'EXQ-Studio/exq.github.io';
+    const repo = (repoInput && repoInput.value.trim()) ? repoInput.value.trim() : defaultRepo;
 
-    const repo = repoInput.value.trim();
     if (!repo) {
         updateStatus('error', '请输入有效的仓库地址');
         return;
     }
 
     syncInProgress = true;
-    button.disabled = true;
-    button.innerHTML = '<span>⏳</span>同步中...';
+    if (button) {
+        button.disabled = true;
+        button.innerHTML = '<span>⏳</span>同步中...';
+    }
     updateStatus('loading', '正在获取最新数据...');    try {
         // 获取仓库信息（包含总提交数）
         updateStatus('loading', '正在获取仓库信息...');
@@ -95,8 +96,10 @@ async function syncGitHub() {
         }
     } finally {
         syncInProgress = false;
-        button.disabled = false;
-        button.innerHTML = '<span>🔄</span>同步更新';
+        if (button) {
+            button.disabled = false;
+            button.innerHTML = '<span>🔄</span>同步更新';
+        }
     }
 }
 
@@ -436,4 +439,5 @@ function isCommonMeaningless(message) {
 // 页面加载时的初始化
 document.addEventListener('DOMContentLoaded', function () {
     console.log('EXQ Studio 更新日志页面已加载');
+    syncGitHub();
 });
